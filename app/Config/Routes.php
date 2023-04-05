@@ -33,6 +33,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index'); //INI LOGIN
 
+$routes->get('/dashboard', 'Dashboard::index'); //INI DASHBOARD
+
+
+// BOSSS
+$routes->get('/produk', 'Bos::produk');
+$routes->get('/mitra', 'Bos::mitra');
+$routes->get('/bahan', 'Bos::bahan');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
