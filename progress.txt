@@ -1,7 +1,10 @@
 ini tugas bu eny
 
-ali = bos
+ali = bos, mitra, 
 arya = 
 febi = 
 ian  = penjualan, 
 eriq = 
+
+anggota memiliki tanggung jawab modul berbeda mulai minggu depan
+tulis nama semua kelompok kemudian bold yang bagiannya
