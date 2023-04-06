@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use SebastianBergmann\CodeUnit\FunctionUnit;
+
 class Home extends BaseController
 {
     //INI LAMAN LOGIN
@@ -50,5 +52,11 @@ class Home extends BaseController
 
         // Tampilkan halaman login apabila salah
         return view('login', $data);
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('login');
     }
 }

@@ -32,6 +32,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index'); //INI LOGIN
+$routes->get('/logout', 'Home::logout'); //INI LOGIN
 
 $routes->get('/dashboard', 'Dashboard::index'); //INI DASHBOARD
 
