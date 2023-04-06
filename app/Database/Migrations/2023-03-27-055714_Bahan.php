@@ -15,7 +15,8 @@ class Bahan extends Migration
                 'constraint'    => 11
             ],
             'nama' => [
-                'type'  => 'INT',
+                'type'  => 'VARCHAR',
+                'constraint'    => 30
             ],
             'jumlah' => [
                 'type'  => 'INT',

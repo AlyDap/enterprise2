@@ -41,6 +41,8 @@ $routes->get('/dashboard', 'Dashboard::index'); //INI DASHBOARD
 $routes->get('/produk', 'Bos::produk');
 $routes->get('/mitra', 'Bos::mitra');
 $routes->get('/bahan', 'Bos::bahan');
+$routes->get('/bahan/createbahan', 'Bos::createBahan');
+$routes->post('/bahan/storebahan', 'Bos::storeBahan');
 
 /*
  * --------------------------------------------------------------------

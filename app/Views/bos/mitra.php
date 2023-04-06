@@ -1,4 +1,4 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('content') ?>
-<h1>ini laman Mitra untuk bos</h1>
+<h1>MITRA BOSSS</h1>
 <?= $this->endSection(); ?>
