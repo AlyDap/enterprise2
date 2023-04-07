@@ -24,6 +24,11 @@ class Bahan extends Migration
             'harga' => [
                 'type'  => 'INT',
             ],
+            'status'  => [
+                'type'  => 'ENUM',
+                'constraint'  => "'Active','Inactive'",
+                'default'  => 'Active',
+            ],
         ]);
         $this->forge->addKey('id_bahan', true);
         $this->forge->createTable('bahan', true);

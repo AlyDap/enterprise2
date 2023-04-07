@@ -13,32 +13,38 @@ class UserSeeder extends Seeder
             [
                 'username' => 'ali',
                 'password' => password_hash('ali', PASSWORD_DEFAULT),
-                'jabatan'   => 'bos'
+                'jabatan'   => 'bos',
+                'gaji'   => '10000000'
             ],
             [
                 'username' => 'ian',
                 'password' => password_hash('ian', PASSWORD_DEFAULT),
-                'jabatan'   => 'penjualan'
+                'jabatan'   => 'penjualan',
+                'gaji'   => '3500000'
             ],
             [
                 'username' => 'anonim',
                 'password' => password_hash('riqqi', PASSWORD_DEFAULT),
-                'jabatan'   => 'finance'
+                'jabatan'   => 'finance',
+                'gaji'   => '4000000'
             ],
             [
                 'username' => 'riqqi',
                 'password' => password_hash('riqqi', PASSWORD_DEFAULT),
-                'jabatan'   => 'hrd'
+                'jabatan'   => 'hrd',
+                'gaji'   => '4500000'
             ],
             [
                 'username' => 'febi',
                 'password' => password_hash('febi', PASSWORD_DEFAULT),
-                'jabatan'   => 'gudang'
+                'jabatan'   => 'gudang',
+                'gaji'   => '4000000'
             ],
             [
                 'username' => 'arya',
                 'password' => password_hash('arya', PASSWORD_DEFAULT),
-                'jabatan'   => 'produksi'
+                'jabatan'   => 'produksi',
+                'gaji'   => '3500000'
             ],
         ];
 

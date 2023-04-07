@@ -28,6 +28,14 @@ class Produk extends Migration
             'biaya_jual'  => [
                 'type'  => 'INT',
             ],
+            'jumlah'  => [
+                'type'  => 'INT',
+            ],
+            'status'  => [
+                'type'  => 'ENUM',
+                'constraint'  => "'Active','Inactive'",
+                'default'  => 'Active',
+            ],
         ]);
         $this->forge->addKey('id_produk', true);
         $this->forge->createTable('produk', true);

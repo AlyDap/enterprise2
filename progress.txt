@@ -9,7 +9,21 @@ eriq   = HRD       -> user, Penggajian,           => create read
 anonim = finance   -> Finance                     => create read
 
 user & password login: nama masing"
-kecuali user anonim
+kecuali user anonim pass: riqqi
 
 anggota memiliki tanggung jawab modul berbeda mulai minggu depan
 tulis nama semua kelompok kemudian bold yang bagiannya
+
+Progesss:
+Login & Logout sudah bisa
+Seeder: user, bahan, produk, mitra
+___________________________________________________________
+Bos
++ Tampilan dan fungsional (bahan)
+- Tampilan dan fungsional (dashboard, produk, mitra)
+- Field status tabel produk mitra bahan
+___________________________________________________________
+___________________________________________________________
+___________________________________________________________
+___________________________________________________________
+___________________________________________________________

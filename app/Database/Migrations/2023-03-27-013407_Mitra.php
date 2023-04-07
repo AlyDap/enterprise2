@@ -22,6 +22,11 @@ class Mitra extends Migration
                 'type'  => 'VARCHAR',
                 'constraint'    => 70
             ],
+            'status'  => [
+                'type'  => 'ENUM',
+                'constraint'  => "'Active','Inactive'",
+                'default'  => 'Active',
+            ],
 
         ]);
         $this->forge->addKey('id_mitra', true);
