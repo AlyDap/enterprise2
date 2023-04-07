@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Bahan_model extends Model
+class Bos_model extends Model
 {
     protected $table = 'bahan';
     public function getBahan($id = false)
@@ -19,5 +19,10 @@ class Bahan_model extends Model
     public function insertBahan($data)
     {
         return $this->db->table($this->table)->insert($data);
+    }
+
+    public function updateBahan($data, $id)
+    {
+        return $this->db->table($this->table)->update($data, ['id_bahan' => $id]);
     }
 }

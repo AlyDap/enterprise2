@@ -19,6 +19,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
     </div>
 <?php } ?>
 <h1 style="text-align: center;">Tabel Bahan</h1>
+<hr>
 <a role="button" class="btn btn-outline-dark" href="<?= base_url('bahan/createbahan'); ?>" style="margin-bottom: 5px; float: right;">Tambah Bahan</a>
 <table class="table table-dark table-striped-columns" style="border-collapse:collapse ;border-radius: 10px;overflow: hidden;">
     <thead>
@@ -27,6 +28,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
             <th scope="col" style="padding: 15px;">Nama</th>
             <th scope="col" style="padding: 15px;">Qty</th>
             <th scope="col" style="padding: 15px;">Harga</th>
+            <th scope="col" style="padding: 15px;">Status</th>
             <th scope="col" style="padding: 15px;">Action</th>
         </tr>
     </thead>
@@ -37,7 +39,8 @@ if (!empty(session()->getFlashdata('success'))) { ?>
                 <td><?= $row['nama']; ?></td>
                 <td><?= $row['jumlah']; ?></td>
                 <td>Rp<?= $row['harga']; ?>,00</td>
-                <td><a href="<?= base_url('bahan/edit' . $row['id_bahan']); ?>" class="btn btn-sm btn-outline-light">Edit</a></td>
+                <td><?= $row['status']; ?></td>
+                <td><a href="<?= base_url('bahan/editbahan/' . $row['id_bahan']); ?>" class="btn btn-sm btn-outline-light">Edit</a></td>
             </tr>
         <?php } ?>
     </tbody>

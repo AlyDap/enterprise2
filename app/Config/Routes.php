@@ -43,6 +43,10 @@ $routes->get('/mitra', 'Bos::mitra');
 $routes->get('/bahan', 'Bos::bahan');
 $routes->get('/bahan/createbahan', 'Bos::createBahan');
 $routes->post('/bahan/storebahan', 'Bos::storeBahan');
+$routes->get('/bahan/editbahan/(:num)', 'Bos::editBahan/$1');
+$routes->post('/bahan/updatebahan', 'Bos::updateBahan');
+
+
 
 /*
  * --------------------------------------------------------------------

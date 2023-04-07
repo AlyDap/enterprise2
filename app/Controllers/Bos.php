@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Controllers\BaseController;
-use App\Models\Bahan_model;
+use App\Models\Bos_Model;
 
 class Bos extends BaseController
 {
@@ -35,7 +35,7 @@ class Bos extends BaseController
 
     public function bahan()
     {
-        $model = new Bahan_model();
+        $model = new Bos_Model();
         $data = [
             'title' => 'Bahan'
         ];
@@ -57,7 +57,8 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'jumlah' => $this->request->getPost('jumlah'),
-            'harga' => $this->request->getPost('harga')
+            'harga' => $this->request->getPost('harga'),
+            'status' => $this->request->getPost('status')
         );
 
         if ($validation->run($data, 'bahan') == false) {
@@ -65,10 +66,45 @@ class Bos extends BaseController
             session()->setFlashdata('errors', $validation->getErrors());
             return redirect()->to(base_url('bos/createbahan'));
         } else {
-            $model = new Bahan_model();
+            $model = new Bos_Model();
             $simpan = $model->insertBahan($data);
             if ($simpan) {
                 session()->setFlashdata('success', 'Berhasil Menambah Bahan');
+                return redirect()->to(base_url('bos/bahan'));
+            }
+        }
+    }
+
+    public function editBahan($id)
+    {
+        $model = new Bos_Model();
+        $data = [
+            'title' => 'editbahan'
+        ];
+        $data['bahan'] = $model->getBahan($id)->getRowArray();
+        echo view('bos/editbahan', $data);
+    }
+
+    public function updateBahan()
+    {
+        $id = $this->request->getPost('id_bahan');
+        $validation = \Config\Services::validation();
+        $data = array(
+            'nama' => $this->request->getPost('nama'),
+            'jumlah' => $this->request->getPost('jumlah'),
+            'harga' => $this->request->getPost('harga'),
+            'status' => $this->request->getPost('status')
+        );
+
+        if ($validation->run($data, 'bahan') == false) {
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+            return redirect()->to(base_url('bos/editbahan/' . $id));
+        } else {
+            $model = new Bos_Model();
+            $ubah = $model->updateBahan($data, $id);
+            if ($ubah) {
+                session()->setFlashdata('info', 'Berhasil Mengedit Bahan');
                 return redirect()->to(base_url('bos/bahan'));
             }
         }
