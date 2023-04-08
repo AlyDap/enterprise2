@@ -39,7 +39,12 @@ class Bos extends BaseController
         $data = [
             'title' => 'Bahan'
         ];
-        $data['bahan'] = $model->getBahan();
+        $keyword = $this->request->getVar('keyword');
+        if (empty($keyword)) {
+            $keyword = '';
+        }
+        $data['bahan'] = $model->like('nama', $keyword)->paginate(5);
+        $data['pager'] = $model->pager;
         return view('bos/bahan', $data);
     }
 
