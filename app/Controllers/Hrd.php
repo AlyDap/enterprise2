@@ -33,29 +33,30 @@ class Hrd extends BaseController
 
     public function store()
     {
-        // Mengambil data dari form input
-        $data = [
-            'username' => $this->request->getVar('username'),
-            'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'jabatan' => $this->request->getVar('jabatan'),
-            'gaji' => $this->request->getVar('gaji')
-        ];
-
-        // Memasukkan data ke dalam database
-        $this->userModel->insert($data);
-
+        $id = $this->request->getVar('id-user');
         $session = session();
-        $session->set('alert', 'success');
+        if ($id == '') { //ini berarti tambah data
+
+            // Mengambil data dari form input
+            $data = [
+                'username' => $this->request->getVar('username'),
+                'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                'jabatan' => $this->request->getVar('jabatan'),
+                'gaji' => $this->request->getVar('gaji')
+            ];
+
+            // Memasukkan data ke dalam database
+            $this->userModel->insert($data);
+
+            $session->set('alert', 'success');
+        } else { //ini berarti edit data
+            $this->update($id);
+            $session->set('alert', 'edit');
+        }
         // Mengarahkan pengguna kembali ke halaman daftar user
         return redirect()->to('/hrd/tampil');
     }
 
-    public function edit($id)
-    {
-        // Menampilkan form untuk mengedit data user
-        $data['user'] = $this->userModel->find($id);
-        return view('hrd/edit', $data);
-    }
 
     public function update($id)
     {
@@ -66,11 +67,11 @@ class Hrd extends BaseController
             'jabatan' => $this->request->getVar('jabatan'),
             'gaji' => $this->request->getVar('gaji')
         ];
+        if ($this->request->getVar('password') == '') {
+            unset($data['password']);
+        }
 
         // Memperbarui data ke dalam database
         $this->userModel->update($id, $data);
-
-        // Mengarahkan pengguna kembali ke halaman daftar user
-        return redirect()->to('/hrd');
     }
 }
