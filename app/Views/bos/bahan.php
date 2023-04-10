@@ -1,5 +1,38 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('content') ?>
+<style>
+    .page-link {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #212529 !important;
+        background-color: #e2e3e5 !important;
+        border: 1px solid #a4a4a4 !important;
+    }
+
+    .page-link:hover {
+        z-index: 2;
+        color: #fff !important;
+        text-decoration: none;
+        background-color: #a4a4a4 !important;
+        border-color: #dee2e6;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #a4a4a4 !important;
+        border-color: #a4a4a4;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 <?php
 if (!empty(session()->getFlashdata('success'))) { ?>
     <div class="alert alert-dark" style="text-align: center;">
@@ -20,16 +53,16 @@ if (!empty(session()->getFlashdata('success'))) { ?>
 <?php } ?>
 <h1 style="text-align: center;">Bahan Pembuatan Batik</h1>
 <hr>
-<br>
+
 <form action="<?= base_url('bahan'); ?>" method="get">
     <div class="mb-3">
-        <a role="button" class="btn btn-outline-dark" href="<?= base_url('bahan/createbahan'); ?>" style="margin-bottom: 5px; float: right;">Tambah Bahan</a>
+        <a role="button" class="btn btn-outline-dark" href="<?= base_url('bahan/createbahan'); ?>" style="margin-top: 15px; float: right;">Tambah Bahan</a>
         <div class="row g-3 align-items-center">
             <div class="col-auto">
                 <label class="col-form-label">Cari Bahan</label>
             </div>
             <div class="col-auto">
-                <input type="text" class="form-control" name="keyword" placeholder="Masukan nama bahan..." value="<?= session()->get('keyword'); ?>">
+                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Masukan nama bahan..." value="<?= $keyword; ?>">
             </div>
             <div class="col-auto">
                 <span id="passwordHelpInline" class="form-text">
@@ -51,9 +84,10 @@ if (!empty(session()->getFlashdata('success'))) { ?>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($bahan as $key => $row) { ?>
+        <?php $i = 1 + (5 * ($currentPage - 1)); ?>
+        <?php foreach ($bahan as  $row) { ?>
             <tr style="text-align: center; vertical-align: middle;">
-                <th scope="row"><?= $key + 1; ?></td>
+                <th scope="row"><?= $i++; ?></td>
                 <td><?= $row['nama']; ?></td>
                 <td><?= $row['jumlah']; ?></td>
                 <td>Rp<?= $row['harga']; ?>,00</td>
@@ -64,6 +98,9 @@ if (!empty(session()->getFlashdata('success'))) { ?>
     </tbody>
 </table>
 <div class="pagination">
-    <?= $pager->links(); ?>
+    <?php //var_dump($pager); 
+    ?>
+    <?php echo $pager->links('bahan', 'bos_pagination');
+    ?>
 </div>
 <?= $this->endSection(); ?>

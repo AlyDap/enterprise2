@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Controllers\BaseController;
-use App\Models\Bos_Model;
+use App\Models\Bahan;
 
 class Bos extends BaseController
 {
@@ -35,16 +35,21 @@ class Bos extends BaseController
 
     public function bahan()
     {
-        $model = new Bos_Model();
-        $data = [
-            'title' => 'Bahan'
-        ];
+        // $pager = \Config\Services::pager();
+        $currentPage = $this->request->getVar('page_bahan') ? $this->request->getVar('page_bahan') : 1;
+        $model = new Bahan();
         $keyword = $this->request->getVar('keyword');
         if (empty($keyword)) {
             $keyword = '';
         }
-        $data['bahan'] = $model->like('nama', $keyword)->paginate(5);
+        $data = [
+            'title' => 'Bahan',
+            'keyword' => $keyword,
+        ];
+        $bahan = $model->like('nama', $keyword)->paginate(5, 'bahan');
+        $data['bahan'] = $bahan;
         $data['pager'] = $model->pager;
+        $data['currentPage'] = $currentPage;
         return view('bos/bahan', $data);
     }
 
@@ -71,7 +76,7 @@ class Bos extends BaseController
             session()->setFlashdata('errors', $validation->getErrors());
             return redirect()->to(base_url('bos/createbahan'));
         } else {
-            $model = new Bos_Model();
+            $model = new Bahan();
             $simpan = $model->insertBahan($data);
             if ($simpan) {
                 session()->setFlashdata('success', 'Berhasil Menambah Bahan');
@@ -82,7 +87,7 @@ class Bos extends BaseController
 
     public function editBahan($id)
     {
-        $model = new Bos_Model();
+        $model = new Bahan();
         $data = [
             'title' => 'editbahan'
         ];
@@ -106,7 +111,7 @@ class Bos extends BaseController
             session()->setFlashdata('errors', $validation->getErrors());
             return redirect()->to(base_url('bos/editbahan/' . $id));
         } else {
-            $model = new Bos_Model();
+            $model = new Bahan();
             $ubah = $model->updateBahan($data, $id);
             if ($ubah) {
                 session()->setFlashdata('info', 'Berhasil Mengedit Bahan');

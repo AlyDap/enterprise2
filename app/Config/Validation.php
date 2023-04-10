@@ -45,7 +45,7 @@ class Validation extends BaseConfig
     public $bahan = [
         'nama' => 'required',
         'jumlah' => 'required',
-        'harga' => 'required'
+        'harga' => 'required|greater_than[0]'
     ];
     public $bahan_errors = [
         'nama' => [
@@ -56,6 +56,7 @@ class Validation extends BaseConfig
         ],
         'harga' => [
             'required' => 'Harga Bahan Harus diisi',
+            // 'greater_than[0]' => 'Harga Bahan Harus di atas 0',
         ]
     ];
 }

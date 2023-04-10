@@ -4,9 +4,11 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Bos_model extends Model
+class Bahan extends Model
 {
     protected $table = 'bahan';
+    protected $allowedFields = ['nama', 'stok', 'harga', 'status'];
+
     public function getBahan($id = false)
     {
         if ($id == false) {
