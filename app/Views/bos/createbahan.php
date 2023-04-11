@@ -5,21 +5,6 @@
 <a role="button" class="btn btn-outline-dark" href="<?= base_url('bahan'); ?>" style="margin-bottom: 5px; float: right;">Back</a>
 <br>
 <br>
-<?php
-// if (!empty($inputs)){
-//   $inputs = session()->getFlashdata('inputs');
-//}
-$errors = session()->getFlashdata('errors');
-if (!empty($errors)) { ?>
-    <div class="alert alert-dark" role="alert">
-        Whoops! Ada kesalahan saat input data, yaitu:
-        <ul>
-            <?php foreach ($errors as $error) : ?>
-                <li><?= esc($error) ?></li>
-            <?php endforeach ?>
-        </ul>
-    </div>
-<?php } ?>
 <form action="<?= base_url('bahan/storebahan'); ?>" method="post" autocomplete="off">
     <div class="mb-3">
         <label for="nama" class="form-label">Nama Bahan</label>

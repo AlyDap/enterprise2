@@ -40,13 +40,13 @@ class Home extends BaseController
                         // Jika username dan password cocok, redirect ke halaman selanjutnya
                         return redirect()->to('dashboard');
                     } else {
-                        $data['error'] = 'Password yang dimasukkan salah';
+                        $data['error'] = 'Password yang Anda masukan salah';
                     }
                 } else {
                     $data['error'] = 'Username tidak ditemukan';
                 }
             } else {
-                $data['error'] = 'Silakan masukkan username dan password Anda';
+                $data['error'] = 'Silahkan isi username & password Anda';
             }
         }
 

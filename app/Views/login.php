@@ -165,12 +165,12 @@
     <div class="avatar">
       <img src="http://localhost:8080/img/pengaduan.jpg" />
     </div>
-    <h2>Login</h2>
-    <h3>Hello ges</h3>
+    <h2>Login Dulu Gak Si</h2>
+    <h3>Hello Guysss!</h3>
 
-    <form class="login-form" method="post" action="<?= base_url('home/login'); ?>">
+    <form class="login-form" method="post" action="<?= base_url('home/login'); ?>" autocomplete="off">
       <div class="textbox">
-        <input type="text" placeholder="Username" name="username" />
+        <input type="text" placeholder="Username" name="username" autofocus />
         <span class="material-symbols-outlined"> account_circle </span>
       </div>
       <div class="textbox">

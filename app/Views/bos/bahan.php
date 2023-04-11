@@ -46,11 +46,6 @@ if (!empty(session()->getFlashdata('success'))) { ?>
     </div>
 <?php } ?>
 
-<?php if (!empty(session()->getFlashdata('warning'))) { ?>
-    <div class="alert alert-warning" style="text-align: center;">
-        <?php echo session()->getFlashdata('warning'); ?>
-    </div>
-<?php } ?>
 <h1 style="text-align: center;">Bahan Pembuatan Batik</h1>
 <hr>
 

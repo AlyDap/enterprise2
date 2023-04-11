@@ -45,6 +45,14 @@ $routes->get('/bahan/createbahan', 'Bos::createBahan');
 $routes->post('/bahan/storebahan', 'Bos::storeBahan');
 $routes->get('/bahan/editbahan/(:num)', 'Bos::editBahan/$1');
 $routes->post('/bahan/updatebahan', 'Bos::updateBahan');
+$routes->get('/mitra/createmitra', 'Bos::createMitra');
+$routes->post('/mitra/storemitra', 'Bos::storeMitra');
+$routes->get('/mitra/editmitra/(:num)', 'Bos::editMitra/$1');
+$routes->post('/mitra/updatemitra', 'Bos::updateMitra');
+$routes->get('/produk/createproduk', 'Bos::createProduk');
+$routes->post('/produk/storeproduk', 'Bos::storeProduk');
+$routes->get('/produk/editproduk/(:num)', 'Bos::editProduk/$1');
+$routes->post('/produk/updateproduk', 'Bos::updateProduk');
 
 
 

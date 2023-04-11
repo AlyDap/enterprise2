@@ -42,21 +42,4 @@ class Validation extends BaseConfig
     // Rules
     // --------------------------------------------------------------------
 
-    public $bahan = [
-        'nama' => 'required',
-        'jumlah' => 'required',
-        'harga' => 'required|greater_than[0]'
-    ];
-    public $bahan_errors = [
-        'nama' => [
-            'required' => 'Nama Bahan Harus diisi',
-        ],
-        'jumlah' => [
-            'required' => 'Jumlah Bahan Harus diisi',
-        ],
-        'harga' => [
-            'required' => 'Harga Bahan Harus diisi',
-            // 'greater_than[0]' => 'Harga Bahan Harus di atas 0',
-        ]
-    ];
 }
