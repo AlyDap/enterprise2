@@ -8,10 +8,19 @@
 
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+  <script>
+    function updateClock() {
+      var now = new Date();
+      var jam = now.getHours();
+      var menit = now.getMinutes();
+      var detik = now.getSeconds();
+      document.getElementById('waktu').innerHTML = jam + ':' + menit + ':' + detik;
+      setTimeout(updateClock, 1000);
+    }
+  </script>
 </head>
 
-<body>
+<body onload="updateClock()">
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -60,7 +69,7 @@
           <!-- PENJUALAN -- IAN  -->
           <?php if (session()->get('jabatan') == 'penjualan') : ?>
             <li class="nav-item">
-              <a class="nav-link" href="#">Penjualan</a>
+              <a class="nav-link" href="/penjualan/tampol">Penjualan</a>
             </li>
           <?php endif; ?>
 
@@ -98,6 +107,9 @@
 
   <!-- Main content -->
   <main class="container my-4">
+
+    <p>Waktu Server: <span id="waktu"></span></p>
+
     <?= $this->renderSection('content') ?>
   </main>
   <!-- End Main content -->
@@ -106,6 +118,7 @@
   </script>
   <script src="https://kit.fontawesome.com/a664a15080.js" crossorigin="anonymous">
   </script>
+
 
 </body>
 
