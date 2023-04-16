@@ -18,6 +18,24 @@
       setTimeout(updateClock, 1000);
     }
   </script>
+  <style>
+    .time {
+      color: #fff;
+      margin-top: 7.5px;
+      right: 5%;
+      position: absolute;
+    }
+
+    @media(max-width:991px) {
+      .time {
+        color: #fff;
+        /* margin-top: 110px; */
+        /* right: 5%; */
+        bottom: 0;
+        position: absolute;
+      }
+    }
+  </style>
 </head>
 
 <body onload="updateClock()">
@@ -29,6 +47,8 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
 
@@ -94,10 +114,15 @@
             </li>
           <?php endif; ?>
 
-
           <li class="nav-item">
             <a class="nav-link" href="/">Log Out</a>
           </li>
+
+          <!-- <div class="timediv">
+            <div class="dovtime"> -->
+          <p class="time">Waktu Server: <span id="waktu"></span></p>
+          <!-- </div>
+          </div> -->
         </ul>
       </div>
     </div>
@@ -108,7 +133,6 @@
   <!-- Main content -->
   <main class="container my-4">
 
-    <p>Waktu Server: <span id="waktu"></span></p>
 
     <?= $this->renderSection('content') ?>
   </main>
