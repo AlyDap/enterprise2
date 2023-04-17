@@ -27,3 +27,9 @@ ___________________________________________________________
 ___________________________________________________________
 ___________________________________________________________
 ___________________________________________________________
+
+
+HRD
+tambahkan tanggal lengkap di navbar, dan tampilkan pengguna saat ini (akun) munculkan fitur absen, logout di dropdown akun ketika di klik
+fitur penggajian akan menampilkan data absensi bulan ini, serta total gaji yang diperoleh berdasarkan jam kerja, bagian hrd akan approve gaji untuk setiap bulan
+absensi di HRD akan menampilkan tabel absensi bulan ini, dan akan menampilkan total jam kerja, dan total gaji yang diperoleh
