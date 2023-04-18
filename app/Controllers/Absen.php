@@ -8,6 +8,7 @@ class Absen extends BaseController
 {
     public function index()
     {
-        return view('absen');
+        $data['title'] = 'Absen';
+        return view('absen', $data);
     }
 }

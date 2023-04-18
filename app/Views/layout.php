@@ -8,15 +8,27 @@
 
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="/js/moment.js"></script>
   <script>
     function updateClock() {
       var now = new Date();
       var jam = now.getHours();
       var menit = now.getMinutes();
       var detik = now.getSeconds();
-      document.getElementById('waktu').innerHTML = jam + ':' + menit + ':' + detik;
+
+      if (jam < 10) {
+        jam = '0' + jam
+      };
+      if (menit < 10) {
+        menit = '0' + menit
+      };
+      if (detik < 10) {
+        detik = '0' + detik
+      };
+      document.getElementById('waktu').innerHTML = jam + ':' + menit +
+        ':' + detik;
       setTimeout(updateClock, 1000);
-    }
+    };
   </script>
   <style>
     .time {
@@ -47,8 +59,6 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
 
@@ -115,34 +125,39 @@
           <?php endif; ?>
 
           <li class="nav-item">
-            <a class="nav-link" href="/">Log Out</a>
+            <a class="nav-link" href="/home/logout">Log Out</a>
           </li>
-
-          <!-- <div class="timediv">
-            <div class="dovtime"> -->
-          <p class="time">Waktu Server: <span id="waktu"></span></p>
-          <!-- </div>
-          </div> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/absen">Absen</a>
+          </li>
+          <li class="nav-item">
+            <p class="time"><span id="waktu"></p>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-
+  <section>
+    <!-- menampilkan username yang login -->
+    <div class="d-flex ">
+      <p class="px-4"> <span id="tanggal"></span></p>
+      <p class="ms-auto px-4">Selamat Datang <?= session()->get('username'); ?> (<?= session()->get('jabatan') ?>)</p>
+    </div>
+  </section>
   <!-- End Navbar -->
 
   <!-- Main content -->
   <main class="container my-4">
-
-
     <?= $this->renderSection('content') ?>
   </main>
   <!-- End Main content -->
   <!-- Bootstrap 5 JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-  </script>
-  <script src="https://kit.fontawesome.com/a664a15080.js" crossorigin="anonymous">
-  </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+  </script>
+  <script>
+    document.getElementById('tanggal').innerHTML = moment().format('DD MMMM YYYY');
+  </script>
 
 </body>
 

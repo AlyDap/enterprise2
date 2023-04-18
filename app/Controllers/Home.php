@@ -37,6 +37,7 @@ class Home extends BaseController
                         // cek jabatannya
                         $session = session();
                         $session->set('jabatan', $user['jabatan']);
+                        $session->set('username', $user['username']);
                         // Jika username dan password cocok, redirect ke halaman selanjutnya
                         return redirect()->to('dashboard');
                     } else {
@@ -57,6 +58,6 @@ class Home extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('login');
+        return redirect()->to('../home');
     }
 }
