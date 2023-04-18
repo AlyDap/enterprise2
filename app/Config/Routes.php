@@ -53,6 +53,7 @@ $routes->get('/produk/createproduk', 'Bos::createProduk');
 $routes->post('/produk/storeproduk', 'Bos::storeProduk');
 $routes->get('/produk/editproduk/(:num)', 'Bos::editProduk/$1');
 $routes->post('/produk/updateproduk', 'Bos::updateProduk');
+$routes->get('/produk/detailproduk/(:num)', 'Bos::detailProduk/$1');
 
 
 
