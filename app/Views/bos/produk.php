@@ -88,7 +88,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
                 <td>Rp<?= $row['biaya_jual']; ?>,00</td>
                 <td><?= $row['status']; ?></td>
                 <td>
-                    <a class="btn btn-sm btn-outline-secondary" id="btnDetail">Detail</a>
+                    <a class="btn btn-sm btn-outline-secondary" id="btnDetail" href="<?= base_url('produk/detailproduk/' . $row['id_produk']); ?>">Detail</a>
                     <a href="<?= base_url('produk/editproduk/' . $row['id_produk']); ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                 </td>
             </tr>
@@ -101,7 +101,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
     <?php echo $pager->links('produk', 'bos_pagination');
     ?>
 </div>
-<div class="card" id="produkDetail" style="display: none;">
+<!-- <div class="card" id="produkDetail" style="display: none;">
     <h5 class="card-header" style="margin-top: 5px;">Detail Produk Daster Rayon <div class="kanan" style="text-align: end; margin-top: -29px;"><a class="btn btn-sm btn-outline-secondary" id="btnClose">Tutup</a></div>
     </h5>
     <div class="card-body">
@@ -123,5 +123,5 @@ if (!empty(session()->getFlashdata('success'))) { ?>
     btnClose.addEventListener('click', function() {
         produkDetail.style.display = 'none';
     })
-</script>
+</script> -->
 <?= $this->endSection(); ?>

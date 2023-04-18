@@ -38,10 +38,20 @@ class Bos extends BaseController
         return view('bos/produk', $data);
     }
 
+    public function detailProduk($id)
+    {
+        $model = new Produk();
+        $data = [
+            'title' => 'Detail Produk'
+        ];
+        $data['produk'] = $model->getProduk($id)->getRowArray();
+        echo view('bos/detailproduk', $data);
+    }
+
     public function createProduk()
     {
         $data = [
-            'title' => 'createproduk'
+            'title' => 'Tambah Produk'
         ];
         return view('bos/createproduk', $data);
     }
@@ -69,7 +79,7 @@ class Bos extends BaseController
     {
         $model = new Produk();
         $data = [
-            'title' => 'editproduk'
+            'title' => 'Edit Produk'
         ];
         $data['produk'] = $model->getProduk($id)->getRowArray();
         echo view('bos/editproduk', $data);
@@ -116,7 +126,7 @@ class Bos extends BaseController
     public function createMitra()
     {
         $data = [
-            'title' => 'createmitra'
+            'title' => 'Tmabah Mitra'
         ];
         return view('bos/createmitra', $data);
     }
@@ -141,7 +151,7 @@ class Bos extends BaseController
     {
         $model = new Mitra();
         $data = [
-            'title' => 'editmitra'
+            'title' => 'Edit Mitra'
         ];
         $data['mitra'] = $model->getMitra($id)->getRowArray();
         echo view('bos/editmitra', $data);
@@ -185,7 +195,7 @@ class Bos extends BaseController
     public function createBahan()
     {
         $data = [
-            'title' => 'createbahan'
+            'title' => 'Tambah Bahan'
         ];
         return view('bos/createbahan', $data);
     }
@@ -210,7 +220,7 @@ class Bos extends BaseController
     {
         $model = new Bahan();
         $data = [
-            'title' => 'editbahan'
+            'title' => 'Edit Bahan'
         ];
         $data['bahan'] = $model->getBahan($id)->getRowArray();
         echo view('bos/editbahan', $data);
