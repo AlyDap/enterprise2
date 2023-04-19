@@ -163,7 +163,7 @@
 
   <div class="login">
     <div class="avatar">
-      <img src="http://localhost:8080/img/pengaduan.jpg" />
+      <img src="<?= base_url('img/pengaduan.jpg') ?>" alt="Gambar">
     </div>
     <h2>Login Dulu Gak Si</h2>
     <h3>Hello Guysss!</h3>
