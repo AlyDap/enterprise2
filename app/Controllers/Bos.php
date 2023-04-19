@@ -13,11 +13,20 @@ class Bos extends BaseController
 
     public function index()
     {
+        $model = new Produk();
+
         $data = [
             'title' => 'Dashboard'
         ];
+        // $grafik = $model->getTotalPenjualanTahunan();
+        // $data['grafik'] = $grafik;
+
+        $grafik2 = $model->getTotalPendapatanTahunan();
+        $data['grafik2'] = $grafik2;
+
         return view('bos/index', $data);
     }
+
 
     public function produk()
     {

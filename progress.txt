@@ -16,14 +16,39 @@ tulis nama semua kelompok kemudian bold yang bagiannya
 
 Progesss:
 Login & Logout sudah bisa
-Seeder: user, bahan, produk, mitra
+Seeder: UserSeeder, BahanSeeder, ProdukSeeder, MitraSeeder, PenjualanSeeder, DetailPenjualanSeeder
+contoh:
+ketik di terminal : php spark db:seed UserSeeder
 ___________________________________________________________
-Bos
-+ Tampilan dan fungsional (bahan)
-- Tampilan dan fungsional (dashboard, produk, mitra)
-- Field status tabel produk mitra bahan
+Buat tabel view untuk lihat grafik pada index bos
+->view_jumlah_produk_penjualan_tahunan
+->view_pendapatan_penjualan_tahunan
+
+copy paste code berikut pada sql localhost/phpmyadmin: 
+
+CREATE VIEW view_jumlah_produk_penjualan_tahunan AS SELECT DISTINCT
+    YEAR(p.tgl) AS tahun,
+    SUM(dp.jumlah) AS jumlah
+FROM
+    detail_penjualan dp,
+    penjualan p,
+    produk pr
+WHERE
+    p.id_penjualan = dp.id_penjualan AND
+    pr.id_produk=dp.id_produk
+GROUP BY
+    YEAR(p.tgl)
+
+CREATE VIEW view_pendapatan_penjualan_tahunan AS SELECT
+year(p.tgl) as tahun,
+	sum(p.total_bayar) as total
+    FROM penjualan p
+    GROUP BY year(p.tgl)
+
 ___________________________________________________________
 ___________________________________________________________
+Kurang:
+Belum ada otorisasi
 ___________________________________________________________
 ___________________________________________________________
 ___________________________________________________________
