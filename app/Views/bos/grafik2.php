@@ -1,8 +1,8 @@
 <?php
 
 foreach ($grafik2 as $key => $value) {
-    $tahun[] = $value['tahun'];
-    $total[] = $value['total'];
+    $tahun2[] = $value['tahun'];
+    $total2[] = $value['total'];
 }
 
 ?>
@@ -10,22 +10,22 @@ foreach ($grafik2 as $key => $value) {
 <div class="con" style="width: 100%; display: flex; justify-content: center; align-items: center; align-content: center;">
 
     <div style="width: 755px; justify-content: center;">
-        <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
     // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-    new Chart(ctx, {
+    new Chart(ctx2, {
         type: 'line',
         data: {
-            labels: <?= json_encode($tahun); ?>,
+            labels: <?= json_encode($tahun2); ?>,
             datasets: [{
                 label: 'Pendapatan Tahunan',
-                data: <?= json_encode($total); ?>,
+                data: <?= json_encode($total2); ?>,
                 borderWidth: 1
             }]
         },

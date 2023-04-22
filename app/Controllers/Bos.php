@@ -18,8 +18,8 @@ class Bos extends BaseController
         $data = [
             'title' => 'Dashboard'
         ];
-        // $grafik = $model->getTotalPenjualanTahunan();
-        // $data['grafik'] = $grafik;
+        $grafik = $model->getTotalPenjualanTahunan();
+        $data['grafik'] = $grafik;
 
         $grafik2 = $model->getTotalPendapatanTahunan();
         $data['grafik2'] = $grafik2;
