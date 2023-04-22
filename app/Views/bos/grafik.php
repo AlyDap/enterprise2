@@ -9,7 +9,7 @@ foreach ($grafik as $key => $value) {
 ?>
 <div class="con" style="width: 100%; display: flex; justify-content: center; align-items: center; align-content: center;">
 
-    <div style="width:  755px; justify-content: center;">
+    <div style="justify-content: center;">
         <canvas id="myChart"></canvas>
     </div>
 </div>

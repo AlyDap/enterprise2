@@ -7,9 +7,23 @@ foreach ($grafik2 as $key => $value) {
 
 ?>
 
-<div class="con" style="width: 100%; display: flex; justify-content: center; align-items: center; align-content: center;">
+<div class="con" style="
+width: 100%;
+height: 100%; 
+display: flex; 
+min-width: 300px;
+min-height: 170px;
+max-width: 700px;
+max-height: 570px;
+border: salmon solid 5px;
+justify-content: center; 
+align-items: center; 
+align-content: center;">
 
-    <div style="width: 755px; justify-content: center;">
+    <div style="
+    width: 100%;
+    height: 100%; 
+    justify-content: center;">
         <canvas id="myChart2"></canvas>
     </div>
 </div>
