@@ -23,11 +23,23 @@ class Produk extends Model
     {
         return $this->db->table('view_jumlah_produk_penjualan_tahunan')->get()->getResultArray();
     }
+    public function getTotalTerjualTahunan()
+    {
+        return $this->db->query('SELECT DISTINCT SUM(jumlah) AS jumlah from view_jumlah_produk_penjualan_tahunan')->getResultArray();
+    }
+
 
     public function getTotalPendapatanTahunan()
     {
         return $this->db->table('view_pendapatan_penjualan_tahunan')->get()->getResultArray();
     }
+
+    public function getRpPendapatanTahunan()
+    {
+        return $this->db->query('SELECT DISTINCT SUM(total) AS total from view_pendapatan_penjualan_tahunan')->getResultArray();
+    }
+
+
 
     public function insertProduk($data)
     {

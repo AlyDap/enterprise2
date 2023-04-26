@@ -24,6 +24,11 @@ class Bos extends BaseController
         $grafik2 = $model->getTotalPendapatanTahunan();
         $data['grafik2'] = $grafik2;
 
+        $Rptahunan = $model->getRpPendapatanTahunan();
+        $data['Rptahunan'] = $Rptahunan;
+        $Qtytahunan = $model->getTotalTerjualTahunan();
+        $data['Qtytahunan'] = $Qtytahunan;
+
         return view('bos/index', $data);
     }
 

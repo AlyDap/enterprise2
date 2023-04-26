@@ -85,7 +85,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
                 <th scope="row"><?= $i++; ?></td>
                 <td><?= $row['nama']; ?></td>
                 <td><?= $row['jumlah']; ?></td>
-                <td>Rp<?= $row['biaya_jual']; ?>,00</td>
+                <td>Rp <?= number_format($row['biaya_jual'], 0, ',', '.'); ?></td>
                 <td><?= $row['status']; ?></td>
                 <td>
                     <a class="btn btn-sm btn-outline-secondary" id="btnDetail" href="<?= base_url('produk/detailproduk/' . $row['id_produk']); ?>">Detail</a>
