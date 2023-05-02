@@ -39,6 +39,14 @@ class Produk extends Model
         return $this->db->query('SELECT DISTINCT SUM(total) AS total from view_pendapatan_penjualan_tahunan')->getResultArray();
     }
 
+    public function getNamaProdukTahunan()
+    {
+        return $this->db->query('SELECT vd.id_produk,p.nama, SUM(vd.jumlah) as jumlah FROM view_data_penjualan_tahunan vd, produk p WHERE p.id_produk = vd.id_produk GROUP BY p.id_produk')->getResultArray();
+    }
+    public function getTotalProdukTahunan()
+    {
+        return $this->db->query('SELECT SUM(vd.jumlah) as jumlah FROM view_data_penjualan_tahunan vd')->getResultArray();
+    }
 
 
     public function insertProduk($data)
