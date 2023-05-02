@@ -36,14 +36,16 @@
       <h5 class="card-title">Absen Harian</h5>
       <hr>
       <p><span class="tanggal"></span></p>
-      <form action="" method="post">
+      <form action="<?= base_url('/absen/presensi'); ?>" method="post" enctype="multipart/form-data">
         <!-- input tipe capture untuk foto masuk -->
         <video autoplay="true" id="video-webcam" class="object-fit-md-contain border rounded">
           browser tidak mendukung untuk pengambilan gambar
         </video><br>
-
-        <button onclick="" class="btn btn-success">Hadir</button>
-        <button class="btn btn-warning">Ijin</button>
+        <!-- yang diinputkan : id pegawai, tanggal, waktu masuk, gambar masuk, info, ket -->
+        <!-- <input type="text" value="<?= session('username') ?>" name="nama" hidden>
+        <input type="file" name="foto" id="foto"> -->
+        <button type="button" onclick="sendImage()" class="btn btn-success">Ambil Gambar</button>
+        <button type="submit" class="btn btn-primary">Absen Masuk</button>
       </form>
     </div>
   </div>
@@ -59,6 +61,65 @@
   // // minta izin user
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
     navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+
+  // nyalakan webcam jika di izinkan
+  navigator.mediaDevices.getUserMedia({
+      video: true
+    })
+    .then(stream => {
+      video.srcObject = stream;
+      const track = stream.getVideoTracks()[0];
+      const settings = track.getSettings();
+      const aspectRatio = settings.aspectRatio; // nilai aspek rasio
+
+
+      video.height = 240;
+
+      // atur ukuran elemen video sesuai dengan aspek rasio
+      if (aspectRatio > 1) {
+        video.width = video.height * aspectRatio;
+      } else {
+        video.height = video.width / aspectRatio;
+      }
+    })
+    .catch(error => console.log(error));
+
+  // ambil ukuran video
+  var width = video.offsetWidth,
+    height = video.offsetHeight;
+
+  // buat elemen canvas
+  canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext('2d'); // dapatkan konteks 2D dari canvas
+
+  // fungsi untuk capture gambar dari video dan mengirimkan ke server
+  function sendImage() {
+    context.drawImage(video, 0, 0, canvas.width, canvas.height); // capture gambar dari video dan gambar di canvas
+    canvas.toBlob(function(blob) {
+      const formData = new FormData(); // buat objek FormData untuk mengirim data ke server
+      formData.append('image', blob, 'image.jpg'); // tambahkan data gambar ke FormData
+      formData.append('nama', '<?= session('username') ?>');
+
+      console.log(formData.get('nama'))
+      fetch('<?= base_url('/absen/presensi'); ?>', {
+        method: 'POST',
+        body: formData
+      }).then(response => {
+        if (response.ok) {
+          // window.location.href = "<?= base_url('/absen/presensi'); ?>";
+          console.log('Form data berhasil dikirim');
+        } else {
+          console.log('Form data gagal dikirim');
+        }
+      }).catch(error => {
+        console.error('Terjadi kesalahan saat mengunggah gambar:', error);
+      });
+    }, 'image/jpeg', 0.9); // konversi gambar ke format jpeg dan kompresi dengan kualitas 90%
+  }
+
 
   function takeSnapshot() {
     // buat elemen img
@@ -81,33 +142,15 @@
 
     // render hasil dari canvas ke elemen img
     img.src = canvas.toDataURL('image/png');
-    // isikan elemen img ke dalam form
-    document.querySelector('#mydata').value = img.src;
-    // document.body.appendChild(img);
+    //ganti elemen video dengan gambar
+    video.parentNode.replaceChild(img, video);
+
   }
 
-  // ini dari chatgpt
-  navigator.mediaDevices.getUserMedia({
-      video: true
-    })
-    .then(stream => {
-      video.srcObject = stream;
-      const track = stream.getVideoTracks()[0];
-      const settings = track.getSettings();
-      const aspectRatio = settings.aspectRatio; // nilai aspek rasio
-      console.log(settings);
 
 
-      video.height = 240;
 
-      // atur ukuran elemen video sesuai dengan aspek rasio
-      if (aspectRatio > 1) {
-        video.width = video.height * aspectRatio;
-      } else {
-        video.height = video.width / aspectRatio;
-      }
-    })
-    .catch(error => console.log(error));
+
 
   //ambil tanggal & jam hari ini yang di refresh otomatis per detik
   function jamAbsen() {

@@ -48,6 +48,7 @@ class Presensi extends Migration
                 // 0 = belum di verifikasi, 1 = sudah di verifikasi
                 'type' => 'INT',
                 'constraint' => 1,
+                'default' => 0,
             ],
         ]);
 
