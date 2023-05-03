@@ -38,7 +38,7 @@ WHERE
     p.id_penjualan = dp.id_penjualan AND
     pr.id_produk=dp.id_produk
 GROUP BY
-    YEAR(p.tgl)
+    YEAR(p.tgl);
 
 CREATE VIEW view_pendapatan_penjualan_tahunan AS SELECT
 year(p.tgl) as tahun,

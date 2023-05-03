@@ -52,7 +52,7 @@ class Presensi extends Migration
             ],
         ]);
 
-        $this->forge->addKey('presensi_id', true);
+        $this->forge->addKey('id_presensi', true);
         $this->forge->createTable('presensi');
     }
 

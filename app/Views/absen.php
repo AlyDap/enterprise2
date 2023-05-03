@@ -2,7 +2,8 @@
 <?= $this->section('content') ?>
 <div class="row">
   <p>
-    <a class="btn btn-info" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a class="btn btn-info" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+      aria-controls="collapseExample">
       Tata Tertib Absen
     </a>
   </p>
@@ -50,40 +51,80 @@
     </div>
   </div>
 </div>
-
+<?php var_dump($_POST) ?>
 
 
 
 <script type="text/javascript">
-  // seleksi elemen video
-  var video = document.querySelector("#video-webcam");
+// seleksi elemen video
+var video = document.querySelector("#video-webcam");
 
-  // // minta izin user
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
-    navigator.msGetUserMedia || navigator.oGetUserMedia;
-
-
-  // nyalakan webcam jika di izinkan
-  navigator.mediaDevices.getUserMedia({
-      video: true
-    })
-    .then(stream => {
-      video.srcObject = stream;
-      const track = stream.getVideoTracks()[0];
-      const settings = track.getSettings();
-      const aspectRatio = settings.aspectRatio; // nilai aspek rasio
+// // minta izin user
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
+  navigator.msGetUserMedia || navigator.oGetUserMedia;
 
 
-      video.height = 240;
+// nyalakan webcam jika di izinkan
+navigator.mediaDevices.getUserMedia({
+    video: true
+  })
+  .then(stream => {
+    video.srcObject = stream;
+    const track = stream.getVideoTracks()[0];
+    const settings = track.getSettings();
+    const aspectRatio = settings.aspectRatio; // nilai aspek rasio
 
-      // atur ukuran elemen video sesuai dengan aspek rasio
-      if (aspectRatio > 1) {
-        video.width = video.height * aspectRatio;
+
+    video.height = 240;
+
+    // atur ukuran elemen video sesuai dengan aspek rasio
+    if (aspectRatio > 1) {
+      video.width = video.height * aspectRatio;
+    } else {
+      video.height = video.width / aspectRatio;
+    }
+  })
+  .catch(error => console.log(error));
+
+// ambil ukuran video
+var width = video.offsetWidth,
+  height = video.offsetHeight;
+
+// buat elemen canvas
+canvas = document.createElement('canvas');
+canvas.width = width;
+canvas.height = height;
+const context = canvas.getContext('2d'); // dapatkan konteks 2D dari canvas
+
+// fungsi untuk capture gambar dari video dan mengirimkan ke server
+function sendImage() {
+  context.drawImage(video, 0, 0, canvas.width, canvas.height); // capture gambar dari video dan gambar di canvas
+  canvas.toBlob(function(blob) {
+    const formData = new FormData(); // buat objek FormData untuk mengirim data ke server
+    formData.append('image', blob, 'image.jpg'); // tambahkan data gambar ke FormData
+    formData.append('nama', '<?= session('username') ?>');
+
+    fetch('', {
+      method: 'POST',
+      body: formData
+    }).then(response => {
+      if (response.ok) {
+        // window.location.href = "<?= base_url('/absen/presensi'); ?>";
+        console.log('Form data berhasil dikirim');
       } else {
-        video.height = video.width / aspectRatio;
+        console.log('Form data gagal dikirim');
       }
-    })
-    .catch(error => console.log(error));
+    }).catch(error => {
+      console.error('Terjadi kesalahan saat mengunggah gambar:', error);
+    });
+  }, 'image/jpeg', 0.9); // konversi gambar ke format jpeg dan kompresi dengan kualitas 90%
+}
+
+
+function takeSnapshot() {
+  // buat elemen img
+  var img = document.createElement('img');
+  var context;
 
   // ambil ukuran video
   var width = video.offsetWidth,
@@ -93,71 +134,30 @@
   canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
-  const context = canvas.getContext('2d'); // dapatkan konteks 2D dari canvas
 
-  // fungsi untuk capture gambar dari video dan mengirimkan ke server
-  function sendImage() {
-    context.drawImage(video, 0, 0, canvas.width, canvas.height); // capture gambar dari video dan gambar di canvas
-    canvas.toBlob(function(blob) {
-      const formData = new FormData(); // buat objek FormData untuk mengirim data ke server
-      formData.append('image', blob, 'image.jpg'); // tambahkan data gambar ke FormData
-      formData.append('nama', '<?= session('username') ?>');
+  // ambil gambar dari video dan masukan 
+  // ke dalam canvas
+  context = canvas.getContext('2d');
+  context.drawImage(video, 0, 0, width, height);
 
-      console.log(formData.get('nama'))
-      fetch('<?= base_url('/absen/presensi'); ?>', {
-        method: 'POST',
-        body: formData
-      }).then(response => {
-        if (response.ok) {
-          // window.location.href = "<?= base_url('/absen/presensi'); ?>";
-          console.log('Form data berhasil dikirim');
-        } else {
-          console.log('Form data gagal dikirim');
-        }
-      }).catch(error => {
-        console.error('Terjadi kesalahan saat mengunggah gambar:', error);
-      });
-    }, 'image/jpeg', 0.9); // konversi gambar ke format jpeg dan kompresi dengan kualitas 90%
-  }
+  // render hasil dari canvas ke elemen img
+  img.src = canvas.toDataURL('image/png');
+  //ganti elemen video dengan gambar
+  video.parentNode.replaceChild(img, video);
 
-
-  function takeSnapshot() {
-    // buat elemen img
-    var img = document.createElement('img');
-    var context;
-
-    // ambil ukuran video
-    var width = video.offsetWidth,
-      height = video.offsetHeight;
-
-    // buat elemen canvas
-    canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-
-    // ambil gambar dari video dan masukan 
-    // ke dalam canvas
-    context = canvas.getContext('2d');
-    context.drawImage(video, 0, 0, width, height);
-
-    // render hasil dari canvas ke elemen img
-    img.src = canvas.toDataURL('image/png');
-    //ganti elemen video dengan gambar
-    video.parentNode.replaceChild(img, video);
-
-  }
+}
 
 
 
 
 
 
-  //ambil tanggal & jam hari ini yang di refresh otomatis per detik
-  function jamAbsen() {
-    document.querySelector(".tanggal").innerHTML = moment().locale('id').format('dddd, DD MMMM YYYY | hh:mm:ss');
-  }
+//ambil tanggal & jam hari ini yang di refresh otomatis per detik
+function jamAbsen() {
+  document.querySelector(".tanggal").innerHTML = moment().locale('id').format('dddd, DD MMMM YYYY | hh:mm:ss');
+}
 
-  setInterval(jamAbsen, 1000);
+setInterval(jamAbsen, 1000);
 </script>
 
 <?= $this->endSection(); ?>
