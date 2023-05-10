@@ -23,6 +23,7 @@ ___________________________________________________________
 Buat tabel view untuk lihat grafik pada index bos
 ->view_jumlah_produk_penjualan_tahunan
 ->view_pendapatan_penjualan_tahunan
+->view_data_penjualan_tahunan
 
 copy paste code berikut pada sql localhost/phpmyadmin: 
 
@@ -37,7 +38,7 @@ WHERE
     p.id_penjualan = dp.id_penjualan AND
     pr.id_produk=dp.id_produk
 GROUP BY
-    YEAR(p.tgl)
+    YEAR(p.tgl);
 
 CREATE VIEW view_pendapatan_penjualan_tahunan AS SELECT
 year(p.tgl) as tahun,
@@ -45,6 +46,19 @@ year(p.tgl) as tahun,
     FROM penjualan p
     GROUP BY year(p.tgl)
 
+CREATE VIEW view_data_penjualan_tahunan AS
+SELECT
+    p.id_penjualan,
+    YEAR(p.tgl) AS tahun,
+    p.total_bayar,
+    pr.id_produk, dp.jumlah,
+    dp.total
+FROM
+    penjualan p,
+    detail_penjualan dp,
+    produk pr
+WHERE
+    p.id_penjualan = dp.id_penjualan AND pr.id_produk=dp.id_produk 
 ___________________________________________________________
 ___________________________________________________________
 Kurang:

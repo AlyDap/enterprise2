@@ -48,10 +48,11 @@ class Presensi extends Migration
                 // 0 = belum di verifikasi, 1 = sudah di verifikasi
                 'type' => 'INT',
                 'constraint' => 1,
+                'default' => 0,
             ],
         ]);
 
-        $this->forge->addKey('presensi_id', true);
+        $this->forge->addKey('id_presensi', true);
         $this->forge->createTable('presensi');
     }
 

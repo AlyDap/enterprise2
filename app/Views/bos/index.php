@@ -36,30 +36,79 @@
         padding-left: 13px;
     }
 
+    .kanan1,
+    .kiri1 {
+        border: #595e60 solid 3px;
+    }
+
     .kaki {
         margin: 0;
-        padding: 0;
+        padding: 3px;
         width: 100%;
         display: grid;
-        grid-template-columns: auto auto;
+        /* grid-template-columns: auto auto; */
+        grid-template-columns: auto auto auto;
         justify-content: center;
         align-items: center;
         /* border: #595e60 solid 3px; */
         gap: 5%;
+        padding-bottom: 39px;
+        padding-top: 9px;
     }
 
-    .kanan1,
-    .kiri1 {
-        border: #595e60 solid 3px;
-
+    .kiri,
+    .kanan,
+    .tengah {
+        display: grid;
+        /* justify-content: center; */
+        justify-self: center;
     }
 
-    @media (max-width:768px) {
+    .kiri,
+    .kanan {
+        width: 355px;
+    }
+
+    .tengah {
+        width: 275px;
+    }
+
+    @media(max-width:1399px) {
+        .kaki {
+            grid-template-columns: auto auto;
+        }
+
+        .tengah {
+            width: 315px;
+            grid-column: 1/3;
+        }
+    }
+
+    @media(max-width:992px) {
+
+        .kiri,
+        .kanan {
+            width: 300px;
+        }
+
+        .tengah {
+            width: 285px;
+        }
+    }
+
+    @media (max-width:767px) {
         .kaki {
             grid-template-columns: auto;
             justify-content: center;
             align-items: center;
             gap: 1.5%;
+            grid-template-columns: auto;
+
+        }
+
+        .tengah {
+            width: 300px;
+            grid-column: 1/1;
         }
     }
 
@@ -70,7 +119,8 @@
     }
 
     .ykiri,
-    .ykanan {
+    .ykanan,
+    .ytengah {
         margin-top: 3px;
         text-align: center;
     }
@@ -136,7 +186,7 @@
             <h4>a a</h4>
         </div>
         <div class="kanan1">
-            <h5 style="margin-left: 5px;">Pendapatan & Produk Terjual Tahunan
+            <h5 style="margin-left: 5px;">Penjualan Setiap Tahun
             </h5>
         </div>
     </div>

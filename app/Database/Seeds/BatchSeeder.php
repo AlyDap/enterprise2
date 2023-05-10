@@ -14,5 +14,6 @@ class BatchSeeder extends Seeder
         $this->call('MitraSeeder');
         $this->call('PenjualanSeeder');
         $this->call('DetailPenjualanSeeder');
+        $this->call('PresensiSeeder');
     }
 }

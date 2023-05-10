@@ -1,13 +1,36 @@
 <?php
 
-foreach ($grafik2 as $key => $value) {
-    $tahun2[] = $value['tahun'];
-    $total2[] = $value['total'];
+if (!empty($grafik)) {
+    foreach ($grafik as $key => $value) {
+        $tahun[] = $value['tahun'];
+        $jumlah[] = $value['jumlah'];
+    }
+} else {
+    $tahun = array('Data kosong');
+    $jumlah = array(0);
 }
-foreach ($grafik as $key => $value) {
-    $tahun[] = $value['tahun'];
-    $jumlah[] = $value['jumlah'];
+
+if (!empty($grafik2)) {
+    foreach ($grafik2 as $key => $value) {
+        $tahun2[] = $value['tahun'];
+        $total2[] = $value['total'];
+    }
+} else {
+    $tahun2 = array('', 'Data kosong', '');
+    $total2 = array();
 }
+
+if (!empty($grafik3)) {
+    foreach ($grafik3 as $key => $value) {
+        $nama3[] = $value['nama'];
+        $jumlah3[] = $value['jumlah'];
+    }
+} else {
+    $nama3[] = 'Produk belum terjual';
+    $jumlah3[] = 0;
+}
+
+
 ?>
 
 
@@ -32,6 +55,9 @@ foreach ($grafik as $key => $value) {
                                         ?>,00</h6>
             <?php endforeach; ?>
         </div>
+    </div>
+    <div class="tengah">
+        <canvas id="myChart3"></canvas>
     </div>
 </div>
 
@@ -68,6 +94,28 @@ foreach ($grafik as $key => $value) {
             datasets: [{
                 label: 'Produk Yang Terjual Per Tahun',
                 data: <?= json_encode($jumlah); ?>,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<script>
+    const ctx3 = document.getElementById('myChart3');
+    // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
+    new Chart(ctx3, {
+        type: 'pie',
+        data: {
+            labels: <?= json_encode($nama3); ?>,
+            datasets: [{
+                label: 'Produk Yang Terjual',
+                data: <?= json_encode($jumlah3); ?>,
                 borderWidth: 1
             }]
         },
