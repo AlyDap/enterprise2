@@ -2,6 +2,8 @@
 <?= $this->section('content') ?>
 
 <div class="col-sm-8">
+<a role="button" class="btn btn-outline-dark" href="<?= base_url('penjualan/tambahpenjualan'); ?>" >Tambah Penjualan</a>
+
   <h1 class="mt-2">Daftar penjualan</h1>
 
   <table class="table table-bordered table-hover">
@@ -25,12 +27,11 @@
         <td><?= "Rp " . number_format($user['total_bayar'], 0, ',', '.');  ?></td>
         <td><?= $user['id_user']; ?></td>
         <td>
-          <a class="btn btn-primary btn-sm "
-            onclick="editData(<?= $user['id_penjualan']; ?>,`<?= $user['tgl']; ?>`,`<?= $user['total_bayar']; ?>`,`<?= $user['id_user']; ?>`)"
-            id="btn-edit">Edit</a>
+            <a class="btn btn-sm btn-outline-secondary" id="btnDetail" href="<?= base_url('penjualan/detailpenjualan/' . $user['id_penjualan']); ?>">Detail</a>
         </td>
       </tr>
       <?php endforeach; ?>
     </tbody>
   </table>
+
   <?= $this->endSection(); ?>

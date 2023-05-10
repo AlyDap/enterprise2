@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Penjualan extends Model
+class DetailPenjualan extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'penjualan';
+    protected $table            = 'detail_penjualan';
     protected $primaryKey       = 'id_penjualan';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id_penjualan', 'id_produk', 'harga', 'jumlah', 'total'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,14 @@ class Penjualan extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getDetailPenjualan($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        } else {
+            return $this->getWhere(['id_penjualan' => $id]);
+        }
+    }
+    
 }
