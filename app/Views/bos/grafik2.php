@@ -1,17 +1,33 @@
 <?php
 
-foreach ($grafik2 as $key => $value) {
-    $tahun2[] = $value['tahun'];
-    $total2[] = $value['total'];
-}
-foreach ($grafik as $key => $value) {
-    $tahun[] = $value['tahun'];
-    $jumlah[] = $value['jumlah'];
+if (!empty($grafik)) {
+    foreach ($grafik as $key => $value) {
+        $tahun[] = $value['tahun'];
+        $jumlah[] = $value['jumlah'];
+    }
+} else {
+    $tahun = array('Data kosong');
+    $jumlah = array(0);
 }
 
-foreach ($grafik3 as $key => $value) {
-    $nama3[] = $value['nama'];
-    $jumlah3[] = $value['jumlah'];
+if (!empty($grafik2)) {
+    foreach ($grafik2 as $key => $value) {
+        $tahun2[] = $value['tahun'];
+        $total2[] = $value['total'];
+    }
+} else {
+    $tahun2 = array('', 'Data kosong', '');
+    $total2 = array();
+}
+
+if (!empty($grafik3)) {
+    foreach ($grafik3 as $key => $value) {
+        $nama3[] = $value['nama'];
+        $jumlah3[] = $value['jumlah'];
+    }
+} else {
+    $nama3[] = 'Produk belum terjual';
+    $jumlah3[] = 0;
 }
 
 

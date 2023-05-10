@@ -19,6 +19,17 @@ class Produk extends Model
         }
     }
 
+    public function insertProduk($data)
+    {
+        return $this->db->table($this->table)->insert($data);
+    }
+
+    public function updateProduk($data, $id)
+    {
+        return $this->db->table($this->table)->update($data, ['id_produk' => $id]);
+    }
+
+    // model untuk grafik
     public function getTotalPenjualanTahunan()
     {
         return $this->db->table('view_jumlah_produk_penjualan_tahunan')->get()->getResultArray();
@@ -46,16 +57,5 @@ class Produk extends Model
     public function getTotalProdukTahunan()
     {
         return $this->db->query('SELECT SUM(vd.jumlah) as jumlah FROM view_data_penjualan_tahunan vd')->getResultArray();
-    }
-
-
-    public function insertProduk($data)
-    {
-        return $this->db->table($this->table)->insert($data);
-    }
-
-    public function updateProduk($data, $id)
-    {
-        return $this->db->table($this->table)->update($data, ['id_produk' => $id]);
     }
 }
