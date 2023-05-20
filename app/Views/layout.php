@@ -48,15 +48,14 @@
             <li class="nav-item">
               <a class="nav-link" href="/produk">Produk</a>
             </li>
-          <?php endif; ?>
-          <?php if (session()->get('jabatan') == 'bos') : ?>
             <li class="nav-item">
               <a class="nav-link" href="/mitra">Mitra</a>
             </li>
-          <?php endif; ?>
-          <?php if (session()->get('jabatan') == 'bos') : ?>
             <li class="nav-item">
               <a class="nav-link" href="/bahan">Bahan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/chat">Chat</a>
             </li>
           <?php endif; ?>
 
@@ -64,7 +63,7 @@
           <!-- PRODUKSI -- ARYA  -->
           <?php if (session()->get('jabatan') == 'produksi') : ?>
             <li class="nav-item">
-         
+
             <li class="nav-item">
               <a class="nav-link" href="/produksi/penjahitan">Produksi</a>
             </li>
@@ -138,7 +137,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
   </script>
-  
+
   <script>
     document.getElementById('tanggal').innerHTML = moment().locale('id').format('dddd DD MMMM YYYY');
 

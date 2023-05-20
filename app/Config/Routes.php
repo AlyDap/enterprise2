@@ -63,6 +63,12 @@ $routes->get('/produksi/detailpenjahitan/(:num)', 'Produksi::detailPenjahitan/$1
 $routes->get('/penjualan/tambahpenjualan', 'Penjualan::tambahPenjualan');
 $routes->post('/penjualan/storepenjualan', 'Bos::storePenjualan');
 
+
+// CHAT
+$routes->get('/chat', 'ChatController::index');
+$routes->post('/chat/sendMessage', 'ChatController::sendMessage');
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
