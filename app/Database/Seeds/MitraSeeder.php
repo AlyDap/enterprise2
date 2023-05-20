@@ -10,20 +10,20 @@ class MitraSeeder extends Seeder
     {
         $data = [
             [
-                'nama' => 'Mori Prima',
-                'alamat' => '10000'
+                'nama' => 'PT Agung Jaya',
+                'alamat' => 'Jalan Jaya'
             ],
             [
-                'nama' => 'Mori Primissima',
-                'alamat' => '15000'
+                'nama' => 'PT Berkah',
+                'alamat' => 'Jalan Berkah'
             ],
             [
-                'nama' => 'Katun',
-                'alamat' => '20000'
+                'nama' => 'PT Lancar',
+                'alamat' => 'Jalan Lancar'
             ],
             [
-                'nama' => 'Sutera',
-                'alamat' => '30000'
+                'nama' => 'PT Terbuka',
+                'alamat' => 'Jalan Terbuka'
             ]
         ];
         $this->db->table('mitra')->insertBatch($data);

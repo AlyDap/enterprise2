@@ -64,7 +64,9 @@
           <!-- PRODUKSI -- ARYA  -->
           <?php if (session()->get('jabatan') == 'produksi') : ?>
             <li class="nav-item">
-              <a class="nav-link" href="#">Produksi</a>
+         
+            <li class="nav-item">
+              <a class="nav-link" href="/produksi/penjahitan">Produksi</a>
             </li>
           <?php endif; ?>
 

@@ -37,7 +37,7 @@ class Penjualan extends BaseController
         ];
         return view('penjualan/tampol', $data);
     }
-    
+
     public function tambahPenjualan()
     {
         $data = [
@@ -54,23 +54,25 @@ class Penjualan extends BaseController
             'total_bayar' => $this->request->getPost('total_bayar'),
             'id_user' => $this->request->getPost('id_user')
         );
-        
+
         $model = new Penjualan_model();
         $simpan = $model->insertPenjualan($data);
         if ($simpan) {
             session()->setFlashdata('success', 'Berhasil Menambah penjualan');
             return redirect()->to(base_url('penjualan/tampol'));
         }
-
     }
 
-    public function DetailPenjualan()
+    public function DetailPenjualan($id)
     {
         $penjualanModel = new Penjualan_model();
+        $detailpenjualanModel = new DetailPenjualan();
         $produkModel = new Produk();
-
         $data['penjualan'] = $penjualanModel->findAll();
         $data['produk'] = $produkModel->findAll();
+        $data['details'] = $detailpenjualanModel->where('id_penjualan', $id)->findAll();
+
+        $data['title'] = 'detail';
 
         return view('penjualan/detail_penjualan', $data);
     }
@@ -92,17 +94,16 @@ class Penjualan extends BaseController
         return redirect()->to('/penjualan');
     }
     public function get_harga_produk()
-{
-    $id_produk = $this->request->getPost('id_produk');
-    $produkModel = new Produk();
-    $produk = $produkModel->find($id_produk);
+    {
+        $id_produk = $this->request->getPost('id_produk');
+        $produkModel = new Produk();
+        $produk = $produkModel->find($id_produk);
 
-    $data = [
-        'harga' => $produk['biaya_jual'],
-        'stok' => $produk['jumlah']
-    ];
+        $data = [
+            'harga' => $produk['biaya_jual'],
+            'stok' => $produk['jumlah']
+        ];
 
-    return $this->response->setJSON($data);
-}
-
+        return $this->response->setJSON($data);
+    }
 }
