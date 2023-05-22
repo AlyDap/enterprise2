@@ -64,12 +64,12 @@ class Penjualan extends BaseController
 
     }
 
-    public function DetailPenjualan()
+    public function DetailPenjualan($id)
     {
-        $penjualanModel = new Penjualan_model();
+        $penjualanModel = new DetailPenjualan();
         $produkModel = new Produk();
-
-        $data['penjualan'] = $penjualanModel->findAll();
+        $data['title'] = 'detail penjualan';
+        $data['details'] = $penjualanModel->where('id_penjualan',$id)->findAll();
         $data['produk'] = $produkModel->findAll();
 
         return view('penjualan/detail_penjualan', $data);
