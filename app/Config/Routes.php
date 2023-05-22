@@ -56,10 +56,18 @@ $routes->post('/produk/updateproduk', 'Bos::updateProduk');
 $routes->get('/produk/detailproduk/(:num)', 'Bos::detailProduk/$1');
 // penjualan
 $routes->get('/penjualan/detailpenjualan/(:num)', 'Penjualan::detailPenjualan/$1');
+// penjahitan
+$routes->get('/produksi/detailpenjahitan/(:num)', 'Produksi::detailPenjahitan/$1');
 // $routes->get('/tampol', 'Sales::penjualan');
 
 $routes->get('/penjualan/tambahpenjualan', 'Penjualan::tambahPenjualan');
 $routes->post('/penjualan/storepenjualan', 'Bos::storePenjualan');
+
+
+// CHAT
+$routes->get('/chat', 'ChatController::index');
+$routes->post('/chat/sendMessage', 'ChatController::sendMessage');
+
 
 /*
  * --------------------------------------------------------------------

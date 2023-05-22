@@ -31,7 +31,7 @@ class Penjahitan extends Migration
             ],
         ]);
         $this->forge->addKey('no_penjahitan', true);
-        $this->forge->addForeignKey('id_penjahit', 'mitra', 'id_mitra');
+        $this->forge->addForeignKey('id_penjahit', 'penjahit', 'id_penjahit');
         $this->forge->addForeignKey('id_bahan', 'bahan', 'id_bahan');
         $this->forge->addForeignKey('id_user', 'user', 'id_user');
         $this->forge->createTable('penjahitan', true);
