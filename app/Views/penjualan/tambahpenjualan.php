@@ -18,21 +18,22 @@
 </select><br>
 
 <label>Harga:</label><br>
-<input type="text" name="harga" disabled id="harga"><br>
+<input type="text" name="harga" readonly id="harga"><br>
 
 <label>Jumlah:</label><br>
 <input type="number" name="jumlah" id="stok"><br>
 
 <label>Total:</label><br>
-<input type="number" name="total" id="total" disabled><br>
+<input type="number" name="total" id="total" readonly><br>
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" id="submit" onclick="isi()">
 
 
 <!-- Load jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+  let hargasubmit;
 $(document).ready(function(){
     // Ketika dropdown produk dipilih
     $('#id_produk').on('change', function() {
@@ -48,9 +49,9 @@ $(document).ready(function(){
             success: function(response){
                 // Set nilai harga pada input harga
                 $('#harga').val(response.harga);
+                hargasubmit=response.harga;
                 var inputNumber = document.getElementById('stok');
-                inputNumber.setAttribute('max', response.stok);
-                
+                inputNumber.setAttribute('max', response.stok);        
             },
             error: function(xhr, status, error){
               $('#harga').val(0);
@@ -61,6 +62,11 @@ $(document).ready(function(){
     $('#stok').on('change', function(){
       $('#total').val($('#harga').val()*$('#stok').val());
     });
+    function isi(){
+      $('#harga').val(hargasubmit);
+      $('#total').val($('#harga').val()*$('#stok').val());
+
+    };
 });
 </script>
 

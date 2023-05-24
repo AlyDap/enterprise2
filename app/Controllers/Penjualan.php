@@ -15,10 +15,12 @@ class Penjualan extends BaseController
 {
     protected $penjualanModel;
     protected $produkModel;
+    protected $detailPenjualan;
     public function __construct()
     {
         $this->penjualanModel = new Penjualan_model();
         $this->produkModel = new Produk();
+        $this->detailPenjualan = new DetailPenjualan();
     }
     public function index()
     {
@@ -80,18 +82,40 @@ class Penjualan extends BaseController
     public function storeDetailPenjualan()
     {
         $detailPenjualanModel = new DetailPenjualan();
-
+        // masukkan data penjualan dulu baru detail
+        $this->penjualanModel->insert(['id_user' => session('id')]);
+        // ambil id terbaru
+        $idPenjualan = $this->penjualanModel->ambilIdTerbaru();
         $data = [
-            'id_penjualan' => $this->request->getPost('id_penjualan'),
-            'id_produk' => $this->request->getPost('id_produk'),
-            'harga' => $this->request->getPost('harga'),
-            'jumlah' => $this->request->getPost('jumlah'),
-            'total' => $this->request->getPost('total'),
+            [
+                'id_penjualan' => $idPenjualan[0]['id_penjualan'],
+                'id_produk' => $this->request->getPost('id_produk'),
+                'harga' => $this->request->getPost('harga'),
+                'jumlah' => $this->request->getPost('jumlah'),
+                'total' => $this->request->getPost('total'),
+            ],
+            [
+                'id_penjualan' => $idPenjualan[0]['id_penjualan'],
+                'id_produk' => $this->request->getPost('id_produk'),
+                'harga' => $this->request->getPost('harga'),
+                'jumlah' => $this->request->getPost('jumlah'),
+                'total' => $this->request->getPost('total'),
+            ],
         ];
+        $data2 = [
+            'id_penjualan' => $idPenjualan[0]['id_penjualan'],
+        ];
+        // dd($data2);
+        $totalBayar = intval($this->request->getPost('total'));
+        $detailPenjualanModel->insertBatch($data);
+        $this->penjualanModel->update($data2, ['total_bayar' => strval($totalBayar)]);
+        // $data2 = array(
+        //     'total_bayar' => $this->request->getPost('total'),
+        // );
+        // dd($data2);
+        // $this->penjualanModel->updatePenjualan( $data2 ,$idPenjualan);
 
-        $detailPenjualanModel->insert($data);
-
-        return redirect()->to('/penjualan');
+        return redirect()->to('/penjualan/tampol');
     }
     public function get_harga_produk()
     {

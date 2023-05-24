@@ -38,6 +38,8 @@ class Home extends BaseController
                         $session = session();
                         $session->set('jabatan', $user['jabatan']);
                         $session->set('username', $user['username']);
+                        $session->set('id', $user['id_user']);
+
                         // Jika username dan password cocok, redirect ke halaman selanjutnya
                         return redirect()->to('dashboard');
                     } else {

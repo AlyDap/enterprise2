@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Penjualan_model extends Model
+class Pembelian extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'penjualan';
-    protected $primaryKey       = 'id_penjualan';
+    protected $table            = 'pembelian';
+    protected $primaryKey       = 'no_pembelian';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_penjualan', 'tanggal', 'total_bayar', 'id_user'];
+    protected $allowedFields    = ['no_pembelian', 'tgl', 'total_bayar', 'id_supplier', 'id_user'];
 
     // Dates
     protected $useTimestamps = false;
@@ -40,21 +40,21 @@ class Penjualan_model extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getPenjualan($id = false)
+    public function getPembelian($id = false)
     {
         if ($id == false) {
             return $this->findAll();
         } else {
-            return $this->getWhere(['id_penjualan' => $id]);
+            return $this->getWhere(['no_pembelian' => $id]);
         }
     }
 
-    public function insertPenjualan($data)
+    public function insertPembelian($data)
     {
         return $this->db->table($this->table)->insert($data);
     }
     public function ambilIdTerbaru()
     {
-        return $this->db->query('SELECT id_penjualan FROM `penjualan` ORDER BY id_penjualan DESC LIMIT 1;')->getResultArray();
+        return $this->db->query('SELECT no_pembelian FROM `pembelian` ORDER BY no_pembelian DESC LIMIT 1;')->getResultArray();
     }
 }

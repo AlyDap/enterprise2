@@ -73,7 +73,7 @@
           <!-- GUDANG -- FEBI  -->
           <?php if (session()->get('jabatan') == 'gudang') : ?>
             <li class="nav-item">
-              <a class="nav-link" href="#">Gudang</a>
+              <a class="nav-link" href="/gudang/tampil">Gudang</a>
             </li>
           <?php endif; ?>
 
