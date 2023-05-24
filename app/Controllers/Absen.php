@@ -6,9 +6,18 @@ use App\Controllers\BaseController;
 
 class Absen extends BaseController
 {
+    protected $presensiModel;
+
+    public function __construct()
+    {
+        $this->presensiModel = new \App\Models\presensiModel();
+    }
     public function index()
     {
-        $data['title'] = 'Absen';
+        $data = [
+            'title' => 'Absensi',
+            'absen' => $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll(),
+        ];
         return view('absen', $data);
     }
 
