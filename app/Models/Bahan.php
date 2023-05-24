@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class Bahan extends Model
 {
     protected $table = 'bahan';
+    protected $primaryKey = "id_bahan";
     protected $allowedFields = ['nama', 'stok', 'harga', 'status'];
 
     public function getBahan($id = false)

@@ -39,6 +39,15 @@ class Penjualan extends BaseController
         ];
         return view('penjualan/tampol', $data);
     }
+    public function coba()
+    {
+        $data = [
+            'title' => 'COBA',
+            // Menampilkan daftar user
+            'users' => $this->penjualanModel->findAll()
+        ];
+        return view('penjualan/coba', $data);
+    }
 
     public function tambahPenjualan()
     {
@@ -93,14 +102,7 @@ class Penjualan extends BaseController
                 'harga' => $this->request->getPost('harga'),
                 'jumlah' => $this->request->getPost('jumlah'),
                 'total' => $this->request->getPost('total'),
-            ],
-            [
-                'id_penjualan' => $idPenjualan[0]['id_penjualan'],
-                'id_produk' => $this->request->getPost('id_produk'),
-                'harga' => $this->request->getPost('harga'),
-                'jumlah' => $this->request->getPost('jumlah'),
-                'total' => $this->request->getPost('total'),
-            ],
+            ]
         ];
         $data2 = [
             'id_penjualan' => $idPenjualan[0]['id_penjualan'],

@@ -83,6 +83,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/penjualan/tampol">Penjualan</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/penjualan/coba">Coba</a>
+            </li>
           <?php endif; ?>
 
 

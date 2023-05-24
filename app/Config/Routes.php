@@ -64,6 +64,12 @@ $routes->get('/penjualan/tambahpenjualan', 'Penjualan::tambahPenjualan');
 $routes->post('/penjualan/storepenjualan', 'Bos::storePenjualan');
 
 
+// coba
+$routes->get('transaksi', 'TransaksiController::index');
+$routes->post('transaksi/simpan', 'TransaksiController::simpan');
+
+
+
 // CHAT
 $routes->get('/chat', 'ChatController::index');
 $routes->post('/chat/sendMessage', 'ChatController::sendMessage');

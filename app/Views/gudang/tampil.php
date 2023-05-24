@@ -26,6 +26,7 @@
           <td><?= $user['no_pembelian']; ?></td>
           <td><?= $user['tgl']; ?></td>
           <td><?= "Rp " . number_format($user['total_bayar'], 0, ',', '.');  ?></td>
+          <td><?= $user['id_supplier']; ?></td>
           <td><?= $user['id_user']; ?></td>
           <td>
             <a class="btn btn-sm btn-outline-secondary" id="btnDetail" href="<?= base_url('gudang/detailpembelian/' . $user['no_pembelian']); ?>">Detail</a>

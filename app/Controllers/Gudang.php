@@ -15,11 +15,13 @@ class Gudang extends BaseController
 {
     protected $pembelianModel;
     protected $mitraModel;
+    protected $bahanModel;
     protected $detailPembelian;
     public function __construct()
     {
         $this->pembelianModel = new Pembelian();
         $this->mitraModel = new Mitra();
+        $this->bahanModel = new Bahan();
         $this->detailPembelian = new DetailPembelian();
     }
     public function index()
@@ -38,13 +40,15 @@ class Gudang extends BaseController
             'users' => $this->pembelianModel->findAll()
         ];
         return view('gudang/tampil', $data);
+        // return view('penjualan/tampol', $data);
     }
 
     public function tambahPembelian()
     {
         $data = [
             'title' => 'Input Pembelian',
-            'mitra' => $this->mitraModel->getMitra()
+            'mitra' => $this->mitraModel->getMitra(),
+            'bahan' => $this->bahanModel->getBahan()
         ];
         return view('gudang/tambahpembelian', $data);
     }
