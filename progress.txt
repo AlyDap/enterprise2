@@ -60,6 +60,9 @@ FROM
 WHERE
     p.id_penjualan = dp.id_penjualan AND pr.id_produk=dp.id_produk 
 ___________________________________________________________
+buat view untuk penjahitan (Arya) diagram
+
+CREATE VIEW view_jumlah_produksi_total_produk AS SELECT p.nama, SUM(dj.jumlah) as jumlah FROM produk as p, detail_jahit as dj WHERE p.id_produk = dj.id_produk GROUP BY p.id_produk
 ___________________________________________________________
 Kurang:
 Belum ada otorisasi

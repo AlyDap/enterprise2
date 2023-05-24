@@ -18,9 +18,13 @@ class Produksi extends BaseController
     }
     public function index()
     {
+        $model = new Penjahitan();
+
         $data = [
             'title' => 'Dashboard'
         ];
+        $grafik = $model->getTotalProduksiBatik();
+        $data['grafik'] = $grafik;
         return view('produksi/index', $data);
     }
     public function penjahitan()
@@ -39,10 +43,11 @@ class Produksi extends BaseController
         // $produkModel = new Produk();
         $data['penjahitan'] = $this->jahit->findAll();
         // $data['produk'] = $produkModel->findAll();
-        $data['details'] = $this->detailjahit->where('no_penjahitan', $id)->findAll();
-
-        $data['title'] = 'detail';
+        $data['details'] = $this->detailjahit->where('no_penjahitan',$id)->findAll();
+       
+        $data ['title'] = 'detail';
 
         return view('produksi/detailpenjahitan', $data);
     }
+
 }

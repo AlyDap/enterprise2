@@ -14,7 +14,7 @@ class Penjahitan extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['no_penjahitan', 'id_penjahit', 'total_bayar', 'tgl', 'id_bahan', 'id_user'];
+    protected $allowedFields    = ['no_penjahitan', 'id_penjahit', 'total_bayar', 'tgl', 'id_bahan','id_user'];
 
     // Dates
     protected $useTimestamps = false;
@@ -52,5 +52,9 @@ class Penjahitan extends Model
     public function insertPenjahitan($data)
     {
         return $this->db->table($this->table)->insert($data);
+    }
+    public function getTotalProduksiBatik()
+    {
+        return $this->db->table('view_jumlah_produksi_total_produk')->get()->getResultArray();
     }
 }
