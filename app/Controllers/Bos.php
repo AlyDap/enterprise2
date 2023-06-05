@@ -25,12 +25,45 @@ class Bos extends BaseController
         $data['grafik2'] = $grafik2;
 
         $data['grafik3'] = $model->getNamaProdukTahunan();
-        $data['Nmtahunan'] = $model->getTotalProdukTahunan();
+        // $data['Nmtahunan'] = $model->getTotalProdukTahunan();
 
         $Rptahunan = $model->getRpPendapatanTahunan();
         $data['Rptahunan'] = $Rptahunan;
         $Qtytahunan = $model->getTotalTerjualTahunan();
         $data['Qtytahunan'] = $Qtytahunan;
+
+        $data['grafikbulan2019'] = $model->getTotalPejualanBulananTahun2019();
+        $data['grafikbulan2020'] = $model->getTotalPejualanBulananTahun2020();
+        $data['grafikbulan2021'] = $model->getTotalPejualanBulananTahun2021();
+        $data['grafikbulan2022'] = $model->getTotalPejualanBulananTahun2022();
+        $data['grafikbulan2023'] = $model->getTotalPejualanBulananTahun2023();
+        $data['Qtybulanan2019'] = $model->getTotalTerjualBulanan2019();
+        $data['Qtybulanan2020'] = $model->getTotalTerjualBulanan2020();
+        $data['Qtybulanan2021'] = $model->getTotalTerjualBulanan2021();
+        $data['Qtybulanan2022'] = $model->getTotalTerjualBulanan2022();
+        $data['Qtybulanan2023'] = $model->getTotalTerjualBulanan2023();
+
+        $data['grafik2bulan2019'] = $model->getTotalPendapatanBulanan2019();
+        $data['grafik2bulan2020'] = $model->getTotalPendapatanBulanan2020();
+        $data['grafik2bulan2021'] = $model->getTotalPendapatanBulanan2021();
+        $data['grafik2bulan2022'] = $model->getTotalPendapatanBulanan2022();
+        $data['grafik2bulan2023'] = $model->getTotalPendapatanBulanan2023();
+        $data['Rpbulanan2019'] = $model->getRpPendapatanBulanan2019();
+        $data['Rpbulanan2020'] = $model->getRpPendapatanBulanan2020();
+        $data['Rpbulanan2021'] = $model->getRpPendapatanBulanan2021();
+        $data['Rpbulanan2022'] = $model->getRpPendapatanBulanan2022();
+        $data['Rpbulanan2023'] = $model->getRpPendapatanBulanan2023();
+
+        $data['grafik3bulan2019'] = $model->getNamaProdukBulanan2019();
+        $data['grafik3bulan2020'] = $model->getNamaProdukBulanan2020();
+        $data['grafik3bulan2021'] = $model->getNamaProdukBulanan2021();
+        $data['grafik3bulan2022'] = $model->getNamaProdukBulanan2022();
+        $data['grafik3bulan2023'] = $model->getNamaProdukBulanan2023();
+        // $data['Nmbulanan2019'] = $model->getTotalProdukBulanan2019();
+        // $data['Nmbulanan2020'] = $model->getTotalProdukBulanan2020();
+        // $data['Nmbulanan2021'] = $model->getTotalProdukBulanan2021();
+        // $data['Nmbulanan2022'] = $model->getTotalProdukBulanan2022();
+        // $data['Nmbulanan2023'] = $model->getTotalProdukBulanan2023();
 
         return view('bos/index', $data);
     }
