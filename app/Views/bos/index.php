@@ -198,17 +198,57 @@
 </div>
 <br>
 <div class="terang2">
-    <h5>Jumlah Produk Terjual Setiap Tahun
+    <h5>Penjualan Per Bulan
+
         <button onclick="toggleVisibility2()"><strong>+/-</strong></button>
     </h5>
+    <!-- <select name="tahun">
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+    </select> -->
+    <form>
+        <select id="tahunDropdown" name="tahun">
+        </select>
+    </form>
+    <div id="output"></div>
     <div id="content2">
         <hr>
+
+        <?php
+        echo view('bos/grafik.php');
+        ?>
     </div>
 
 </div>
 
 
 <script>
+    var selectElement = document.getElementById("tahunDropdown");
+    var outputElement = document.getElementById("output");
+
+    // Membuat pilihan tahun dari 2019 hingga 2023
+    for (var tahun = 2019; tahun <= 2023; tahun++) {
+        var optionElement = document.createElement("option");
+        optionElement.value = tahun;
+        optionElement.textContent = tahun;
+        selectElement.appendChild(optionElement);
+    }
+
+    // Menambahkan event listener pada perubahan nilai select
+    selectElement.addEventListener("change", function() {
+        var tahunTerpilih = selectElement.value;
+        // outputElement.textContent = "Anda memilih tahun " + tahunTerpilih;
+        // Tambahkan logika lain di sini untuk mengeluarkan data berdasarkan tahun yang dipilih
+        if (tahunTerpilih == 2019) {
+            outputElement.textContent = "Anda memilih tahun " + tahunTerpilih;
+        } else {
+            outputElement.textContent = "Anda tidak memilih tahun 2019";
+        }
+    });
+
     function toggleVisibility() {
         var content = document.getElementById("content");
         content.style.display = "block";
