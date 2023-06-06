@@ -37,7 +37,7 @@ if (!empty($grafik3bulan2022)) {
 
 <div class="kaki">
     <div class="kiri">
-        <canvas id="myCharta"></canvas>
+        <canvas id="myChartad"></canvas>
         <div class="ykiri">
             <?php foreach ($Qtybulanan2022 as $QtyB2022) : ?>
                 <h6>Total Produk Terjual <?=
@@ -47,7 +47,7 @@ if (!empty($grafik3bulan2022)) {
         </div>
     </div>
     <div class="kanan">
-        <canvas id="myCharta2"></canvas>
+        <canvas id="myChartad2"></canvas>
         <div class="ykanan">
             <?php foreach ($Rpbulanan2022 as $RpB2022) : ?>
                 <h6>Total Pendapatan Rp <?=
@@ -57,15 +57,15 @@ if (!empty($grafik3bulan2022)) {
         </div>
     </div>
     <div class="tengah">
-        <canvas id="myCharta3"></canvas>
+        <canvas id="myChartad3"></canvas>
     </div>
 </div>
 
 
 <script>
-    const ctxa2 = document.getElementById('myCharta2');
+    const ctxad2 = document.getElementById('myChartad2');
     // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-    new Chart(ctxa2, {
+    new Chart(ctxad2, {
         type: 'doughnut',
         data: {
             labels: <?= json_encode($bulan2); ?>,
@@ -85,9 +85,9 @@ if (!empty($grafik3bulan2022)) {
     });
 </script>
 <script>
-    const ctxa = document.getElementById('myCharta');
+    const ctxad = document.getElementById('myChartad');
     // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-    new Chart(ctxa, {
+    new Chart(ctxad, {
         type: 'polarArea',
         data: {
             labels: <?= json_encode($bulan); ?>,
@@ -107,9 +107,9 @@ if (!empty($grafik3bulan2022)) {
     });
 </script>
 <script>
-    const ctxa3 = document.getElementById('myCharta3');
+    const ctxad3 = document.getElementById('myChartad3');
     // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-    new Chart(ctxa3, {
+    new Chart(ctxad3, {
         type: 'radar',
         data: {
             labels: <?= json_encode($nama3); ?>,

@@ -201,15 +201,55 @@
     <h5>Penjualan Per Bulan
         <button onclick="toggleVisibility2()"><strong>+/-</strong></button>
     </h5>
-    <form>
-        <select id="tahunDropdown" name="tahun">
-        </select>
-    </form>
-    <div id="output"></div>
+    <hr>
     <div id="content2">
+        <details>
+            <summary>2019</summary>
+            <?= view('bos/grafik2019.php'); ?>
+        </details>
+        <details>
+            <summary>2020</summary>
+            <?= view('bos/grafik2020.php'); ?>
+        </details>
+        <details>
+            <summary>2021</summary>
+            <?= view('bos/grafik2021.php'); ?>
+        </details>
+        <details>
+            <summary>2022</summary>
+            <?= view('bos/grafik2022.php'); ?>
+        </details>
+        <details>
+            <summary>2023</summary>
+            <?= view('bos/grafik2023.php'); ?>
+        </details>
         <hr>
-        <?php
-        echo view('bos/grafik2019.php');
+        <form method="get">
+            <select id="tahunDropdown" name="tahun">
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+            <input type="button" value="Tampilkan" onclick="loadGrafik()">
+        </form>
+        <p id="ppp">Penjualan Tahun 2019</p>
+        <div id="output"></div>
+        <!-- <div id="grafikContainer"></div> -->
+        <?php $grafff = 'grafik2019.php';
+        if (isset($_GET['tahun'])) {
+            $tahunTerpilih = $_GET['tahun'];
+            if ($tahunTerpilih === "2019") {
+                $grafff = 'produk';
+            } else if ($tahunTerpilih === "2020") {
+                $grafff = 'mitra';
+            } else {
+                $grafff = 'bahan';
+            }
+            // Tambahkan kondisi untuk tahun lain jika diperlukan
+        }
+        // echo view('bos/' . $grafff);
         ?>
     </div>
 </div>
@@ -218,26 +258,47 @@
 <script>
     var selectElement = document.getElementById("tahunDropdown");
     var outputElement = document.getElementById("output");
-
-    // Membuat pilihan tahun dari 2019 hingga 2023
-    for (var tahun = 2019; tahun <= 2023; tahun++) {
-        var optionElement = document.createElement("option");
-        optionElement.value = tahun;
-        optionElement.textContent = tahun;
-        selectElement.appendChild(optionElement);
-    }
+    var ppp = document.getElementById("ppp");
+    var content2Element = document.getElementById("content2");
 
     // Menambahkan event listener pada perubahan nilai select
     selectElement.addEventListener("change", function() {
+        ppp.style.display = "none";
         var tahunTerpilih = selectElement.value;
-        // outputElement.textContent = "Anda memilih tahun " + tahunTerpilih;
-        // Tambahkan logika lain di sini untuk mengeluarkan data berdasarkan tahun yang dipilih
         if (tahunTerpilih == 2019) {
             outputElement.textContent = "Penjualan Tahun " + tahunTerpilih;
+            <?php  // $grafff = 'mitra'; 
+            ?>
+        } else if (tahunTerpilih == 2020) {
+            outputElement.textContent = "Penjualan Tahun " + tahunTerpilih;
+            <?php // $grafff = 'bahan'; 
+            ?>
         } else {
-            outputElement.textContent = "Anda tidak memilih tahun 2019";
+            outputElement.textContent = "Anda tidak memilih tahun 2019 atau 2020";
+            <?php // $grafff = 'produk'; 
+            ?>
         }
+        // Memuat ulang konten grafik dengan nilai $grafff yang baru
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                content2Element.innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "bos/" + "<?php echo $grafff; ?>", true);
+        // xhttp.open("GET", "bos/bahan" + "", true);
+
+        xhttp.send();
     });
+
+    function toggleVisibility2() {
+        var content2 = document.getElementById("content2");
+        if (content2.style.display === "none") {
+            content2.style.display = "block";
+        } else {
+            content2.style.display = "none";
+        }
+    }
 
     function toggleVisibility() {
         var content = document.getElementById("content");
@@ -247,15 +308,6 @@
     function toggleVisibility01() {
         var content = document.getElementById("content");
         content.style.display = "none";
-    }
-
-    function toggleVisibility2() {
-        var content2 = document.getElementById("content2");
-        if (content2.style.display === "none") {
-            content2.style.display = "block";
-        } else {
-            content2.style.display = "none";
-        }
     }
 </script>
 <?= $this->endSection(); ?>
