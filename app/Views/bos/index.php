@@ -192,23 +192,15 @@
     </div>
     <div id="content">
         <?php
-        echo view('bos/grafik2.php');
+        echo view('bos/grafik.php');
         ?>
     </div>
 </div>
 <br>
 <div class="terang2">
     <h5>Penjualan Per Bulan
-
         <button onclick="toggleVisibility2()"><strong>+/-</strong></button>
     </h5>
-    <!-- <select name="tahun">
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-    </select> -->
     <form>
         <select id="tahunDropdown" name="tahun">
         </select>
@@ -216,12 +208,10 @@
     <div id="output"></div>
     <div id="content2">
         <hr>
-
         <?php
-        echo view('bos/grafik.php');
+        echo view('bos/grafik2019.php');
         ?>
     </div>
-
 </div>
 
 
@@ -243,7 +233,7 @@
         // outputElement.textContent = "Anda memilih tahun " + tahunTerpilih;
         // Tambahkan logika lain di sini untuk mengeluarkan data berdasarkan tahun yang dipilih
         if (tahunTerpilih == 2019) {
-            outputElement.textContent = "Anda memilih tahun " + tahunTerpilih;
+            outputElement.textContent = "Penjualan Tahun " + tahunTerpilih;
         } else {
             outputElement.textContent = "Anda tidak memilih tahun 2019";
         }
