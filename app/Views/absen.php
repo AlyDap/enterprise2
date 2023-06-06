@@ -195,11 +195,34 @@
       },
       events: [
         <?php foreach ($absen as $a) : ?> {
+            <?php
+            $warna = '';
+            if ($a['info'] == "tepat waktu") : $warna = "rgb(22, 255, 0)";
+            elseif ($a['info'] == "terlambat") : $warna = "rgb(244, 80, 80)";
+            elseif ($a['info'] == "sakit") : $warna = "rgb(2, 84, 100)";
+            elseif ($a['info'] == "izin") : $warna = "rgb(247, 147, 39)";
+            elseif ($a['info'] == "alpa") : $warna = "rgb(60, 72, 107)";
+            endif;
+            ?>
             title: '<?= $a['info'] ?>',
-            start: '<?= $a['tanggal_presensi'] ?>',
-            color: '<?= $a['info'] == "tepat waktu" ? "green" : "red" ?>',
+              start: '<?= $a['tanggal_presensi'] ?>',
+              color: '<?= $warna ?>',
           },
-        <?php endforeach; ?>
+          <?php endforeach;
+        $awalBulan = date('Y-m-01');
+        for ($i = 0; $i < 32; $i++) :
+          if (date('D', strtotime($awalBulan . '+' . $i . 'days')) == 'Fri') : ?> {
+              title: 'Libur',
+              start: '<?= date('Y-m-d', strtotime($awalBulan . '+' . $i . 'days')) ?>',
+              backgroundColor: 'rgb(22, 255, 0)',
+              textColor: 'rgb(22, 255, 0)',
+              display: 'background'
+            },
+        <?php endif;
+        endfor;
+        ?>
+        //libur setiap hari jumat
+
       ]
     });
     calendar.render();
