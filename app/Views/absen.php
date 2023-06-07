@@ -63,7 +63,8 @@
 </div>
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
 
 <script type="text/javascript">
   // seleksi elemen video
@@ -163,26 +164,6 @@
   }
   setInterval(jamAbsen, 1000);
 
-  // menampilkan kalender minggu ini
-
-  // // Mendapatkan tanggal sekarang
-  // const today = moment().locale('id');
-  // console.log("hari ini : " + today.format('dddd, MMMM Do YYYY'));
-  // // Mendapatkan tanggal awal dari minggu ini
-  // const startOfWeek = today.startOf('week');
-  // console.log("awal minggu ini : " + startOfWeek.format('dddd, MMMM Do YYYY'));
-  // // Mendapatkan tanggal akhir dari minggu ini
-  // const endOfWeek = today.endOf('week');
-  // console.log("akhir minggu ini : " + endOfWeek.format('dddd, MMMM Do YYYY'));
-
-  // // Loop untuk menampilkan tanggal dari awal sampai akhir minggu ini
-  // for (let day = startOfWeek; day <= endOfWeek; day = day.clone().add(1, 'd')) {
-  //   console.log(day.format('dddd, MMMM Do YYYY'));
-  // }
-</script>
-<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
-<script>
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {

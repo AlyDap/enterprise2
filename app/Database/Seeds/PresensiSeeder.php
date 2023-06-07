@@ -20,18 +20,17 @@ class PresensiSeeder extends Seeder
             if (date('D', strtotime($awalBulan . '+' . $i . 'days')) == 'Fri') {
                 continue;
             }
-            for ($j = 1; $j <= 6; $j++) {
+            for ($j = 2; $j <= 6; $j++) {
                 $data = [
                     'id_pegawai' => $j,
                     // input tanggal setiap hari bulan juni 2023
                     'tanggal_presensi' => date('Y-m-d', strtotime($awalBulan . '+' . $i . 'days')),
-                    // buat waktu masuk between 07:00:00 - 08:00:00
                     'waktu_masuk' => $faker->time('H:i:s'),
                     'waktu_keluar' => $faker->time('H:i:s'),
                     'gambar_masuk' => 'default.jpg',
                     'gambar_keluar' => 'default.jpg',
                     // masuk, pulang, sakit, izin, alpa 
-                    'info' => $faker->randomElement(['tepat waktu', 'terlambat', 'sakit', 'izin', 'alpa']),
+                    'info' => $faker->randomElement(['tepat waktu', 'terlambat', 'ijin']),
                     'ket' => '-',
                     'status' => $faker->numberBetween(0, 1),
                 ];
