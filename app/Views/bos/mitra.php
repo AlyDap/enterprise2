@@ -35,14 +35,16 @@
 </style>
 <?php
 if (!empty(session()->getFlashdata('success'))) { ?>
-    <div class="alert alert-dark" style="text-align: center;">
-        <?php echo session()->getFlashdata('success'); ?>
+    <div class="alert alert-dark alert-dismissible fade show" role="alert" style="text-align: center;">
+        <strong><?php echo session()->getFlashdata('success'); ?></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php } ?>
 
 <?php if (!empty(session()->getFlashdata('info'))) { ?>
-    <div class="alert alert-secondary" style="text-align: center;">
-        <?php echo session()->getFlashdata('info'); ?>
+    <div class="alert alert-dark alert-dismissible fade show" role="alert" style="text-align: center;">
+        <strong><?php echo session()->getFlashdata('info'); ?></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php } ?>
 

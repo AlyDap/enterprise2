@@ -5,26 +5,33 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Pesan Baru</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
+            <form action="/chat/sendMessage" method="post" onsubmit="return validateForm()">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pesan Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="sender_id" value="1">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Tujuan:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <select name="receiver_id" id="id_user" class="form-control" required>
+                            <option value="1">--pilih--</option>
+                            <?php foreach ($user as $row) : ?>
+                                <option value="<?= $row['id_user'] ?>"><?= $row['jabatan'] ?> - <?= $row['username'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Pesan:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea class="form-control" id="message-text" name="message" placeholder="Tulis pesan" required></textarea>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-dark">Kirim</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button> -->
+                    <button type="submit" class="btn btn-outline-dark">Kirim</button>
+                </div>
+                <!-- <button type="submit" class="btn btn-outline-dark btn-lg">Kirim</button> -->
+            </form>
         </div>
     </div>
 </div>
@@ -199,18 +206,9 @@
 </div>
 <br>
 <hr>
-<!-- Form untuk mengirim pesan -->
-<form action="/chat/sendMessage" method="post">
-    <input type="hidden" name="sender_id" value="1">
-    <input type="hidden" name="receiver_id" value="2">
-    <textarea rows="4" cols="50" name="message" placeholder="Tulis pesan" required id="myTextarea"></textarea>
-    <br>
-    <button type="submit" onclick="validateTextarea()">Kirim</button>
-</form>
-
-<hr>
 
 <!-- Tampilan pesan -->
+<h1>TAMPILAN SEMUA PESAN</h1>
 <?php foreach ($messages as $message) : ?>
     <p>
         <strong>Pengirim:</strong> <?= $message['sender_id'] ?><br>
@@ -221,18 +219,21 @@
 <?php endforeach; ?>
 
 <script>
-    function validateTextarea() {
-        var textareaValue = document.getElementById("myTextarea").value;
-        var trimmedValue = textareaValue.trim();
-
-        if (trimmedValue.length === 0 || textareaValue === "") {
-            alert("Textarea cannot be empty.");
-        } else if (trimmedValue === "") {
-            alert("Textarea cannot be filled with spaces only.");
-        } else {
-            alert("Textarea is valid.");
-            // Lanjutkan dengan tindakan selanjutnya jika textarea valid
+    // VALIDASI PESAN SEKARANG
+    function validateForm() {
+        var selectElement = document.getElementById("id_user");
+        var selectedOption = selectElement.value;
+        if (selectedOption === "1") {
+            alert("Silakan pilih tujuan pesan Anda!");
+            return false; // Mencegah pengiriman formulir
         }
+        var textareaElement = document.getElementById("message-text");
+        var message = textareaElement.value.trim(); // Menghapus spasi di awal dan akhir
+        if (message === "" || message === "\n") {
+            alert("Pesan tidak boleh kosong!");
+            return false; // Mencegah pengiriman formulir
+        }
+        return true; // Mengizinkan pengiriman formulir jika validasi lolos
     }
 </script>
 <?= $this->endSection(); ?>

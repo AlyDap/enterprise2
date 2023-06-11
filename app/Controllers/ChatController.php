@@ -2,15 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Database\Migrations\User;
 use App\Models\ChatModel;
 
 class ChatController extends BaseController
 {
     protected $chatModel;
-
+    protected $userModel;
     public function __construct()
     {
         $this->chatModel = new ChatModel();
+        $this->userModel = new \App\Models\User();
     }
 
     public function index()
@@ -30,7 +32,7 @@ class ChatController extends BaseController
         $data['msgBosProd3'] = array_reverse($data['msgBosProd3']);
 
         $data['title'] = 'Chat';
-
+        $data['user'] = $this->userModel->getUserKecualiBos();
         // Tampilkan view chat dengan data pesan
         return view('bos/chat', $data);
     }

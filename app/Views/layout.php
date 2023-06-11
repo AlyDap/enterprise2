@@ -55,6 +55,9 @@
               <a class="nav-link" href="/bahan">Bahan</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/penjahit">Penjahit</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/chat">Chat</a>
             </li>
           <?php endif; ?>

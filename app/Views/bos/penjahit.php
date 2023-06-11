@@ -48,18 +48,18 @@ if (!empty(session()->getFlashdata('success'))) { ?>
     </div>
 <?php } ?>
 
-<h1 style="text-align: center;">Bahan Pembuatan Batik</h1>
+<h1 style="text-align: center;">Penjahit Batik</h1>
 <hr>
 
-<form action="<?= base_url('bahan'); ?>" method="get">
+<form action="<?= base_url('penjahit'); ?>" method="get">
     <div class="mb-3">
-        <a role="button" class="btn btn-outline-dark" href="<?= base_url('bahan/createbahan'); ?>" style="margin-top: 15px; float: right;">Tambah Bahan</a>
+        <a role="button" class="btn btn-outline-dark" href="<?= base_url('penjahit/createpenjahit'); ?>" style="margin-top: 15px; float: right;">Tambah Penjahit</a>
         <div class="row g-3 align-items-center">
             <div class="col-auto">
-                <label class="col-form-label">Cari Bahan</label>
+                <label class="col-form-label">Cari Penjahit</label>
             </div>
             <div class="col-auto">
-                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Masukan nama bahan..." value="<?= $keyword; ?>">
+                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Masukan nama penjahit..." value="<?= $keyword; ?>">
             </div>
             <div class="col-auto">
                 <span id="passwordHelpInline" class="form-text">
@@ -74,22 +74,22 @@ if (!empty(session()->getFlashdata('success'))) { ?>
         <tr style="text-align: center;">
             <th scope="col" style="padding: 15px;">No</th>
             <th scope="col" style="padding: 15px;">Nama</th>
-            <th scope="col" style="padding: 15px;">Qty</th>
-            <th scope="col" style="padding: 15px;">Harga</th>
+            <th scope="col" style="padding: 15px;">Alamat</th>
             <th scope="col" style="padding: 15px;">Status</th>
             <th scope="col" style="padding: 15px;">Action</th>
         </tr>
     </thead>
     <tbody>
         <?php $i = 1 + (5 * ($currentPage - 1)); ?>
-        <?php foreach ($bahan as  $row) { ?>
+        <?php foreach ($penjahit as  $row) { ?>
             <tr style="text-align: center; vertical-align: middle;">
                 <th scope="row"><?= $i++; ?></td>
                 <td><?= $row['nama']; ?></td>
-                <td><?= $row['jumlah']; ?></td>
-                <td>Rp <?= number_format($row['harga'], 0, ',', '.'); ?></td>
+                <td><?= $row['alamat']; ?></td>
                 <td><?= $row['status']; ?></td>
-                <td><a href="<?= base_url('bahan/editbahan/' . $row['id_bahan']); ?>" class="btn btn-sm btn-outline-secondary">Edit</a></td>
+                <td>
+                    <a href="<?= base_url('penjahit/editpenjahit/' . $row['id_penjahit']); ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                </td>
             </tr>
         <?php } ?>
     </tbody>
@@ -97,7 +97,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
 <div class="pagination">
     <?php //var_dump($pager); 
     ?>
-    <?php echo $pager->links('bahan', 'bos_pagination');
+    <?php echo $pager->links('penjahit', 'bos_pagination');
     ?>
 </div>
 <?= $this->endSection(); ?>
