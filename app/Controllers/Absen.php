@@ -18,6 +18,7 @@ class Absen extends BaseController
             'title' => 'Absensi',
             'absen' => $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll(),
         ];
+        // dd($this->presensiModel->where('id_pegawai', session()->get('id'))->findAll());
         return view('absen', $data);
     }
 

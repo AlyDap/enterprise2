@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\Bahan;
 use App\Models\Mitra;
+use App\Models\Penjahit;
 use App\Models\Produk;
 
 class Bos extends BaseController
@@ -220,6 +221,75 @@ class Bos extends BaseController
         if ($ubah) {
             session()->setFlashdata('info', 'Berhasil Mengedit Mitra');
             return redirect()->to(base_url('bos/mitra'));
+        }
+    }
+
+    public function penjahit()
+    {
+        $model = new Penjahit();
+        $currentPage = $this->request->getVar('page_penjahit') ? $this->request->getVar('page_penjahit') : 1;
+        $keyword = $this->request->getVar('keyword');
+        if (empty($keyword)) {
+            $keyword = '';
+        }
+        $data = [
+            'title' => 'Penjahit',
+            'keyword' => $keyword,
+        ];
+        $penjahit = $model->like('nama', $keyword)->paginate(5, 'penjahit');
+        $data['penjahit'] = $penjahit;
+        $data['pager'] = $model->pager;
+        $data['currentPage'] = $currentPage;
+        return view('bos/penjahit', $data);
+    }
+
+    public function createPenjahit()
+    {
+        $data = [
+            'title' => 'Tmabah Penjahit'
+        ];
+        return view('bos/createpenjahit', $data);
+    }
+
+    public function storePenjahit()
+    {
+        $data = array(
+            'nama' => $this->request->getPost('nama'),
+            'alamat' => $this->request->getPost('alamat'),
+            'status' => $this->request->getPost('status')
+        );
+
+        $model = new Penjahit();
+        $simpan = $model->insertPenjahit($data);
+        if ($simpan) {
+            session()->setFlashdata('success', 'Berhasil Menambah Penjahit');
+            return redirect()->to(base_url('bos/penjahit'));
+        }
+    }
+
+    public function editPenjahit($id)
+    {
+        $model = new Penjahit();
+        $data = [
+            'title' => 'Edit Penjahit'
+        ];
+        $data['penjahit'] = $model->getPenjahit($id)->getRowArray();
+        echo view('bos/editpenjahit', $data);
+    }
+
+    public function updatePenjahit()
+    {
+        $id = $this->request->getPost('id_penjahit');
+        $data = array(
+            'nama' => $this->request->getPost('nama'),
+            'alamat' => $this->request->getPost('alamat'),
+            'status' => $this->request->getPost('status')
+        );
+        $model = new Penjahit();
+        $ubah = $model->updatePenjahit($data, $id);
+        if ($ubah) {
+            session()->setFlashdata('info', 'Berhasil Mengedit Penjahit');
+            return redirect()->to(base_url('bos/penjahit'));
         }
     }
 

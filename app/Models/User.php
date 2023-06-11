@@ -39,4 +39,9 @@ class User extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getUserKecualiBos()
+    {
+        return $this->db->query('SELECT * FROM user AS u WHERE u.id_user !=1')->getResultArray();
+    }
 }

@@ -1,27 +1,27 @@
 <?php
 
-if (!empty($grafik)) {
-    foreach ($grafik as $key => $value) {
-        $tahun[] = $value['tahun'];
+if (!empty($grafikbulan2019)) {
+    foreach ($grafikbulan2019 as $key => $value) {
+        $bulan[] = $value['bulan'];
         $jumlah[] = $value['jumlah'];
     }
 } else {
-    $tahun = array('Data kosong');
+    $bulan = array('Data kosong');
     $jumlah = array(0);
 }
 
-if (!empty($grafik2)) {
-    foreach ($grafik2 as $key => $value) {
-        $tahun2[] = $value['tahun'];
+if (!empty($grafik2bulan2019)) {
+    foreach ($grafik2bulan2019 as $key => $value) {
+        $bulan2[] = $value['bulan'];
         $total2[] = $value['total'];
     }
 } else {
-    $tahun2 = array('', 'Data kosong', '');
+    $bulan2 = array('', 'Data kosong', '');
     $total2 = array();
 }
 
-if (!empty($grafik3)) {
-    foreach ($grafik3 as $key => $value) {
+if (!empty($grafik3bulan2019)) {
+    foreach ($grafik3bulan2019 as $key => $value) {
         $nama3[] = $value['nama'];
         $jumlah3[] = $value['jumlah'];
     }
@@ -37,40 +37,40 @@ if (!empty($grafik3)) {
 
 <div class="kaki">
     <div class="kiri">
-        <canvas id="myChart"></canvas>
+        <canvas id="myCharta"></canvas>
         <div class="ykiri">
-            <?php foreach ($Qtytahunan as $QtyT) : ?>
+            <?php foreach ($Qtybulanan2019 as $QtyB2019) : ?>
                 <h6>Total Produk Terjual <?=
-                                            number_format($QtyT['jumlah'], 0, ',', '.');
+                                            number_format($QtyB2019['jumlah'], 0, ',', '.');
                                             ?> Pcs</h6>
             <?php endforeach; ?>
         </div>
     </div>
     <div class="kanan">
-        <canvas id="myChart2"></canvas>
+        <canvas id="myCharta2"></canvas>
         <div class="ykanan">
-            <?php foreach ($Rptahunan as $RPT) : ?>
+            <?php foreach ($Rpbulanan2019 as $RpB2019) : ?>
                 <h6>Total Pendapatan Rp <?=
-                                        number_format($RPT['total'], 0, ',', '.');
+                                        number_format($RpB2019['total'], 0, ',', '.');
                                         ?>,00</h6>
             <?php endforeach; ?>
         </div>
     </div>
     <div class="tengah">
-        <canvas id="myChart3"></canvas>
+        <canvas id="myCharta3"></canvas>
     </div>
 </div>
 
 
 <script>
-    const ctx2 = document.getElementById('myChart2');
+    const ctxa2 = document.getElementById('myCharta2');
     // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-    new Chart(ctx2, {
-        type: 'line',
+    new Chart(ctxa2, {
+        type: 'doughnut',
         data: {
-            labels: <?= json_encode($tahun2); ?>,
+            labels: <?= json_encode($bulan2); ?>,
             datasets: [{
-                label: 'Pendapatan Per Tahun',
+                label: 'Pendapatan Per Bulan',
                 data: <?= json_encode($total2); ?>,
                 borderWidth: 1
             }]
@@ -85,14 +85,14 @@ if (!empty($grafik3)) {
     });
 </script>
 <script>
-    const ctx = document.getElementById('myChart');
+    const ctxa = document.getElementById('myCharta');
     // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-    new Chart(ctx, {
-        type: 'bar',
+    new Chart(ctxa, {
+        type: 'polarArea',
         data: {
-            labels: <?= json_encode($tahun); ?>,
+            labels: <?= json_encode($bulan); ?>,
             datasets: [{
-                label: 'Produk Yang Terjual Per Tahun',
+                label: 'Produk Yang Terjual Per Bulan',
                 data: <?= json_encode($jumlah); ?>,
                 borderWidth: 1
             }]
@@ -107,10 +107,10 @@ if (!empty($grafik3)) {
     });
 </script>
 <script>
-    const ctx3 = document.getElementById('myChart3');
+    const ctxa3 = document.getElementById('myCharta3');
     // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-    new Chart(ctx3, {
-        type: 'pie',
+    new Chart(ctxa3, {
+        type: 'radar',
         data: {
             labels: <?= json_encode($nama3); ?>,
             datasets: [{

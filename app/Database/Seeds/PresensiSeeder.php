@@ -21,7 +21,7 @@ class PresensiSeeder extends Seeder
             if (date('D', strtotime($awalBulan . '+' . $i . 'days')) == 'Fri') {
                 continue;
             }
-            for ($j = 1; $j <= 6; $j++) {
+            for ($j = 2; $j <= 6; $j++) {
                 $ket = '';
                 $num = $faker->randomNumber(1);
                 if ($num == 1) {
