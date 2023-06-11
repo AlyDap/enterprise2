@@ -28,6 +28,17 @@
         position: absolute;
       }
     }
+
+    .webcam-capture,
+    .webcam-capture video {
+      display: inline-block;
+      width: 100% !important;
+      height: auto !important;
+      margin: auto;
+      text-align: center;
+      border-radius: 15px;
+      overflow: hidden;
+    }
   </style>
 </head>
 
