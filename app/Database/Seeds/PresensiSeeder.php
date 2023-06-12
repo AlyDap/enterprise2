@@ -16,7 +16,7 @@ class PresensiSeeder extends Seeder
         $awalBulan = date('Y-m-01');
         $hariIni = date('d');
         // buat perulangan untuk memasukkan faker data ke tabel presensi
-        for ($i = 0; $i < ($hariIni - 1); $i++) {
+        for ($i = 1; $i < ($hariIni - 1); $i++) {
             // kecuali hari jumat
             if (date('D', strtotime($awalBulan . '+' . $i . 'days')) == 'Fri') {
                 continue;

@@ -136,37 +136,52 @@
         center: 'title',
         right: 'dayGridMonth'
       },
+      eventClick: function(info) {
+        info.jsEvent.preventDefault(); // don't let the browser navigate
+
+        alert(info.event.title);
+      },
+      events: {
+        url: '/absen/getAbsen',
+        method: 'POST',
+        failure: function(textStatus, errorThrown) {
+          alert(textStatus + " " + errorThrown);
+        },
+      }
       // masih jelek ini data event kalau bisa buat json
-      events: [
-        <?php foreach ($absen as $a) : ?> {
-            <?php $warna = 'rgb(3, 201, 136)'; ?>
-            <?php if ($a['ket'] == "terlambat") : $warna = "rgb(237, 43, 42)" ?>
-            <?php elseif ($a['ket'] == "sakit") : $warna = "rgb(73, 66, 228)"; ?>
-            <?php endif; ?>
-            title: '<?= $a['waktu_masuk'] ?>',
-              start: '<?= $a['tanggal_presensi'] ?>',
-              color: '<?= $warna ?>',
-          },
-          <?php if ($a['ket'] != 'sakit') : ?>
-            <?php $warna = 'rgb(229, 124, 35)' ?> {
-              title: '<?= $a['waktu_keluar'] ?>',
-              start: '<?= $a['tanggal_presensi'] ?>',
-              color: '<?= $warna ?>',
-            },
-          <?php endif; ?>
-        <?php endforeach; ?>
-        <?php $awalBulan = date('Y-m-01'); ?>
-        <?php for ($i = 0; $i < 32; $i++) : ?>
-          <?php if (date('D', strtotime($awalBulan . '+' . $i . 'days')) == 'Fri') : ?> {
-              title: 'Libur',
-              start: '<?= date('Y-m-d', strtotime($awalBulan . '+' . $i . 'days')) ?>',
-              backgroundColor: 'rgb(22, 255, 0)',
-              textColor: 'rgb(22, 255, 0)',
-              display: 'background'
-            },
-          <?php endif; ?>
-        <?php endfor; ?>
-      ]
+      // events: [
+      //   <?php foreach ($absen as $a) : ?> {
+      //       <?php $warna = 'rgb(3, 201, 136)'; ?>
+      //       <?php if ($a['ket'] == "terlambat") : $warna = "rgb(237, 43, 42)" ?>
+      //       <?php elseif ($a['ket'] == "sakit") : $warna = "rgb(73, 66, 228)" ?>
+      //       <?php else : $a['ket'] = "masuk"; ?>
+      //       <?php endif; ?>
+      //       title: '<?= $a['ket'] ?>',
+      //         start: '<?= $a['tanggal_presensi'] ?>',
+      //         color: '<?= $warna ?>',
+      //     },
+      //     <?php if ($a['ket'] != 'sakit') : ?>
+      //       <?php $a['ket'] = "pulang"; ?>
+
+      //       <?php $warna = 'rgb(229, 124, 35)' ?> {
+      //         title: '<?= $a['ket'] ?>',
+      //         start: '<?= $a['tanggal_presensi'] ?>',
+      //         color: '<?= $warna ?>',
+      //       },
+      //     <?php endif; ?>
+      //   <?php endforeach; ?>
+      //   <?php $awalBulan = date('Y-m-01'); ?>
+      //   <?php for ($i = 0; $i < 32; $i++) : ?>
+      //     <?php if (date('D', strtotime($awalBulan . '+' . $i . 'days')) == 'Fri') : ?> {
+      //         title: 'Libur',
+      //         start: '<?= date('Y-m-d', strtotime($awalBulan . '+' . $i . 'days')) ?>',
+      //         backgroundColor: 'rgb(22, 255, 0)',
+      //         textColor: 'rgb(22, 255, 0)',
+      //         display: 'background'
+      //       },
+      //     <?php endif; ?>
+      //   <?php endfor; ?>
+      // ]
     });
     calendar.render();
   });

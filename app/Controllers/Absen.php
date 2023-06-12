@@ -50,4 +50,31 @@ class Absen extends BaseController
         ];
         return $this->response->setJSON($response);
     }
+
+    public function getAbsen()
+    {
+        // dd('masuk');
+        // $data = [
+        //     // 'absen' => $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll(),
+        //     'title' => 'tes',
+        //     'start' => '2023-06-01',
+        // ];
+        // dd($this->presensiModel->where('id_pegawai', session()->get('id'))->findAll());
+        $absen = $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll();
+        // ganti format array menjadi json
+        foreach ($absen as $a) {
+
+            $response[] = [
+                'title' => $a['info'],
+                'start' => $a['waktu_masuk'],
+                'color' => $a['info'] == 'tepat waktu' ? 'green' : 'red',
+                'description' => $a['info'] == 'tepat waktu' ? 'tepat waktu' : 'terlambat',
+            ];
+        }
+        dd($response);
+        $response = [
+            // title, start, color, description
+        ];
+        return $this->response->setJSON($response);
+    }
 }
