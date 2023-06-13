@@ -63,18 +63,44 @@ class Absen extends BaseController
         $absen = $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll();
         // ganti format array menjadi json
         foreach ($absen as $a) {
-
+            // absen masuk
+            $warna = 'rgb(3, 201, 136)';
+            if ($a['ket'] == 'terlambat') : $warna = 'rgb(237, 43, 42)';
+            elseif ($a['ket'] == 'terlambat') : $warna = 'rgb(237, 43, 42)';
+            else : $a['ket'] = "masuk";
+            endif;
             $response[] = [
-                'title' => $a['info'],
-                'start' => $a['waktu_masuk'],
-                'color' => $a['info'] == 'tepat waktu' ? 'green' : 'red',
-                'description' => $a['info'] == 'tepat waktu' ? 'tepat waktu' : 'terlambat',
+                'title' => $a['ket'],
+                'start' => $a['tanggal_presensi'],
+                'color' => $warna,
+                'description' => $a['waktu_masuk'],
+                'gambar' => $a['gambar_masuk']
             ];
+            // absen pulang
+            if ($a['ket'] != 'sakit') :
+                $a['ket'] = 'pulang';
+                $warna = 'rgb(229, 124, 35)';
+                $response[] = [
+                    'title' => $a['ket'],
+                    'start' => $a['tanggal_presensi'],
+                    'color' => $warna,
+                    'description' => $a['waktu_keluar'],
+                    'gambar' => $a['gambar_keluar']
+                ];
+            endif;
         }
-        dd($response);
-        $response = [
-            // title, start, color, description
-        ];
+        // jumat 
+        $awalBulan = date('Y-m-01');
+        for ($i = 0; $i < 32; $i++) {
+            if (date('D', strtotime($awalBulan . '+' . $i . 'days')) == 'Fri') {
+                $response[] = [
+                    'title' => 'Libur',
+                    'start' =>  date('Y-m-d', strtotime($awalBulan . '+' . $i . 'days')),
+                    'backgroundColor' => 'rgb(22, 255, 0)',
+                    'display' => 'background'
+                ];
+            }
+        }
         return $this->response->setJSON($response);
     }
 }
