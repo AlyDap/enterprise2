@@ -63,10 +63,12 @@ $routes->get('/produk/detailproduk/(:num)', 'Bos::detailProduk/$1');
 $routes->get('/penjualan/detailpenjualan/(:num)', 'Penjualan::detailPenjualan/$1');
 // penjahitan
 $routes->get('/produksi/detailpenjahitan/(:num)', 'Produksi::detailPenjahitan/$1');
+$routes->get('/produksi/tambahproduksi', 'Produksi::tambahProduksi');
+$routes->post('/produksi/storeproduksi', 'Produksi::storeProduksi');
 // $routes->get('/tampol', 'Sales::penjualan');
 
 $routes->get('/penjualan/tambahpenjualan', 'Penjualan::tambahPenjualan');
-$routes->post('/penjualan/storepenjualan', 'Bos::storePenjualan');
+$routes->post('/penjualan/storepenjualan', 'Penjualan::storePenjualan');
 
 
 // coba
