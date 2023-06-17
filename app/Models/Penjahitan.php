@@ -61,6 +61,13 @@ class Penjahitan extends Model
 
     public function getTotalProduksiBatik()
     {
-        return $this->db->table('view_jumlah_produksi_total_produk')->get()->getResultArray();
+        return $this->db->query('SELECT
+        pr.id_produk,pr.nama, SUM(dp.jumlah) as jumlah
+    FROM
+        penjahitan p,
+        detail_jahit dp,
+        produk pr
+    WHERE
+        p.no_penjahitan = dp.no_penjahitan AND pr.id_produk=dp.id_produk GROUP BY pr.id_produk')->getResultArray();
     }
 }
