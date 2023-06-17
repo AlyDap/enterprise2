@@ -39,6 +39,7 @@ class Presensi extends Migration
                 // masuk, pulang, sakit, izin, alpa
                 'type' => 'VARCHAR',
                 'constraint' => 50,
+                'null' => true,
             ],
             'ket' => [
                 'type' => 'VARCHAR',
