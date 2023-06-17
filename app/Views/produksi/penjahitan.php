@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="col-sm-8">
-  <!-- <a role="button" class="btn btn-outline-dark" href="<?= base_url('penjualan/tambahpenjualan'); ?>" >Tambah Penjualan</a> -->
+  <a role="button" class="btn btn-outline-dark" href="<?= base_url('produksi/tambahproduksi'); ?>">Tambah Produksi</a>
 
   <h1 class="mt-2">Daftar Produksi</h1>
 

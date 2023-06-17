@@ -14,7 +14,7 @@ class Penjahitan extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['no_penjahitan', 'id_penjahit', 'total_bayar', 'tgl', 'id_bahan','id_user'];
+    protected $allowedFields    = ['no_penjahitan', 'id_penjahit', 'total_bayar', 'tgl', 'id_bahan', 'id_user'];
 
     // Dates
     protected $useTimestamps = false;
@@ -53,8 +53,21 @@ class Penjahitan extends Model
     {
         return $this->db->table($this->table)->insert($data);
     }
+
+    public function ambilIdTerbaru()
+    {
+        return $this->db->query('SELECT no_penjahitan FROM `penjahitan` ORDER BY no_penjahitan DESC LIMIT 1;')->getResultArray();
+    }
+
     public function getTotalProduksiBatik()
     {
-        return $this->db->table('view_jumlah_produksi_total_produk')->get()->getResultArray();
+        return $this->db->query('SELECT
+        pr.id_produk,pr.nama, SUM(dp.jumlah) as jumlah
+    FROM
+        penjahitan p,
+        detail_jahit dp,
+        produk pr
+    WHERE
+        p.no_penjahitan = dp.no_penjahitan AND pr.id_produk=dp.id_produk GROUP BY pr.id_produk')->getResultArray();
     }
 }
