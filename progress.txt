@@ -105,7 +105,19 @@ ___________________________________________________________
 
 ---------------------riqqi---------------------
 HRD
-buat tampilan susah temen2
+-(INI DULU) blom bisa input sakit
+- setelah input pulang masih bisa input harusnya engga
+
+- ketika terlambat masuk, event calender terbalik antara terlambat dan pulang
+- ketika sudah absen masuk belum pulang event sudah terdaftar
+- seeder absen untuk terlambat, waktu masuk pulang masih aneh
+
+tugas minggu ini : 
+- Merekap data absensi karyawan (berdasarkan total jam masuk karyawan) untuk bahan pembuatan gaji bulanan setiap akhir bulan >>>>>> buat ini dulu
+ (klik approve gaji akan memberikan laporan penggajan ke bagian finance,bos, dan karyawan)
+-memberikan laporan gaji karyawan kepada bos dan bagian finance
+-memberikan pesan notifikasi gaji per karyawan di sistem per bulan
+
 
 ---------------------riqqi---------------------
 

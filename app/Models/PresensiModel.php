@@ -14,7 +14,7 @@ class PresensiModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['tanggal_presensi', 'waktu_masuk', 'waktu_keluar', 'gambar_masuk', 'gambar_keluar', 'info', 'ket', 'status', 'id_pegawai'];
 
     // Dates
     protected $useTimestamps = false;
