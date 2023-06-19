@@ -40,6 +40,7 @@ $routes->get('/dashboard', 'Dashboard::index'); //INI DASHBOARD
 // BOSSS
 $routes->get('/produk', 'Bos::produk');
 $routes->get('/mitra', 'Bos::mitra');
+$routes->get('/penjahit', 'Bos::penjahit');
 $routes->get('/bahan', 'Bos::bahan');
 $routes->get('/bahan/createbahan', 'Bos::createBahan');
 $routes->post('/bahan/storebahan', 'Bos::storeBahan');
@@ -49,6 +50,10 @@ $routes->get('/mitra/createmitra', 'Bos::createMitra');
 $routes->post('/mitra/storemitra', 'Bos::storeMitra');
 $routes->get('/mitra/editmitra/(:num)', 'Bos::editMitra/$1');
 $routes->post('/mitra/updatemitra', 'Bos::updateMitra');
+$routes->get('/penjahit/createpenjahit', 'Bos::createPenjahit');
+$routes->post('/penjahit/storepenjahit', 'Bos::storePenjahit');
+$routes->get('/penjahit/editpenjahit/(:num)', 'Bos::editPenjahit/$1');
+$routes->post('/penjahit/updatepenjahit', 'Bos::updatePenjahit');
 $routes->get('/produk/createproduk', 'Bos::createProduk');
 $routes->post('/produk/storeproduk', 'Bos::storeProduk');
 $routes->get('/produk/editproduk/(:num)', 'Bos::editProduk/$1');
@@ -58,10 +63,12 @@ $routes->get('/produk/detailproduk/(:num)', 'Bos::detailProduk/$1');
 $routes->get('/penjualan/detailpenjualan/(:num)', 'Penjualan::detailPenjualan/$1');
 // penjahitan
 $routes->get('/produksi/detailpenjahitan/(:num)', 'Produksi::detailPenjahitan/$1');
+$routes->get('/produksi/tambahproduksi', 'Produksi::tambahProduksi');
+$routes->post('/produksi/storeproduksi', 'Produksi::storeProduksi');
 // $routes->get('/tampol', 'Sales::penjualan');
 
 $routes->get('/penjualan/tambahpenjualan', 'Penjualan::tambahPenjualan');
-$routes->post('/penjualan/storepenjualan', 'Bos::storePenjualan');
+$routes->post('/penjualan/storepenjualan', 'Penjualan::storePenjualan');
 
 
 // coba

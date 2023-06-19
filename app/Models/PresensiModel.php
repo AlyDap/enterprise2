@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User extends Model
+class PresensiModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'user';
-    protected $primaryKey       = 'id_user';
+    protected $table            = 'presensi';
+    protected $primaryKey       = 'id_presensi';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['username', 'password', 'jabatan', 'gaji'];
+    protected $allowedFields    = ['tanggal_presensi', 'waktu_masuk', 'waktu_keluar', 'gambar_masuk', 'gambar_keluar', 'info', 'ket', 'status', 'id_pegawai'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,9 +39,4 @@ class User extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function getUserKecualiBos()
-    {
-        return $this->db->query('SELECT * FROM user AS u WHERE u.id_user !=1')->getResultArray();
-    }
 }

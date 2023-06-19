@@ -8,7 +8,9 @@
 
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
   <script src="/js/moment.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
 
   <style>
@@ -27,6 +29,17 @@
         bottom: 0;
         position: absolute;
       }
+    }
+
+    .webcam-capture,
+    .webcam-capture video {
+      display: inline-block;
+      width: 100% !important;
+      height: auto !important;
+      margin: auto;
+      text-align: center;
+      border-radius: 15px;
+      overflow: hidden;
     }
 
     @media print {
@@ -64,9 +77,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/bahan">Bahan</a>
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="/penjahit">Penjahit</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/chat">Chat</a>
-            </li> -->
+            </li>
           <?php endif; ?>
 
 

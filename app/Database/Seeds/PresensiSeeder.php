@@ -8,25 +8,55 @@ class PresensiSeeder extends Seeder
 {
     public function run()
     {
-        // membuat data dummy tabel presensi, id presensi, id pegawai, tgl_presensi, waktu masuk/keluar, foto masuk/keluar,info, ket, status
+        // truncate data di tabel presensi
+
+        $this->db->table('presensi')->truncate();
+
         $faker = \Faker\Factory::create('id_ID');
+        $awalBulan = date('Y-m-01');
+        $hariIni = date('d');
         // buat perulangan untuk memasukkan faker data ke tabel presensi
-        for ($i = 0; $i < 50; $i++) {
-            $data = [
-                'id_pegawai' => $faker->numberBetween(1, 6),
-                'tanggal_presensi' => $faker->date('Y-m-d'),
-                'waktu_masuk' => $faker->time('H:i:s'),
-                'waktu_keluar' => $faker->time('H:i:s'),
-                // 'gambar_masuk' => $faker->image(base_url() . 'public/img/presensi', 640, 480, null, false),
-                // 'gambar_keluar' => $faker->image('public/img/presensi', 640, 480, null, false),
-                'gambar_masuk' => 'default.jpg',
-                'gambar_keluar' => 'default.jpg',
-                'info' => $faker->randomElement(['masuk', 'pulang', 'sakit', 'izin', 'alpa']),
-                'ket' => '-',
-                'status' => $faker->numberBetween(0, 1),
-            ];
-            // insert data ke database
-            $this->db->table('presensi')->insert($data);
+        for ($i = 1; $i < ($hariIni - 1); $i++) {
+            // kecuali hari jumat
+            if (date('D', strtotime($awalBulan . '+' . $i . 'days')) == 'Fri') {
+                continue;
+            }
+            // semua id pegawai kecuali bos ali
+            for ($j = 2; $j <= 6; $j++) {
+                $info = '';
+                $waktuMasuk = $faker->time('08:i:s');
+                $waktuKeluar = '';
+                $ket = '';
+                $gambarKeluar = '';
+                $num = $faker->randomNumber(1);
+                if ($num == 1) {
+                    $info = 'sakit';
+                    $ket = 'maaf lagi sakit';
+                } else {
+                    $info = 'pulang';
+                    $gambarKeluar = 'default.jpg';
+                    $waktuKeluar = $faker->time('16:i:s');
+                    // bisa saja maksudnya terlambat
+                    if ($waktuMasuk > '08:15:00') {
+                        $ket = 'terlambat';
+                    }
+                }
+                $data = [
+                    'id_pegawai' => $j,
+                    // input tanggal setiap hari bulan juni 2023
+                    'tanggal_presensi' => date('Y-m-d', strtotime($awalBulan . '+' . $i . 'days')),
+                    // buat waktu masuk between 07:00:00 - 08:00:00
+                    'waktu_masuk' => $waktuMasuk,
+                    'waktu_keluar' => $waktuKeluar,
+                    'gambar_masuk' => 'default.jpg',
+                    'gambar_keluar' => $gambarKeluar,
+                    'info' => $info, //[masuk/terlambat, pulang], sakit, 
+                    'ket' => $ket, // terlambat, ket sakit
+                    'status' => 1,
+                ];
+                // insert data ke database
+                $this->db->table('presensi')->insert($data);
+            }
         }
     }
 }

@@ -172,52 +172,100 @@
 
 <h1>DASHBOARD BOSSS</h1>
 <hr>
-<div class="terang">
-    <div class="heh" style="margin-left: -5px;">
-        <div class="kiri1">
-            <button onclick="toggleVisibility()">
-                +
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                <strong>Penjualan Setiap Tahun</strong>
             </button>
-            <button onclick="toggleVisibility01()">
-                -
-            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+                <?php
+                echo view('bos/grafik.php');
+                ?>
+            </div>
         </div>
-        <div class="kika">
-            <h4>a a</h4>
-        </div>
-        <div class="kanan1">
-            <h5 style="margin-left: 5px;">Penjualan Setiap Tahun
-            </h5>
-        </div>
-    </div>
-    <div id="content">
-        <?php
-        echo view('bos/grafik2.php');
-        ?>
     </div>
 </div>
 <br>
-<div class="terang2">
-    <h5>Jumlah Produk Terjual Setiap Tahun
-        <button onclick="toggleVisibility2()"><strong>+/-</strong></button>
-    </h5>
-    <div id="content2">
-        <hr>
-    </div>
-
+<p>
+<div class="d-flex justify-content-center">
+    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3 multiCollapseExample4 multiCollapseExample5">Penjualan Tahun 2019-2023</button>
 </div>
+<hr>
+<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Penjualan Tahun 2023</button>
+<div class="row">
+    <div class="col">
+        <br>
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body">
+                <?= view('bos/grafik2023.php'); ?>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Penjualan Tahun 2022</button>
+<div class="row">
+    <div class="col">
+        <br>
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+            <div class="card card-body">
+                <?= view('bos/grafik2022.php'); ?>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Penjualan Tahun 2021</button>
+<div class="row">
+    <div class="col">
+        <br>
+        <div class="collapse multi-collapse" id="multiCollapseExample3">
+            <div class="card card-body">
+                <?= view('bos/grafik2021.php'); ?>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Penjualan Tahun 2020</button>
+<div class="row">
+    <div class="col">
+        <br>
+        <div class="collapse multi-collapse" id="multiCollapseExample4">
+            <div class="card card-body">
+                <?= view('bos/grafik2020.php'); ?>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Penjualan Tahun 2019</button>
+<div class="row">
+    <div class="col">
+        <br>
+        <div class="collapse multi-collapse" id="multiCollapseExample5">
+            <div class="card card-body">
+                <?= view('bos/grafik2019.php'); ?>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+</p>
+
 
 
 <script>
-    function toggleVisibility() {
-        var content = document.getElementById("content");
-        content.style.display = "block";
-    }
-
-    function toggleVisibility01() {
-        var content = document.getElementById("content");
-        content.style.display = "none";
-    }
+    var content2Element = document.getElementById("content2");
+    var content = document.getElementById("content");
 
     function toggleVisibility2() {
         var content2 = document.getElementById("content2");
@@ -226,6 +274,14 @@
         } else {
             content2.style.display = "none";
         }
+    }
+
+    function toggleVisibility() {
+        content.style.display = "block";
+    }
+
+    function toggleVisibility01() {
+        content.style.display = "none";
     }
 </script>
 <?= $this->endSection(); ?>

@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       <?php $no = 1; ?>
-      ?>
+
       <?php foreach ($details as $user) : ?>
         <tr>
           <th scope="row"><?= $no++; ?></th>
