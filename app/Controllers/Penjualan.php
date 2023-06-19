@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 
 use App\Models\DetailPenjualan;
-use App\Models\Penjualan as ModelsPenjualan;
+use App\Models\PenjualanModel;
 use App\Models\Penjualan_model;
 use App\Models\Produk;
 
@@ -24,9 +24,26 @@ class Penjualan extends BaseController
     }
     public function index()
     {
+        $model = new Produk();
+
         $data = [
             'title' => 'Dashboard'
         ];
+
+        $grafik = $model->getTotalPenjualanTahunan();
+        $data['grafik'] = $grafik;
+
+        $grafik2 = $model->getTotalPendapatanTahunan();
+        $data['grafik2'] = $grafik2;
+
+        $data['grafik3'] = $model->getNamaProdukTahunan();
+        $data['Nmtahunan'] = $model->getTotalProdukTahunan();
+
+        $Rptahunan = $model->getRpPendapatanTahunan();
+        $data['Rptahunan'] = $Rptahunan;
+        $Qtytahunan = $model->getTotalTerjualTahunan();
+        $data['Qtytahunan'] = $Qtytahunan;
+
         return view('penjualan/index', $data);
     }
 

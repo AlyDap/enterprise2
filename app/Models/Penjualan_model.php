@@ -57,4 +57,34 @@ class Penjualan_model extends Model
     {
         return $this->db->query('SELECT id_penjualan FROM `penjualan` ORDER BY id_penjualan DESC LIMIT 1;')->getResultArray();
     }
+
+    // model untuk grafik
+    public function getTotalPenjualanTahunan()
+    {
+        return $this->db->table('view_jumlah_produk_penjualan_tahunan')->get()->getResultArray();
+    }
+    public function getTotalTerjualTahunan()
+    {
+        return $this->db->query('SELECT DISTINCT SUM(jumlah) AS jumlah from view_jumlah_produk_penjualan_tahunan')->getResultArray();
+    }
+
+
+    public function getTotalPendapatanTahunan()
+    {
+        return $this->db->table('view_pendapatan_penjualan_tahunan')->get()->getResultArray();
+    }
+
+    public function getRpPendapatanTahunan()
+    {
+        return $this->db->query('SELECT DISTINCT SUM(total) AS total from view_pendapatan_penjualan_tahunan')->getResultArray();
+    }
+
+    public function getNamaProdukTahunan()
+    {
+        return $this->db->query('SELECT vd.id_produk,p.nama, SUM(vd.jumlah) as jumlah FROM view_data_penjualan_tahunan vd, produk p WHERE p.id_produk = vd.id_produk GROUP BY p.id_produk')->getResultArray();
+    }
+    public function getTotalProdukTahunan()
+    {
+        return $this->db->query('SELECT SUM(vd.jumlah) as jumlah FROM view_data_penjualan_tahunan vd')->getResultArray();
+    }
 }

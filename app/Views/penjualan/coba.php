@@ -10,17 +10,25 @@
     <form id="transaksiForm" method="post" action="<?= base_url('transaksi/simpan') ?>">
         <table>
             <tr>
+                <th>Id Produk</th>
                 <th>Harga</th>
                 <th>Jumlah</th>
+                <th>Total</th>
                 <th>Aksi</th>
             </tr>
             <tbody id="produk-container">
                 <tr>
                     <td>
+                        <input type="number" name="id_produk[]" required>
+                    </td>
+                    <td>
                         <input type="number" name="harga[]" required>
                     </td>
                     <td>
                         <input type="number" name="jumlah[]" required>
+                    </td>
+                    <td>
+                        <input type="number" name="total[]" required>
                     </td>
                     <td>
                         <button type="button" onclick="tambahProduk()">Tambah</button>
@@ -38,12 +46,18 @@
             var produkContainer = document.getElementById('produk-container');
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td>
-                    <input type="number" name="harga[]" required>
-                </td>
-                <td>
-                    <input type="number" name="jumlah[]" required>
-                </td>
+                    <td>
+                        <input type="number" name="id_produk[]" required>
+                    </td>
+                    <td>
+                        <input type="number" name="harga[]" required>
+                    </td>
+                    <td>
+                        <input type="number" name="jumlah[]" required>
+                    </td>
+                    <td>
+                        <input type="number" name="total[]" required>
+                    </td>
                 <td>
                     <button type="button" onclick="hapusProduk(this)">Hapus</button>
                 </td>
