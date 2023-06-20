@@ -1,8 +1,8 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('content') ?>
-<h1>Chat <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Kirim Pesan Sekarang</button></h1>
+<h1>Chat <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Kirim Pesan Sekarang</button> <a class="btn rounded-pill btn-outline-dark btn-sm" href="<?= base_url('chatAll'); ?>">Lihat selengkapnya</a></h1>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class=" modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/chat/sendMessage" method="post" onsubmit="return validateForm()">
@@ -65,158 +65,135 @@
                         </P>
                     <?php } ?>
                 <?php } ?>
-                <div style="display: flex; justify-content: right; align-items: right;">
-                    <button type="button" class="btn rounded-pill btn-outline-dark btn-sm">Lihat selengkapnya</button>
-                </div>
             </div>
         </div>
     </div>
-    <!-- CHAT SAMA FINANCE -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-                Finance - ANONIM
-            </button>
-        </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
-            <div class="accordion-body">
-                <?php foreach ($msgBosFin3 as $mBosFin3) { ?>
+</div>
+<!-- CHAT SAMA FINANCE -->
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+            Finance - ANONIM
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+        <div class="accordion-body">
+            <?php foreach ($msgBosFin3 as $mBosFin3) { ?>
 
-                    <?php if ($mBosFin3['sender_id'] == 1) {  ?>
-                        <P style="text-align: right;">
-                            <?= $mBosFin3['message_content']; ?>
-                            <br> <code><?= $mBosFin3['timestamp']; ?></code>
-                            <hr>
+                <?php if ($mBosFin3['sender_id'] == 1) {  ?>
+                    <P style="text-align: right;">
+                        <?= $mBosFin3['message_content']; ?>
+                        <br> <code><?= $mBosFin3['timestamp']; ?></code>
+                        <hr>
 
-                        </P>
-                    <?php } ?>
-                    <?php if ($mBosFin3['sender_id'] == 3) {  ?>
-                        <P style="text-align: LEFT;">
-                            <?= $mBosFin3['message_content']; ?>
-                            <br> <code><?= $mBosFin3['timestamp']; ?></code>
-                            <hr>
-                        </P>
-                    <?php } ?>
+                    </P>
                 <?php } ?>
-                <div style="display: flex; justify-content: right; align-items: right;">
-                    <button type="button" class="btn rounded-pill btn-outline-dark btn-sm">Lihat selengkapnya</button>
-                </div>
-            </div>
+                <?php if ($mBosFin3['sender_id'] == 3) {  ?>
+                    <P style="text-align: LEFT;">
+                        <?= $mBosFin3['message_content']; ?>
+                        <br> <code><?= $mBosFin3['timestamp']; ?></code>
+                        <hr>
+                    </P>
+                <?php } ?>
+            <?php } ?>
         </div>
     </div>
-    <!-- CHAT SAMA HRD -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingTree">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTree" aria-expanded="true" aria-controls="panelsStayOpen-collapseTree">
-                HRD - RIQQI
-            </button>
-        </h2>
-        <div id="panelsStayOpen-collapseTree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTree">
-            <div class="accordion-body">
-                <?php foreach ($msgBosHRD3 as $MBosHRD3) { ?>
+</div>
+</div>
+<!-- CHAT SAMA HRD -->
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTree">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTree" aria-expanded="true" aria-controls="panelsStayOpen-collapseTree">
+            HRD - RIQQI
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTree">
+        <div class="accordion-body">
+            <?php foreach ($msgBosHRD3 as $MBosHRD3) { ?>
 
-                    <?php if ($MBosHRD3['sender_id'] == 1) {  ?>
-                        <P style="text-align: right;">
-                            <?= $MBosHRD3['message_content']; ?>
-                            <br> <code><?= $MBosHRD3['timestamp']; ?></code>
-                            <hr>
+                <?php if ($MBosHRD3['sender_id'] == 1) {  ?>
+                    <P style="text-align: right;">
+                        <?= $MBosHRD3['message_content']; ?>
+                        <br> <code><?= $MBosHRD3['timestamp']; ?></code>
+                        <hr>
 
-                        </P>
-                    <?php } ?>
-                    <?php if ($MBosHRD3['sender_id'] == 4) {  ?>
-                        <P style="text-align: LEFT;">
-                            <?= $MBosHRD3['message_content']; ?>
-                            <br> <code><?= $MBosHRD3['timestamp']; ?></code>
-                            <hr>
-                        </P>
-                    <?php } ?>
+                    </P>
                 <?php } ?>
-                <div style="display: flex; justify-content: right; align-items: right;">
-                    <button type="button" class="btn rounded-pill btn-outline-dark btn-sm">Lihat selengkapnya</button>
-                </div>
-            </div>
+                <?php if ($MBosHRD3['sender_id'] == 4) {  ?>
+                    <P style="text-align: LEFT;">
+                        <?= $MBosHRD3['message_content']; ?>
+                        <br> <code><?= $MBosHRD3['timestamp']; ?></code>
+                        <hr>
+                    </P>
+                <?php } ?>
+            <?php } ?>
         </div>
     </div>
-    <!-- CHAT SAMA GUDANG -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
-                Gudang - FEBI
-            </button>
-        </h2>
-        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFour">
-            <div class="accordion-body">
-                <?php foreach ($msgBosGud3 as $MBosGud3) { ?>
+</div>
+</div>
+<!-- CHAT SAMA GUDANG -->
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
+            Gudang - FEBI
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFour">
+        <div class="accordion-body">
+            <?php foreach ($msgBosGud3 as $MBosGud3) { ?>
 
-                    <?php if ($MBosGud3['sender_id'] == 1) {  ?>
-                        <P style="text-align: right;">
-                            <?= $MBosGud3['message_content']; ?>
-                            <br> <code><?= $MBosGud3['timestamp']; ?></code>
-                            <hr>
+                <?php if ($MBosGud3['sender_id'] == 1) {  ?>
+                    <P style="text-align: right;">
+                        <?= $MBosGud3['message_content']; ?>
+                        <br> <code><?= $MBosGud3['timestamp']; ?></code>
+                        <hr>
 
-                        </P>
-                    <?php } ?>
-                    <?php if ($MBosGud3['sender_id'] == 5) {  ?>
-                        <P style="text-align: LEFT;">
-                            <?= $MBosGud3['message_content']; ?>
-                            <br> <code><?= $MBosGud3['timestamp']; ?></code>
-                            <hr>
-                        </P>
-                    <?php } ?>
+                    </P>
                 <?php } ?>
-                <div style="display: flex; justify-content: right; align-items: right;">
-                    <button type="button" class="btn rounded-pill btn-outline-dark btn-sm">Lihat selengkapnya</button>
-                </div>
-            </div>
+                <?php if ($MBosGud3['sender_id'] == 5) {  ?>
+                    <P style="text-align: LEFT;">
+                        <?= $MBosGud3['message_content']; ?>
+                        <br> <code><?= $MBosGud3['timestamp']; ?></code>
+                        <hr>
+                    </P>
+                <?php } ?>
+            <?php } ?>
         </div>
     </div>
-    <!-- CHAT SAMA FINANCE -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true" aria-controls="panelsStayOpen-collapseFive">
-                Produksi - ARYA
-            </button>
-        </h2>
-        <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFive">
-            <div class="accordion-body">
-                <?php foreach ($msgBosProd3 as $MBosProd3) { ?>
+</div>
+</div>
+<!-- CHAT SAMA FINANCE -->
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true" aria-controls="panelsStayOpen-collapseFive">
+            Produksi - ARYA
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFive">
+        <div class="accordion-body">
+            <?php foreach ($msgBosProd3 as $MBosProd3) { ?>
 
-                    <?php if ($MBosProd3['sender_id'] == 1) {  ?>
-                        <P style="text-align: right;">
-                            <?= $MBosProd3['message_content']; ?>
-                            <br> <code><?= $MBosProd3['timestamp']; ?></code>
-                            <hr>
+                <?php if ($MBosProd3['sender_id'] == 1) {  ?>
+                    <P style="text-align: right;">
+                        <?= $MBosProd3['message_content']; ?>
+                        <br> <code><?= $MBosProd3['timestamp']; ?></code>
+                        <hr>
 
-                        </P>
-                    <?php } ?>
-                    <?php if ($MBosProd3['sender_id'] == 6) {  ?>
-                        <P style="text-align: LEFT;">
-                            <?= $MBosProd3['message_content']; ?>
-                            <br> <code><?= $MBosProd3['timestamp']; ?></code>
-                            <hr>
-                        </P>
-                    <?php } ?>
+                    </P>
                 <?php } ?>
-                <div style="display: flex; justify-content: right; align-items: right;">
-                    <button type="button" class="btn rounded-pill btn-outline-dark btn-sm">Lihat selengkapnya</button>
-                </div>
-            </div>
+                <?php if ($MBosProd3['sender_id'] == 6) {  ?>
+                    <P style="text-align: LEFT;">
+                        <?= $MBosProd3['message_content']; ?>
+                        <br> <code><?= $MBosProd3['timestamp']; ?></code>
+                        <hr>
+                    </P>
+                <?php } ?>
+            <?php } ?>
         </div>
     </div>
 </div>
 <br>
 <hr>
-
-<!-- Tampilan pesan -->
-<h1>TAMPILAN SEMUA PESAN</h1>
-<?php foreach ($messages as $message) : ?>
-    <p>
-        <strong>Pengirim:</strong> <?= $message['sender_id'] ?><br>
-        <strong>Penerima:</strong> <?= $message['receiver_id'] ?><br>
-        <strong>Pesan:</strong> <?= $message['message_content'] ?><br>
-        <strong>Waktu:</strong> <?= $message['timestamp'] ?>
-    </p>
-<?php endforeach; ?>
 
 <script>
     // VALIDASI PESAN SEKARANG

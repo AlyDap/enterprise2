@@ -44,4 +44,8 @@ class User extends Model
     {
         return $this->db->query('SELECT * FROM user AS u WHERE u.id_user !=1')->getResultArray();
     }
+    public function getUserAll()
+    {
+        return $this->db->query('SELECT * FROM user')->getResultArray();
+    }
 }
