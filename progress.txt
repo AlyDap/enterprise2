@@ -105,12 +105,18 @@ ___________________________________________________________
 
 ---------------------riqqi---------------------
 HRD
--(INI DULU) blom bisa input sakit
-- setelah input pulang masih bisa input harusnya engga
+<PRIMARY>
+- tabel penggajian isinya apa saja (id, id_karyawan, total_gaji, tanggal, status)
+- status berisi apa saja (approve, pending, reject)
 
-- ketika terlambat masuk, event calender terbalik antara terlambat dan pulang
-- ketika sudah absen masuk belum pulang event sudah terdaftar
-- seeder absen untuk terlambat, waktu masuk pulang masih aneh
+prosedur absensi
+- karyawan terlambat dikurangi 15000
+- karyawan lembur ditambah 10000
+
+PROSEDUR Penggajian
+- prosedur untuk menghitung gaji karyawan = dihitung dari total jam masuk karyawan jika masih 8 jam walaupun terlambat maka tidak dikurangi  jika kurang dari 8 jam maka dikurangi 15000 perhari jika kelebihan dari 8 jam itu lebih dari 1 jam maka dihitung lembur 10000 
+- hrd mengajukan gaji karyawan ke bos dan finance, setelah acc maka status penggajian berubah menjadi approve/reject/,selama tanggal 25 sampai akhir bulan pending dulu
+- setelah approve maka finance akan mengirimkan gaji karyawan ke karyawan tersebut, dan dikirimkan slip gaji
 
 tugas minggu ini : 
 - Merekap data absensi karyawan (berdasarkan total jam masuk karyawan) untuk bahan pembuatan gaji bulanan setiap akhir bulan >>>>>> buat ini dulu
@@ -118,7 +124,10 @@ tugas minggu ini :
 -memberikan laporan gaji karyawan kepada bos dan bagian finance
 -memberikan pesan notifikasi gaji per karyawan di sistem per bulan
 
-
+cons
+- belum ada fitur lembur
+- fitur absensi masih bisa diakses bos
+- penghitungan awal penggajian masih awal bulan bukan dari esok hari penggajian bulan kemaren
 ---------------------riqqi---------------------
 
 

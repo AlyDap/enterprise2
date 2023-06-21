@@ -113,7 +113,7 @@
           <?php endif; ?>
           <?php if (session()->get('jabatan') == 'hrd') : ?>
             <li class="nav-item">
-              <a class="nav-link" href="#">Penggajian</a>
+              <a class="nav-link" href="/penggajian">Penggajian</a>
             </li>
           <?php endif; ?>
 
