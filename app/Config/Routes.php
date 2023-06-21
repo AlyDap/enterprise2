@@ -75,6 +75,12 @@ $routes->post('/penjualan/storepenjualan', 'Penjualan::storePenjualan');
 $routes->get('transaksi', 'TransaksiController::index');
 $routes->post('transaksi/simpan', 'TransaksiController::simpan');
 
+//laporan
+$routes->get('/report/monthly', 'ReportController::monthlySalesReport');
+$routes->get('/report/yearly', 'ReportController::yearlySalesReport');
+$routes->get('/report/weekly', 'ReportController::weeklySalesReport');
+
+
 
 
 // CHAT
