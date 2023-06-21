@@ -118,6 +118,7 @@ class Penjualan extends BaseController
     {
         $data = [
             'dataharian' => $this->laporanModel->DataHarian(),
+            'gt' => $this->laporanModel->GrandTotal(),
         ];
         $response = [
             'data' => view('penjualan/tabellapharian', $data)

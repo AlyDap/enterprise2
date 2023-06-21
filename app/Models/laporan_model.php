@@ -24,4 +24,15 @@ class laporan_model extends Model
     GROUP BY
         p.id_produk')->getResultArray();
     }
+    public function GrandTotal()
+    {
+        return $this->db->query('SELECT
+        SUM(dp.total) AS totalharga
+    FROM
+        produk AS p,
+        detail_penjualan AS dp,
+        penjualan AS pp
+    WHERE
+        p.id_produk = dp.id_produk AND dp.id_penjualan = pp.id_penjualan')->getResultArray();
+    }
 }

@@ -21,3 +21,8 @@
         </tr>
     <?php endforeach; ?>
 </table>
+<br>
+<?php foreach ($gt as $key => $val) : ?>
+
+    <h2>Total Penjualan Rp<?= $val['totalharga'] ?></h2>
+<?php endforeach; ?>
