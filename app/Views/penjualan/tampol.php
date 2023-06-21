@@ -3,6 +3,19 @@
 
 <div class="col-sm-8">
   <a role="button" class="btn btn-outline-dark gaprint" href="<?= base_url('penjualan/tambahpenjualan'); ?>">Tambah Penjualan</a>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> Laporan
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="<?= base_url('penjualan/laporanharian'); ?>">laporan harian</a></li>
+      <li><a class="dropdown-item" href="#">laporan mingguan</a></li>
+      <li><a class="dropdown-item" href="#">laporan bulanan</a></li>
+      <li><a class="dropdown-item" href="#">laporan tahunan</a></li>
+    </ul>
+  </div>
+
+
+  <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('penjualan/cetakpenjualan'); ?>">Cetak Penjualan</a>
 
   <h1 class=" mt-2">Daftar penjualan</h1>
 
