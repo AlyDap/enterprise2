@@ -41,6 +41,16 @@
       border-radius: 15px;
       overflow: hidden;
     }
+
+    @media print {
+      .gaprint {
+        display: none;
+      }
+
+      .total {
+        display: inline;
+      }
+    }
   </style>
 </head>
 
@@ -49,7 +59,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/dashboard">M-Sari</a>
+      <a class="navbar-brand gaprint" href="/dashboard">M-Sari</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -76,6 +86,7 @@
           <?php endif; ?>
 
 
+
           <!-- PRODUKSI -- ARYA  -->
           <?php if (session()->get('jabatan') == 'produksi') : ?>
             <li class="nav-item">
@@ -97,9 +108,9 @@
           <!-- PENJUALAN -- IAN  -->
           <?php if (session()->get('jabatan') == 'penjualan') : ?>
             <li class="nav-item">
-              <a class="nav-link" href="/penjualan/tampol">Penjualan</a>
+              <a class="nav-link gaprint" href="/penjualan/tampol">Penjualan</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item gaprint">
               <a class="nav-link" href="/penjualan/coba">Coba</a>
             </li>
           <?php endif; ?>
@@ -124,15 +135,21 @@
               <a class="nav-link" href="#">Finance</a>
             </li>
           <?php endif; ?>
-
+          <?php if (session()->get('jabatan') != 'bos') : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="/chatAll">Chat</a>
+            </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a class="nav-link" href="/home/logout">Log Out</a>
           </li>
+          <?php if (session()->get('jabatan') != 'bos') : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="/absen">Absen</a>
+            </li>
+          <?php endif; ?>
           <li class="nav-item">
-            <a class="nav-link" href="/absen">Absen</a>
-          </li>
-          <li class="nav-item">
-            <p class="time"><span id="waktu" class="jam"></p>
+            <p class="time gaprint"><span id="waktu" class="jam"></p>
           </li>
         </ul>
       </div>
@@ -141,8 +158,8 @@
   <section>
     <!-- menampilkan username yang login -->
     <div class="d-flex ">
-      <p class="px-4"> <span id="tanggal"></span></p>
-      <p class="ms-auto px-4">Selamat Datang <?= session()->get('username'); ?> (<?= session()->get('jabatan') ?>)</p>
+      <p class="px-4 gaprint"> <span id="tanggal"></span></p>
+      <p class="ms-auto px-4 gaprint">Selamat Datang <?= session()->get('username'); ?> (<?= session()->get('jabatan') ?>)</p>
     </div>
   </section>
   <!-- End Navbar -->
