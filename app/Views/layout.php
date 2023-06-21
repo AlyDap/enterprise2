@@ -86,6 +86,7 @@
           <?php endif; ?>
 
 
+
           <!-- PRODUKSI -- ARYA  -->
           <?php if (session()->get('jabatan') == 'produksi') : ?>
             <li class="nav-item">
@@ -123,7 +124,7 @@
           <?php endif; ?>
           <?php if (session()->get('jabatan') == 'hrd') : ?>
             <li class="nav-item">
-              <a class="nav-link" href="#">Penggajian</a>
+              <a class="nav-link" href="/penggajian">Penggajian</a>
             </li>
           <?php endif; ?>
 
@@ -134,13 +135,19 @@
               <a class="nav-link" href="#">Finance</a>
             </li>
           <?php endif; ?>
-
+          <?php if (session()->get('jabatan') != 'bos') : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="/chatAll">Chat</a>
+            </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a class="nav-link" href="/home/logout">Log Out</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/absen">Absen</a>
-          </li>
+          <?php if (session()->get('jabatan') != 'bos') : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="/absen">Absen</a>
+            </li>
+          <?php endif; ?>
           <li class="nav-item">
             <p class="time gaprint"><span id="waktu" class="jam"></p>
           </li>

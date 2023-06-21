@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\I18n\Time;
 
-use function PHPUnit\Framework\isNull;
 
 class Absen extends BaseController
 {
@@ -91,13 +90,20 @@ class Absen extends BaseController
             ];
             $this->presensiModel->insert($data);
         } elseif ($info == 'pulang') {
+            // ambil data di tabel presensi berdasarkan id pegawai  dan id presensi terbaru
+            $idPresensi = $this->presensiModel->where('id_pegawai', session()->get('id'))->orderBy('id_presensi', 'DESC')->first();
+            $ket = $idPresensi['ket'];
+            $waktuMasuk = Time::parse($idPresensi['waktu_masuk']);
+            $waktuKeluar = Time::parse($waktu);
+            if ($waktuMasuk->diff($waktuKeluar)->getHour() == 8) {
+                $ket = '';
+            }
             $data = [
                 'waktu_keluar' => $waktu,
                 'gambar_keluar' => $imageName,
                 'info' => $info, // masuk , pulang
+                'ket' => $ket, //terlambat, ketsakit
             ];
-            // ambil data di tabel presensi berdasarkan id pegawai  dan id presensi terbaru
-            $idPresensi = $this->presensiModel->where('id_pegawai', session()->get('id'))->orderBy('id_presensi', 'DESC')->first()['id_presensi'];
             $this->presensiModel->update($idPresensi, $data);
         }
 
@@ -111,15 +117,25 @@ class Absen extends BaseController
         return $this->response->setJSON($response);
     }
 
-    public function getAbsen()
+    public function getAbsen($id = 0)
     {
-        $absen = $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll();
+        if ($id == 0) {
+            $absen = $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll();
+        } else {
+            $absen = $this->presensiModel->where('id_pegawai', $id)->findAll();
+        }
+
+        $terlambat = 0;
+        $sakit = 0;
+
         // ganti format array menjadi json
         foreach ($absen as $a) {
             // absen masuk
             if ($a['info'] != 'sakit') {
                 $warna = 'rgb(3, 201, 136)';
-                if ($a['ket'] == 'terlambat') : $warna = 'rgb(237, 43, 42)';
+                if ($a['ket'] == 'terlambat') :
+                    $warna = 'rgb(237, 43, 42)';
+                    $terlambat++;
                 else : $a['ket'] = "masuk";
                 endif;
                 $response[] = [
@@ -127,7 +143,9 @@ class Absen extends BaseController
                     'start' => $a['tanggal_presensi'] . 'T' . $a['waktu_masuk'],
                     'color' => $warna,
                     'description' => $a['waktu_masuk'],
-                    'gambar' =>   $a['gambar_masuk']
+                    'gambar' =>   $a['gambar_masuk'],
+                    'sakit' => $sakit,
+                    'terlambat' => $terlambat
                 ];
                 // absen pulang
                 if ($a['info'] == 'pulang') {
@@ -139,17 +157,22 @@ class Absen extends BaseController
                         'color' => $warna,
                         'textColor' => $warna,
                         'description' => $a['waktu_keluar'],
-                        'gambar' => $a['gambar_keluar']
+                        'gambar' => $a['gambar_keluar'],
+                        'sakit' => $sakit,
+                        'terlambat' => $terlambat
                     ];
                 }
             } else {
                 // absen sakit
+                $sakit++;
                 $response[] = [
                     'title' =>  $a['info'],
                     'start' => $a['tanggal_presensi'],
                     'color' => 'rgb(255, 237, 0)',
                     'description' => $a['ket'],
-                    'gambar' => $a['gambar_masuk']
+                    'gambar' => $a['gambar_masuk'],
+                    'sakit' => $sakit,
+                    'terlambat' => $terlambat
                 ];
             }
         }

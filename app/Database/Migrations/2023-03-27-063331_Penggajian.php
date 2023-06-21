@@ -26,6 +26,15 @@ class Penggajian extends Migration
             'pencatat'  => [
                 'type'  => 'INT',
             ],
+            'terlambat'  => [
+                'type'  => 'INT',
+            ],
+            'sakit'  => [
+                'type'  => 'INT',
+            ],
+            'status' => [
+                'type' => 'int'
+            ]
         ]);
         $this->forge->addKey('no_penggajian', true);
         $this->forge->addForeignKey('id_user', 'user', 'id_user');
