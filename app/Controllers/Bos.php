@@ -22,16 +22,21 @@ class Bos extends BaseController
         $grafik = $model->getTotalPenjualanTahunan();
         $data['grafik'] = $grafik;
 
+        $data['tahungrafik'] = $model->getTahunPenjualan();
+
         $grafik2 = $model->getTotalPendapatanTahunan();
         $data['grafik2'] = $grafik2;
 
         $data['grafik3'] = $model->getNamaProdukTahunan();
-        // $data['Nmtahunan'] = $model->getTotalProdukTahunan();
 
         $Rptahunan = $model->getRpPendapatanTahunan();
         $data['Rptahunan'] = $Rptahunan;
         $Qtytahunan = $model->getTotalTerjualTahunan();
         $data['Qtytahunan'] = $Qtytahunan;
+        $data['grafik1hari'] = $model->getTotalPenjualan1Hari();
+        $data['grafik7hari'] = $model->getTotalPenjualan7Hari();
+        $data['grafik90hari'] = $model->getTotalPenjualan90Hari();
+
 
         $data['grafikbulan2019'] = $model->getTotalPejualanBulananTahun2019();
         $data['grafikbulan2020'] = $model->getTotalPejualanBulananTahun2020();
