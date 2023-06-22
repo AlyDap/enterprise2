@@ -144,7 +144,7 @@ class Bos extends BaseController
             'ukuran' => $this->request->getPost('ukuran'),
             'biaya_produksi' => $this->request->getPost('biaya_produksi'),
             'biaya_jual' => $this->request->getPost('biaya_jual'),
-            'jumlah' => $this->request->getPost('jumlah'),
+            // 'jumlah' => $this->request->getPost('jumlah'),
             'status' => $this->request->getPost('status')
         );
         $model = new Produk();
@@ -351,7 +351,7 @@ class Bos extends BaseController
         $id = $this->request->getPost('id_bahan');
         $data = array(
             'nama' => $this->request->getPost('nama'),
-            'jumlah' => $this->request->getPost('jumlah'),
+            // 'jumlah' => $this->request->getPost('jumlah'),
             'harga' => $this->request->getPost('harga'),
             'status' => $this->request->getPost('status')
         );

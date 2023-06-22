@@ -13,11 +13,11 @@
     </div>
     <div class="mb-3">
         <label for="ukuran" class="form-label">Ukuran Produk</label>
-        <input type="text" class="form-control" placeholder="Masukan ukuran produk" name="ukuran" value="<?= $produk['ukuran']; ?>" required minlength="1" maxlength="5" oninvalid="this.setCustomValidity('Wajib diisi dengan 1-5 karakter')" oninput="this.setCustomValidity('')">
+        <input type="text" class="form-control" placeholder="Masukan ukuran produk" name="ukuran" value="<?= $produk['ukuran']; ?>" required minlength="1" maxlength="10" oninvalid="this.setCustomValidity('Wajib diisi dengan 1-10 karakter')" oninput="this.setCustomValidity('')">
     </div>
     <div class="mb-3">
         <label for="jumlah" class="form-label">Jumlah Produk</label>
-        <input type="number" class="form-control" placeholder="Masukan jumlah produk" name="jumlah" value="<?= $produk['jumlah']; ?>" required min="1" oninvalid="this.setCustomValidity('Wajib diisi min 1 produk')" oninput="this.setCustomValidity('')">
+        <input type="number" class="form-control" placeholder="Masukan jumlah produk" value="<?= $produk['jumlah']; ?>" disabled>
     </div>
     <div class="mb-3">
         <label for="biaya_jual" class="form-label">Harga Produk</label>

@@ -12,7 +12,7 @@
     </div>
     <div class="mb-3">
         <label for="ukuran" class="form-label">Ukuran Produk</label>
-        <input type="text" class="form-control" placeholder="Masukan ukuran produk" name="ukuran" autofocus required minlength="1" maxlength="5" oninvalid="this.setCustomValidity('Wajib diisi dengan 1-5 karakter')" oninput="this.setCustomValidity('')">
+        <input type="text" class="form-control" placeholder="Masukan ukuran produk" name="ukuran" autofocus required minlength="1" maxlength="10" oninvalid="this.setCustomValidity('Wajib diisi dengan 1-10 karakter')" oninput="this.setCustomValidity('')">
     </div>
     <div class="mb-3">
         <label for="jumlah" class="form-label">Jumlah Produk</label>

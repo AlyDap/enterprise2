@@ -11,28 +11,28 @@ class ProdukSeeder extends Seeder
         $data = [
             [
                 'nama' => 'Daster Rayon',
-                'ukuran' => 'XL',
+                'ukuran' => 'All Size',
                 'biaya_produksi' => '25000',
                 'biaya_jual' => '50000',
                 'jumlah' => '100'
             ],
             [
                 'nama' => 'Gamis Rayon',
-                'ukuran' => 'XXL',
+                'ukuran' => 'All Size',
                 'biaya_produksi' => '40000',
                 'biaya_jual' => '65000',
                 'jumlah' => '100'
             ],
             [
                 'nama' => 'Gamis Twil',
-                'ukuran' => 'L',
+                'ukuran' => 'All Size',
                 'biaya_produksi' => '30000',
                 'biaya_jual' => '50000',
                 'jumlah' => '100'
             ],
             [
                 'nama' => 'Midi Twil',
-                'ukuran' => 'LL',
+                'ukuran' => 'All Size',
                 'biaya_produksi' => '35000',
                 'biaya_jual' => '60000',
                 'jumlah' => '100'
