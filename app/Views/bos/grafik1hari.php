@@ -26,7 +26,7 @@ if (!empty($grafik1hari)) {
     $jumlah = array(0);
 ?>
     <div class="alert alert-info" role="alert">
-        Belum ada produk terjual hari ini. Chat bagian <a href="#" class="alert-link">Penjualan</a>.
+        Belum ada produk terjual hari ini. Chat bagian <a href="/chatAll" class="alert-link">Penjualan</a>.
     </div>
 <?php
 }
