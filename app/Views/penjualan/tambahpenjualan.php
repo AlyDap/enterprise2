@@ -7,8 +7,6 @@
 <br>
 <?= form_open('penjualan/storeDetailPenjualan') ?>
 
-00
-
 <input type="hidden" name="id_user" value="<?= session('username') ?>"><br>
 <label>ID Produk:</label><br>
 <select name="id_produk" id="id_produk" required>
