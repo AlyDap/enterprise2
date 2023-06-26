@@ -17,19 +17,25 @@ class Penggajian extends Migration
             'tgl'  => [
                 'type'  => 'datetime',
             ],
+            'gaji_pokok'  => [
+                'type'  => 'INT',
+            ],
             'gaji'  => [
                 'type'  => 'INT',
             ],
-            'id_user'  => [
+            'jam_kerja'  => [
                 'type'  => 'INT',
             ],
-            'pencatat'  => [
+            'id_user'  => [
                 'type'  => 'INT',
             ],
             'terlambat'  => [
                 'type'  => 'INT',
             ],
             'sakit'  => [
+                'type'  => 'INT',
+            ],
+            'pencatat'  => [
                 'type'  => 'INT',
             ],
             'status' => [

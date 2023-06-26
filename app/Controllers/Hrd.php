@@ -11,8 +11,10 @@ class Hrd extends BaseController
     {
         $this->userModel = new \App\Models\User();
     }
+
     public function index()
     {
+        if (session('jabatan') != 'hrd') return redirect()->to('/dashboard');
         $data = [
             'title' => 'Dashboard'
         ];
@@ -22,6 +24,7 @@ class Hrd extends BaseController
 
     public function tampil()
     {
+        if (session('jabatan') != 'hrd') return redirect()->to('/dashboard');
         $data = [
             'title' => 'HRD',
             // Menampilkan daftar user
@@ -33,6 +36,7 @@ class Hrd extends BaseController
 
     public function store()
     {
+        if (session('jabatan') != 'hrd') return redirect()->to('/dashboard');
         $id = $this->request->getVar('id-user');
         $session = session();
         if ($id == '') { //ini berarti tambah data
@@ -60,6 +64,7 @@ class Hrd extends BaseController
 
     public function update($id)
     {
+        if (session('jabatan') != 'hrd') return redirect()->to('/dashboard');
         // Mengambil data dari form input
         $data = [
             'username' => $this->request->getVar('username'),

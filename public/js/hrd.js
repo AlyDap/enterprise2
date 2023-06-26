@@ -1,6 +1,11 @@
 const myModalAlternative = new bootstrap.Modal(document.getElementById('myModal'));
 // start calendar
 {
+  // jika id masih undefined maka akan diisi dengan 0
+  if (typeof id === 'undefined') {
+    id = 0;
+  }
+
 
   document.addEventListener('DOMContentLoaded', function () {
   }.bind(this));
@@ -33,4 +38,58 @@ const myModalAlternative = new bootstrap.Modal(document.getElementById('myModal'
   });
   calendar.render();
   // end calendar
+}
+{
+  // validasi tanggal akhir bulan untuk approve gaji
+  function verify() {
+    // cek tanggal hari ini apakah akhir bulan
+    var today = new Date();
+    var lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    var lastDayDate = lastDay.getDate();
+    var todayDate = today.getDate();
+    if (todayDate != todayDate) {
+      alert('Hari ini bukan akhir bulan, silahkan cek kembali tanggal hari ini');
+      return false;
+    } else {
+      let oke = confirm('approve gaji akan mengirimkan laporan kepada bos, apakah anda yakin?');
+      if (oke) {
+        // ambil data dari tabel
+        let data = [];
+        let table = document.querySelector('#table');
+        let rows = table.querySelectorAll('tr');
+        for (let i = 1; i < rows.length; i++) {
+          let row = rows[i];
+          let cells = row.querySelectorAll('td');
+          let dataRow = [];
+          for (let j = 0; j < cells.length; j++) {
+            let cell = cells[j];
+            dataRow.push(cell.innerHTML);
+          }
+          data.push(dataRow);
+        }
+        // kirim variable data ke server
+
+
+
+
+        // kirim data ke server
+        $.ajax({
+          type: 'POST',
+          url: '/penggajian/approveGaji', // Ganti dengan URL endpoint di CodeIgniter 4
+          data: {
+            data: data
+          },
+          success: function () {
+            alert('berhasil mengirim laporan ke bos');
+            window.location.href = '';
+          },
+          error: function (textStatus, errorThrown) {
+            alert(textStatus + " " + errorThrown);
+            console.error(textStatus + " " + errorThrown);
+          }
+        });
+      }
+
+    }
+  }
 }

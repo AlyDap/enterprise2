@@ -14,8 +14,10 @@ class Absen extends BaseController
     {
         $this->presensiModel = new \App\Models\presensiModel();
     }
+
     public function index()
     {
+        if (session()->get('jabatan') == 'bos') return redirect()->to('/dashboard');
 
         $absen = $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll();
 
@@ -55,6 +57,9 @@ class Absen extends BaseController
 
     public function presensi()
     {
+        if (session()->get('jabatan') == 'bos') return redirect()->to('/dashboard');
+
+
         // Ambil data gambar yang diunggah
         $imageData = $this->request->getVar('imageData');
         $info = $this->request->getPost('info');
@@ -119,6 +124,8 @@ class Absen extends BaseController
 
     public function getAbsen($id = 0)
     {
+        if (session()->get('jabatan') == 'bos') return redirect()->to('/dashboard');
+
         if ($id == 0) {
             $absen = $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll();
         } else {
