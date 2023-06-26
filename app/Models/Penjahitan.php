@@ -59,6 +59,15 @@ class Penjahitan extends Model
         return $this->db->query('SELECT no_penjahitan FROM `penjahitan` ORDER BY no_penjahitan DESC LIMIT 1;')->getResultArray();
     }
 
+    public function getTahunProduksiBatik()
+    {
+        return $this->db->query('SELECT p.no_penjahitan, year(p.tgl) AS tahun FROM penjahitan AS p')->getResultArray();
+    }
+    public function getBulanProduksiBatik()
+    {
+        return $this->db->query('SELECT DISTINCT  month(p.tgl) AS bulan, monthname(p.tgl) AS namabulan FROM penjahitan AS p')->getResultArray();
+    }
+
     public function getTotalProduksiBatik()
     {
         return $this->db->query('SELECT

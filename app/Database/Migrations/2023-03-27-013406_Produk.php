@@ -19,8 +19,8 @@ class Produk extends Migration
                 'constraint'    => 30
             ],
             'ukuran'  => [
-                'type'  => 'CHAR',
-                'constraint'    => 5
+                'type'  => 'VARCHAR',
+                'constraint'    => 10
             ],
             'biaya_produksi'  => [
                 'type'  => 'INT',

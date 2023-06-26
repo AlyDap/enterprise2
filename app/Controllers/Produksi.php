@@ -43,7 +43,9 @@ class Produksi extends BaseController
         $data = [
             'title' => 'penjahitan',
             // Menampilkan daftar user
-            'users' => $this->jahit->findAll()
+            'users' => $this->jahit->findAll(),
+            'Bulan' => $this->jahit->getBulanProduksiBatik(),
+            'Tahun' => $this->jahit->getTahunProduksiBatik()
         ];
         return view('produksi/penjahitan', $data);
     }

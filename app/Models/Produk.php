@@ -30,6 +30,15 @@ class Produk extends Model
     }
 
     // model untuk grafik
+    public function getTahunPenjualan()
+    {
+        // return $this->db->table('view_jumlah_produk_penjualan_tahunan')->get()->getResultArray();
+        return $this->db->query('SELECT DISTINCT
+        YEAR(p.tgl) AS tahun
+    FROM
+        penjualan p ORDER BY YEAR(p.tgl) DESC')->getResultArray();
+    }
+
     public function getTotalPenjualanTahunan()
     {
         // return $this->db->table('view_jumlah_produk_penjualan_tahunan')->get()->getResultArray();
@@ -45,6 +54,60 @@ class Produk extends Model
         pr.id_produk=dp.id_produk
     GROUP BY
         YEAR(p.tgl)')->getResultArray();
+    }
+    public function getTotalPenjualan1Hari()
+    {
+        // menampilkan jumlah produk terjual dalam 1 hari 
+        return $this->db->query("SELECT
+        p.tgl,
+        SUM(dp.jumlah) AS jumlah,
+        CONCAT(DATE_FORMAT(p.tgl, '%H:%i')) as jammenit,
+        TIME(p.tgl) AS waktu,
+        HOUR(p.tgl) AS jam, COUNT(*) AS hitung
+    FROM
+        detail_penjualan dp,
+        penjualan p,
+        produk pr
+        WHERE
+        p.id_penjualan = dp.id_penjualan AND pr.id_produk = dp.id_produk AND p.tgl >= CURDATE() AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+    GROUP BY
+        jammenit
+        ORDER BY p.tgl")->getResultArray();
+    }
+    public function getTotalPenjualan7Hari()
+    {
+        // menampilkan jumlah produk terjual dalam 1 pekan 
+        return $this->db->query("SELECT
+        p.id_penjualan,
+        p.tgl,
+        SUM(dp.jumlah) AS jumlah,
+        DAYNAME(p.tgl) AS hari,
+        DATE_FORMAT(p.tgl, '%W-%d') AS haritanggal,
+        COUNT(*) AS hitung
+    FROM
+        detail_penjualan dp,
+        penjualan p,
+        produk pr
+    WHERE
+        p.id_penjualan = dp.id_penjualan AND pr.id_produk = dp.id_produk AND p.tgl >= DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+    GROUP BY
+        dayname(p.tgl)
+        ORDER BY p.tgl")->getResultArray();
+    }
+    public function getTotalPenjualan90Hari()
+    {
+        // menampilkan jumlah produk terjual dalam 90 hari 
+        return $this->db->query("SELECT
+        p.id_penjualan, p.tgl, SUM(dp.jumlah) AS jumlah,
+        DATE_FORMAT(p.tgl, '%d-%M') AS bulanhari,
+        DATE_FORMAT(p.tgl, '%Y-%m-%d') AS tanggal_grup, COUNT(*) AS hitung
+    FROM
+        detail_penjualan dp, penjualan p, produk pr
+    WHERE
+        p.id_penjualan = dp.id_penjualan AND pr.id_produk = dp.id_produk AND p.tgl >= DATE_SUB(CURDATE(), INTERVAL 89 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+    GROUP BY
+        tanggal_grup
+        ORDER BY p.tgl")->getResultArray();
     }
 
     public function getTotalTerjualTahunan()

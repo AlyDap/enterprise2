@@ -172,95 +172,150 @@
 
 <h1>DASHBOARD BOSSS</h1>
 <hr>
-
-<div class="accordion" id="accordionPanelsStayOpenExample">
+<div class="accordion" id="accordionExample">
     <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                <strong>Penjualan Setiap Tahun</strong>
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                PENJUALAN
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <?php
-                echo view('bos/grafik.php');
-                ?>
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                <strong>Penjualan Hari Ini</strong>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body">
+                                <?php echo view('bos/grafik1hari.php');
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                <strong>Penjualan Dalam 7 Hari</strong>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <?php echo view('bos/grafik7hari.php');
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                <strong>Penjualan Selama 90 hari</strong>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <?php echo view('bos/grafik90hari.php');
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                                <strong>Penjualan Setiap Tahun</strong>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <?php echo view('bos/grafik.php'); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                PRODUKSI
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                PEMBELIAN
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                PENJAHIT
+            </button>
+        </h2>
+        <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                MITRA
+            </button>
+        </h2>
+        <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+
             </div>
         </div>
     </div>
 </div>
+
+
+
 <br>
-<p>
+
 <div class="d-flex justify-content-center">
     <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3 multiCollapseExample4 multiCollapseExample5">Penjualan Tahun 2019-2023</button>
 </div>
 <hr>
-<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Penjualan Tahun 2023</button>
-<div class="row">
-    <div class="col">
-        <br>
-        <div class="collapse multi-collapse" id="multiCollapseExample1">
-            <div class="card card-body">
-                <?= view('bos/grafik2023.php'); ?>
-            </div>
+<?php $nooo = 0;
+foreach ($tahungrafik as $grafiic) {
+    $nooo++; ?>
+    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample<?= $nooo; ?>" aria-expanded="false" aria-controls="multiCollapseExample<?= $nooo; ?>">Penjualan Tahun <?= $grafiic['tahun']; ?></button>
+    <div class="row">
+        <div class="col">
             <br>
+            <div class="collapse multi-collapse" id="multiCollapseExample<?= $nooo; ?>">
+                <div class="card card-body">
+                    <?= view('bos/grafik' . $grafiic['tahun'] . '.php'); ?>
+                </div>
+                <br>
+            </div>
         </div>
     </div>
-</div>
-<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Penjualan Tahun 2022</button>
-<div class="row">
-    <div class="col">
-        <br>
-        <div class="collapse multi-collapse" id="multiCollapseExample2">
-            <div class="card card-body">
-                <?= view('bos/grafik2022.php'); ?>
-            </div>
-            <br>
-        </div>
-    </div>
-</div>
-
-<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Penjualan Tahun 2021</button>
-<div class="row">
-    <div class="col">
-        <br>
-        <div class="collapse multi-collapse" id="multiCollapseExample3">
-            <div class="card card-body">
-                <?= view('bos/grafik2021.php'); ?>
-            </div>
-            <br>
-        </div>
-    </div>
-</div>
-
-<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Penjualan Tahun 2020</button>
-<div class="row">
-    <div class="col">
-        <br>
-        <div class="collapse multi-collapse" id="multiCollapseExample4">
-            <div class="card card-body">
-                <?= view('bos/grafik2020.php'); ?>
-            </div>
-            <br>
-        </div>
-    </div>
-</div>
-
-<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Penjualan Tahun 2019</button>
-<div class="row">
-    <div class="col">
-        <br>
-        <div class="collapse multi-collapse" id="multiCollapseExample5">
-            <div class="card card-body">
-                <?= view('bos/grafik2019.php'); ?>
-            </div>
-            <br>
-        </div>
-    </div>
-</div>
-
-</p>
-
+<?php    } ?>
 
 
 <script>

@@ -3,9 +3,24 @@
 
 <div class="col-sm-8">
   <a role="button" class="btn btn-outline-dark" href="<?= base_url('produksi/tambahproduksi'); ?>">Tambah Produksi</a>
+  <br>
+  <br>
+
+  <select class="form-select" aria-label=".form-select example" id="tahun">
+    <option selected>-- Pilih Tahun --</option>
+    <?php foreach ($Tahun as $tahunn) { ?>
+      <option value="<?= $tahunn['tahun']; ?>"><?= $tahunn['tahun']; ?></option>
+    <?php } ?>
+  </select>
+  <br>
+  <select class="form-select " aria-label=".form-select example" id="bulan">
+    <option selected>-- Pilih Bulan --</option>
+    <?php foreach ($Bulan as $bulann) { ?>
+      <option value="<?= $bulann['bulan']; ?>"><?= $bulann['namabulan']; ?></option>
+    <?php } ?>
+  </select>
 
   <h1 class="mt-2">Daftar Produksi</h1>
-
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
@@ -20,7 +35,7 @@
     </thead>
     <tbody>
       <?php $no = 1; ?>
-      <?php foreach ($users as $user) : ?>
+      <?php foreach ($users as $user) { ?>
         <tr>
           <th scope="row"><?= $no++; ?></th>
           <td><?= $user['no_penjahitan']; ?></td>
@@ -33,8 +48,10 @@
             <a class="btn btn-sm btn-outline-secondary" id="btnDetail" href="<?= base_url('produksi/detailPenjahitan/' . $user['no_penjahitan']); ?>">Detail</a>
           </td>
         </tr>
-      <?php endforeach; ?>
+      <?php } ?>
     </tbody>
   </table>
+
+
 
   <?= $this->endSection(); ?>
