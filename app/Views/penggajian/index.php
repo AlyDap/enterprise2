@@ -59,16 +59,11 @@
 <!-- tabel -->
 <div class="row">
   <div class="col">
-    <!-- h4 gaji bulan di sebelah kiri atas tabel -->
-
-    <!-- form open ci4 berisi $penggajian -->
-
 
     <h4>Gaji Bulan <span class="bulan-gaji"></span></h4>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <a class="btn btn-primary" onclick="verify()" <?= $approve ?>>Approve Gaji</a>
     </div>
-    <!-- dataPegawai=nama,gaji,totaljam kerja, gaji sekarang -->
 
     <table class="table table-bordered" id="table">
       <tr>

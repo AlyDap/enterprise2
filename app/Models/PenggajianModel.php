@@ -14,7 +14,7 @@ class PenggajianModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['tgl', 'gaji_pokok', 'gaji', 'id_user', 'terlambat', 'sakit', 'pencatat', 'status'];
+    protected $allowedFields    = ['tgl', 'gaji_pokok', 'gaji', 'id_user', 'terlambat', 'sakit', 'pencatat', 'status', 'jam_kerja'];
 
     // Dates
     protected $useTimestamps = false;

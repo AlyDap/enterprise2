@@ -79,9 +79,10 @@ const myModalAlternative = new bootstrap.Modal(document.getElementById('myModal'
           data: {
             data: data
           },
-          success: function () {
+          success: function (response) {
             alert('berhasil mengirim laporan ke bos');
-            window.location.href = '';
+            console.log(response);
+            // window.location.href = '';
           },
           error: function (textStatus, errorThrown) {
             alert(textStatus + " " + errorThrown);

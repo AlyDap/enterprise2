@@ -15,6 +15,7 @@ class Penggajian extends BaseController
     protected $presensiModel;
     protected $penggajianModel;
     protected $chatModel;
+    protected $userModel;
 
     public function __construct()
     {
@@ -22,24 +23,15 @@ class Penggajian extends BaseController
         $this->presensiModel = new \App\Models\presensiModel();
         $this->penggajianModel = new \App\Models\penggajianModel();
         $this->chatModel = new \App\Models\ChatModel();
+        $this->userModel = new \App\Models\User();
     }
     // menampilkan data seluruh jam kerja karyawan selama satu bulan
     public function index()
     {
         if (session()->get('jabatan') == 'hrd') {
-            // hitung jumlah hari jumat bulan ini untuk menentukan jam kerja
+
             $hariIni = new Time('now', 'Asia/Jakarta', 'id_id');
             $namaBulan = $hariIni->format('m');
-            // looping untuk menghitung jumlah hari jumat
-            $hariJumat = 0;
-            for ($i = 1; $i <= $hariIni->getDay(); $i++) {
-                $hari = Time::parse($hariIni->format('Y-m') . '-' . $i);
-                if ($hari->format('D') == 'Fri') {
-                    $hariJumat++;
-                }
-            }
-            $jamKerja = 8 * ($hariIni->getDay() - $hariJumat);
-            $stringJamKerja = $jamKerja . ' jam (8 jam x ' . ($hariIni->getDay() - $hariJumat) . ' hari)';
 
             // ambil data nama karyawan dari tabel user join dengan tabel presensi group by nama count jam masuk
             $pegawai = $this->pegawaiModel->join('presensi', 'presensi.id_pegawai = user.id_user')->where('month(presensi.tanggal_presensi)', $namaBulan)->findAll();
@@ -82,7 +74,7 @@ class Penggajian extends BaseController
             // $dataPegawai=nama,gaji,totaljam kerja, gaji sekarang
             $data = [
                 'title' => 'Penggajian',
-                'jam_kerja' => $stringJamKerja,
+                'jam_kerja' => $this->jamKerja(),
                 'penggajian'    => $penggajian,
                 'approve' => $approve,
             ];
@@ -92,7 +84,27 @@ class Penggajian extends BaseController
             return redirect()->to('/dashboard');
         }
     }
-    public function approveGaji()
+
+    public function jamKerja()
+    {
+        // hitung jumlah hari jumat bulan ini untuk menentukan jam kerja
+        $hariIni = new Time('now', 'Asia/Jakarta', 'id_id');
+        $namaBulan = $hariIni->format('m');
+        // looping untuk menghitung jumlah hari jumat
+        $hariJumat = 0;
+        for ($i = 1; $i <= $hariIni->getDay(); $i++) {
+            $hari = Time::parse($hariIni->format('Y-m') . '-' . $i);
+            if ($hari->format('D') == 'Fri') {
+                $hariJumat++;
+            }
+        }
+        $jamKerja = 8 * ($hariIni->getDay() - $hariJumat);
+        $stringJamKerja = $jamKerja . ' jam (8 jam x ' . ($hariIni->getDay() - $hariJumat) . ' hari)';
+
+        return $stringJamKerja;
+    }
+
+    public function approveGaji() //berikan message ke bos
     {
         if (session()->get('jabatan') == 'hrd') {
 
@@ -100,8 +112,10 @@ class Penggajian extends BaseController
             $data = $this->request->getVar('data');
 
             // insert data ke tabel penggajian
-            $tgl = Time::now('Asia/Jakarta', 'id_id')->toDateString();
+            $tgl = Time::now('Asia/Jakarta', 'id_id')->toDateTimeString();
             $bulan = Time::parse($tgl, 'Asia/Jakarta', 'id_id')->toLocalizedString('MMMM');
+            $tahun = Time::parse($tgl, 'Asia/Jakarta', 'id_id')->toLocalizedString('YYYY');
+
             foreach ($data as $d) {
                 $this->penggajianModel->save([
                     'tgl' => $tgl,
@@ -117,7 +131,7 @@ class Penggajian extends BaseController
             }
             // kirim chat berisi link laporan ke bos
 
-            $messageForBos = '<a href="/penggajian/approveBos/' . $bulan . '" >Laporan Gaji Bulan ' . $bulan . '</a>';
+            $messageForBos = '<a href="/penggajian/approveBos/' . $bulan . '" >Laporan Gaji Bulan ' . $bulan . ' ' . $tahun . '</a>';
             $this->chatModel->sendMessage($pencatat, 1, $messageForBos);
 
 
@@ -129,19 +143,22 @@ class Penggajian extends BaseController
             return redirect()->to('/dashboard');
         }
     }
-    public function approveBos($bulan)
+    public function approveBos($bulan) //berikan message ke karyawan
     {
+        // 2023-06-26 23:49:36
         if (session()->get('jabatan') == 'bos') {
-            $penggajian = $this->penggajianModel->where('month(tgl)', Time::parse('01-' . $bulan . '-2023', 'Asia/Jakarta', 'id_id')->getMonth())->where('status', 0)->findAll();
+            $penggajian = $this->userModel->join('penggajian', 'penggajian.id_user=user.id_user')->where('month(tgl)', Time::parse('01-' . $bulan . '-2023', 'Asia/Jakarta', 'id_id')->getMonth())->where('status', 0)->findAll();
             // cek apakah penggajian kosong
             if (empty($penggajian)) {
                 return redirect()->to('/dashboard');
             }
             $data = [
-                'title' => 'Laporan Gaji Bulan ' . $bulan,
+                'title' => 'Laporan Gaji Bulan ' . $bulan . ' ' . Time::now('Asia/Jakarta', 'id_id')->toLocalizedString('YYYY'),
                 'penggajian' => $penggajian,
+                'jam_kerja' => $this->jamKerja(),
+                'tgl' => Time::parse($penggajian[0]['tgl'], 'Asia/Jakarta', 'id_id')->toLocalizedString('d MMMM YYYY HH:mm:ss')
             ];
-            dd($data);
+            // dd($data);
             return view('penggajian/approveBos', $data);
         } else {
             return redirect()->to('/dashboard');
