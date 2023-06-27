@@ -22,16 +22,21 @@ class Bos extends BaseController
         $grafik = $model->getTotalPenjualanTahunan();
         $data['grafik'] = $grafik;
 
+        $data['tahungrafik'] = $model->getTahunPenjualan();
+
         $grafik2 = $model->getTotalPendapatanTahunan();
         $data['grafik2'] = $grafik2;
 
         $data['grafik3'] = $model->getNamaProdukTahunan();
-        // $data['Nmtahunan'] = $model->getTotalProdukTahunan();
 
         $Rptahunan = $model->getRpPendapatanTahunan();
         $data['Rptahunan'] = $Rptahunan;
         $Qtytahunan = $model->getTotalTerjualTahunan();
         $data['Qtytahunan'] = $Qtytahunan;
+        $data['grafik1hari'] = $model->getTotalPenjualan1Hari();
+        $data['grafik7hari'] = $model->getTotalPenjualan7Hari();
+        $data['grafik90hari'] = $model->getTotalPenjualan90Hari();
+
 
         $data['grafikbulan2019'] = $model->getTotalPejualanBulananTahun2019();
         $data['grafikbulan2020'] = $model->getTotalPejualanBulananTahun2020();
@@ -144,7 +149,7 @@ class Bos extends BaseController
             'ukuran' => $this->request->getPost('ukuran'),
             'biaya_produksi' => $this->request->getPost('biaya_produksi'),
             'biaya_jual' => $this->request->getPost('biaya_jual'),
-            'jumlah' => $this->request->getPost('jumlah'),
+            // 'jumlah' => $this->request->getPost('jumlah'),
             'status' => $this->request->getPost('status')
         );
         $model = new Produk();
@@ -351,7 +356,7 @@ class Bos extends BaseController
         $id = $this->request->getPost('id_bahan');
         $data = array(
             'nama' => $this->request->getPost('nama'),
-            'jumlah' => $this->request->getPost('jumlah'),
+            // 'jumlah' => $this->request->getPost('jumlah'),
             'harga' => $this->request->getPost('harga'),
             'status' => $this->request->getPost('status')
         );

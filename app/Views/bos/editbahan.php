@@ -13,7 +13,7 @@
     </div>
     <div class="mb-3">
         <label for="jumlah" class="form-label">Jumlah Bahan</label>
-        <input type="number" class="form-control" placeholder="Masukan jumlah bahan" name="jumlah" value="<?= $bahan['jumlah']; ?>" required min="1" oninvalid="this.setCustomValidity('Wajib diisi min 1 bahan')" oninput="this.setCustomValidity('')">
+        <input type="number" class="form-control" placeholder="Masukan jumlah bahan" value="<?= $bahan['jumlah']; ?>" disabled>
     </div>
     <div class="mb-3">
         <label for="harga" class="form-label">Harga Bahan</label>

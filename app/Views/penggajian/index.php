@@ -13,6 +13,7 @@
   </script>
 <?php endif ?>
 <div class="row">
+
   <p>
     <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
       Tata Tertib Penggajian
@@ -58,16 +59,15 @@
 <!-- tabel -->
 <div class="row">
   <div class="col">
-    <!-- h4 gaji bulan di sebelah kiri atas tabel -->
 
     <h4>Gaji Bulan <span class="bulan-gaji"></span></h4>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-primary" type="button">Approve Gaji</button>
+      <a class="btn btn-primary" onclick="verify()" <?= $approve ?>>Approve Gaji</a>
     </div>
-    <!-- dataPegawai=nama,gaji,totaljam kerja, gaji sekarang -->
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="table">
       <tr>
+        <th hidden>id pegawai</th>
         <th>Nama</th>
         <th>Gaji Pokok</th>
         <th>Total Jam Kerja</th>
@@ -78,10 +78,11 @@
       </tr>
       <?php foreach ($penggajian as $p) : ?>
         <tr>
+          <td hidden><?= $p['id_pegawai'] ?></td>
           <td><?= $p['nama'] ?></td>
           <td><?= "Rp " . number_format($p['gaji'], 0, ',', '.');  ?></td>
           <td><?= $p['jam_kerja'] ?></td>
-          <td><?= "Rp " . number_format($p['gaji_sekarang'], 0, ',', '.');  ?></td>
+          <td><?= "Rp" . number_format($p['gaji_sekarang'], 0, ',', '.');  ?></td>
           <td><?= $p['telat'] ?></td>
           <td><?= $p['sakit'] ?></td>
           <td>
@@ -133,6 +134,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- akhir kalender -->
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
