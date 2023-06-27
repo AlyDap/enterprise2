@@ -105,7 +105,8 @@ class Penjualan extends BaseController
         return view('penjualan/cetakpenjualan', $data);
     }
 
-    // laporanpenjualan
+
+    // laporan penjualan harian bulanan tahunan
     public function laporanHarian()
     {
         $data = [
@@ -116,15 +117,81 @@ class Penjualan extends BaseController
     }
     public function viewlaporanHarian()
     {
+        $tgl = $this->request->getPost('tgl');
         $data = [
-            'dataharian' => $this->laporanModel->DataHarian(),
-            'gt' => $this->laporanModel->GrandTotal(),
+            'dataharian' => $this->laporanModel->DataHarian($tgl),
+            'gt' => $this->laporanModel->GrandTotal($tgl),
         ];
         $response = [
-            'data' => view('penjualan/tabellapharian', $data)
+            'data' => view('penjualan/tabellaporan', $data)
         ];
         echo json_encode($response);
     }
+
+    public function laporanBulanan()
+    {
+        $data = [
+            'title' => 'laporan bulanan',
+            'users' => $this->penjualanModel->findAll()
+        ];
+        return view('penjualan/laporanbulanan', $data);
+    }
+    public function viewlaporanBulanan()
+    {
+        $bln = $this->request->getPost('bln');
+        $data = [
+            'dataharian' => $this->laporanModel->DataBulanan($bln),
+            'gt' => $this->laporanModel->GrandTotalBulanan($bln),
+        ];
+        $response = [
+            'data' => view('penjualan/tabellaporan', $data)
+        ];
+        echo json_encode($response);
+    }
+
+    public function laporanTahunan()
+    {
+        $data = [
+            'title' => 'laporan tahunan',
+            'users' => $this->penjualanModel->findAll()
+        ];
+        return view('penjualan/laporantahunan', $data);
+    }
+    public function viewlaporanTahunan()
+    {
+        $thn = $this->request->getPost('thn');
+        $data = [
+            'dataharian' => $this->laporanModel->DataTahunan($thn),
+            'gt' => $this->laporanModel->GrandTotalTahunan($thn),
+        ];
+        $response = [
+            'data' => view('penjualan/tabellaporan', $data)
+        ];
+        echo json_encode($response);
+    }
+    // end laporan
+
+    public function cetakLaporanHarian($tgl)
+    {
+        $data = [
+            'dataharian' => $this->laporanModel->DataHarian($tgl),
+            'gt' => $this->laporanModel->GrandTotalPenjualan($tgl),
+        ];
+
+        // Load library mPDF
+        $mpdf = new \Mpdf\Mpdf();
+
+        // Generate HTML laporan dengan menggunakan view
+        $html = view('penjualan/laporanpenjualanharian', $data);
+
+        // Set konfigurasi mPDF
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->WriteHTML($html);
+
+        // Cetak laporan dalam bentuk file PDF
+        $mpdf->Output('laporanpenjualanharian.pdf', 'D');
+    }
+
 
     public function storePenjualan()
     {
@@ -175,15 +242,9 @@ class Penjualan extends BaseController
         $data2 = [
             'id_penjualan' => $idPenjualan[0]['id_penjualan'],
         ];
-        // dd($data2);
         $totalBayar = intval($this->request->getPost('total'));
         $detailPenjualanModel->insertBatch($data);
         $this->penjualanModel->update($data2, ['total_bayar' => strval($totalBayar)]);
-        // $data2 = array(
-        //     'total_bayar' => $this->request->getPost('total'),
-        // );
-        // dd($data2);
-        // $this->penjualanModel->updatePenjualan( $data2 ,$idPenjualan);
 
         return redirect()->to('/penjualan/tampol');
     }
@@ -192,12 +253,10 @@ class Penjualan extends BaseController
         $id_produk = $this->request->getPost('id_produk');
         $produkModel = new Produk();
         $produk = $produkModel->find($id_produk);
-
         $data = [
             'harga' => $produk['biaya_jual'],
             'stok' => $produk['jumlah']
         ];
-
         return $this->response->setJSON($data);
     }
 }

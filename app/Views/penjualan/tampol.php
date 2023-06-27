@@ -8,9 +8,8 @@
     </button>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="<?= base_url('penjualan/laporanharian'); ?>">laporan harian</a></li>
-      <li><a class="dropdown-item" href="#">laporan mingguan</a></li>
-      <li><a class="dropdown-item" href="#">laporan bulanan</a></li>
-      <li><a class="dropdown-item" href="#">laporan tahunan</a></li>
+      <li><a class="dropdown-item" href="<?= base_url('penjualan/laporanbulanan'); ?>">laporan bulanan</a></li>
+      <li><a class="dropdown-item" href="<?= base_url('penjualan/laporantahunan'); ?>">laporan tahunan</a></li>
     </ul>
     <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('penjualan/cetakpenjualan'); ?>">Cetak Penjualan</a>
   </div>
@@ -47,14 +46,5 @@
         <?php $totalpemasukan += $user['total_bayar'] ?>
       <?php endforeach; ?>
     </tbody>
-  </table>
-  <div class="total ">
-    <table>
-      <tr>
-        <td>total pemasukan</td>
-        <td> : </td>
-        <td><?= "Rp " . number_format($totalpemasukan, 0, ',', '.');  ?></td>
-      </tr>
-    </table>
-  </div>
-  <?= $this->endSection(); ?>
+</div>
+<?= $this->endSection(); ?>

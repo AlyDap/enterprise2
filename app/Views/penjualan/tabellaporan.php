@@ -14,15 +14,20 @@
             <td><?= $no++ ?></td>
             <td><?= $value['id_produk'] ?></td>
             <td><?= $value['nama'] ?></td>
-            <td><?= $value['biaya_produksi'] ?></td>
-            <td><?= $value['biaya_jual'] ?></td>
+            <td class="text-right"><?= $value['biaya_produksi'] ?></td>
+            <td class="text-right"><?= $value['biaya_jual'] ?></td>
             <td><?= $value['qty'] ?></td>
-            <td><?= $value['totalharga'] ?></td>
+            <td class="text-right"><?= $value['totalharga'] ?></td>
         </tr>
     <?php endforeach; ?>
+    <tr>
+        <td class="text-center bg-grey" colspan="6">
+            <h5>Grand Total</h5>
+        </td>
+        <td class="text-right">
+            <?php foreach ($gt as $key => $value) : ?>
+                <?= $value['totalharga'] ?>
+            <?php endforeach; ?>
+        </td>
+    </tr>
 </table>
-<br>
-<?php foreach ($gt as $key => $val) : ?>
-
-    <h2>Total Penjualan Rp<?= $val['totalharga'] ?></h2>
-<?php endforeach; ?>
