@@ -170,14 +170,36 @@
     }
 </style>
 
-<h1>DASHBOARD BOSSS</h1>
+<div style="display: flex; align-items: center;">
+    <h2 style="flex: 1;">DASHBOARD BOS</h2>
+    <!-- Example split danger button -->
+    <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-outline-dark" disabled>Detail Grafik</button>
+        <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjualan'); ?>">Penjualan</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Produksi</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Pembelian</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Penjahit</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Mitra</a></li>
+            <!-- <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li> -->
+        </ul>
+    </div>
+</div>
+
 <hr>
 <div class="accordion" id="accordionExample">
     <div class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                PENJUALAN
+                <strong>PENJUALAN</strong>
             </button>
+
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
             <div class="accordion-body">
@@ -185,7 +207,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                <strong>Penjualan Hari Ini</strong>
+                                Penjualan Hari Ini
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -198,7 +220,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                <strong>Penjualan Dalam 7 Hari</strong>
+                                Penjualan Dalam 7 Hari
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
@@ -211,7 +233,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                <strong>Penjualan Selama 90 hari</strong>
+                                Penjualan Selama 90 hari
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
@@ -224,7 +246,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                                <strong>Penjualan Setiap Tahun</strong>
+                                Penjualan Setiap Tahun
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">

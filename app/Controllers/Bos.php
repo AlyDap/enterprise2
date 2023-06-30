@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\Bahan;
+use App\Models\GrafikModel;
 use App\Models\Mitra;
 use App\Models\Penjahit;
 use App\Models\Produk;
@@ -72,6 +73,31 @@ class Bos extends BaseController
         // $data['Nmbulanan2023'] = $model->getTotalProdukBulanan2023();
 
         return view('bos/index', $data);
+    }
+
+    public function detailGrafikPenjualan()
+    {
+        $modelgrafik = new GrafikModel();
+        $data = [
+            'title' => 'Detail Grafik Penjualan',
+            'datagrafik2' => $modelgrafik->getTotalPenjualanPerHari2(),
+        ];
+        return view('bos/grafikpenj1', $data);
+    }
+
+    public function viewDetailGrafikPenjualanHarian()
+    {
+        $modelgrafik = new GrafikModel();
+        $tgl = $this->request->getPost('tgl');
+        $data = [
+            'datagrafik' => $modelgrafik->getTotalPenjualanPerHari($tgl),
+            // 'tangg' => $tgl,
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+        // return $this->response->setJSON($response);
     }
 
 
