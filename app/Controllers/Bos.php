@@ -80,7 +80,7 @@ class Bos extends BaseController
         $modelgrafik = new GrafikModel();
         $data = [
             'title' => 'Detail Grafik Penjualan',
-            'datagrafik2' => $modelgrafik->getTotalPenjualanPerHari2(),
+            'pilihtahun' => $modelgrafik->thn(),
         ];
         return view('bos/grafikpenj1', $data);
     }
@@ -89,15 +89,43 @@ class Bos extends BaseController
     {
         $modelgrafik = new GrafikModel();
         $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
         $data = [
             'datagrafik' => $modelgrafik->getTotalPenjualanPerHari($tgl),
-            // 'tangg' => $tgl,
+            'info' => $info
         ];
         $response = [
             'data' => view('bos/hasilgrafik', $data)
         ];
         echo json_encode($response);
-        // return $this->response->setJSON($response);
+    }
+    public function viewDetailGrafikPenjualanBulanan()
+    {
+        $modelgrafik = new GrafikModel();
+        $bln = $this->request->getPost('bln');
+        $info = "bulan";
+        $data = [
+            'datagrafik' => $modelgrafik->getTotalPenjualanPerBulan($bln),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikPenjualanTahunan()
+    {
+        $modelgrafik = new GrafikModel();
+        $thn = $this->request->getPost('thn');
+        $info = "tahun";
+        $data = [
+            'datagrafik' => $modelgrafik->getTotalPenjualanPerTahun($thn),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
     }
 
 

@@ -1,7 +1,7 @@
 <?php $no = 1; ?>
 <?php if (!empty($datagrafik)) {
     foreach ($datagrafik as $key => $value) {
-        $jammenit[] = $value['jammenit'];
+        $waktu[] = $value['waktu'];
         $jumlah[] = $value['jumlah'];
         $no++;
     }
@@ -27,7 +27,7 @@
             new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: <?= json_encode($jammenit); ?>,
+                    labels: <?= json_encode($waktu); ?>,
                     datasets: [{
                         label: 'Produk Yang Terjual',
                         data: <?= json_encode($jumlah); ?>,
@@ -48,11 +48,11 @@
 
 <?php
 } else {
-    $jammenit = array('Data kosong');
+    $waktu = array('Data kosong');
     $jumlah = array(0);
 ?>
-    <div class="alert alert-info" role="alert">
-        Tidak ada produk yang terjual
+    <div class="alert alert-dark" role="alert" style="text-align: center;">
+        Tidak ada Transaksi Penjualan<br> Silahkan Pilih <?= $info; ?> yang memiliki transaksi untuk melihat grafik <br>&#128522; -- Terimakasih -- &#128522;
     </div>
 <?php
 } ?>
