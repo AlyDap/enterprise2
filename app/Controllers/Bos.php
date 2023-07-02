@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\Bahan;
+use App\Models\GrafikModel;
 use App\Models\Mitra;
 use App\Models\Penjahit;
 use App\Models\Produk;
@@ -72,6 +73,59 @@ class Bos extends BaseController
         // $data['Nmbulanan2023'] = $model->getTotalProdukBulanan2023();
 
         return view('bos/index', $data);
+    }
+
+    public function detailGrafikPenjualan()
+    {
+        $modelgrafik = new GrafikModel();
+        $data = [
+            'title' => 'Detail Grafik Penjualan',
+            'pilihtahun' => $modelgrafik->thn(),
+        ];
+        return view('bos/grafikpenj1', $data);
+    }
+
+    public function viewDetailGrafikPenjualanHarian()
+    {
+        $modelgrafik = new GrafikModel();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'datagrafik' => $modelgrafik->getTotalPenjualanPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikPenjualanBulanan()
+    {
+        $modelgrafik = new GrafikModel();
+        $bln = $this->request->getPost('bln');
+        $info = "bulan";
+        $data = [
+            'datagrafik' => $modelgrafik->getTotalPenjualanPerBulan($bln),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikPenjualanTahunan()
+    {
+        $modelgrafik = new GrafikModel();
+        $thn = $this->request->getPost('thn');
+        $info = "tahun";
+        $data = [
+            'datagrafik' => $modelgrafik->getTotalPenjualanPerTahun($thn),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
     }
 
 

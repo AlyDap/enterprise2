@@ -3,9 +3,9 @@
 
 <div class="card-body">
     <div class="form-group row">
-        <label class="col-sm-1 col-form-label">tanggal</label>
+        <label class="col-sm-1 col-form-label">Bulan</label>
         <div class="col-sm-3 input-group">
-            <input type="date" class="form-control" name="tgl" id="tgl">
+            <input type="month" class="form-control" name="bln" id="bln">
             <span class="input-group-append">
                 <button onclick="viewtabellaporan()" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#">
                     <i class="fas fa-file-alt"></i> view laporan
@@ -23,13 +23,13 @@
     </div>
     <script>
         function viewtabellaporan() {
-            let tgl = $('#tgl').val();
-            console.log(tgl);
+            let bln = $('#bln').val();
+            console.log(bln);
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('penjualan/viewlaporanharian') ?>",
+                url: "<?= base_url('penjualan/viewlaporanbulanan') ?>",
                 data: {
-                    tgl: tgl,
+                    bln: bln,
                 },
                 dataType: "JSON",
                 success: function(response) {
