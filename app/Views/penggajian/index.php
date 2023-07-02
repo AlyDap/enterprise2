@@ -13,7 +13,6 @@
   </script>
 <?php endif ?>
 <div class="row">
-
   <p>
     <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
       Tata Tertib Penggajian
@@ -27,9 +26,9 @@
   <div class="collapse" id="collapseExample">
     <div class="alert alert-secondary" role="alert">
       <ul>
-        <li>HRD mengapprove gaji bulanan tanggal 28 setiap bulan</li>
+        <li>HRD mengapprove gaji bulanan setiap akhir bulan</li>
         <li>gaji karyawan = dihitung dari total jam masuk karyawan jika masih 8 jam walaupun terlambat maka tidak dikurangi jika kurang dari 8 jam maka dikurangi 15000 perhari jika kelebihan dari 8 jam itu lebih dari 1 jam maka dihitung lembur 10000 </li>
-        <li>jam kerja normal bulan ini = <span class="jam"><?= $jam_kerja ?></span> </li>
+        <li>Bulan Ini = <?= $kerja['hari_kerja_sebulan'] * 8 ?> Jam / <?= $kerja['hari_kerja_sebulan']  ?> Hari </li>
       </ul>
     </div>
   </div>
@@ -66,25 +65,29 @@
     </div>
 
     <table class="table table-bordered" id="table">
-      <tr>
-        <th hidden>id pegawai</th>
-        <th>Nama</th>
-        <th>Gaji Pokok</th>
-        <th>Total Jam Kerja</th>
-        <th>Gaji Bulan Ini</th>
-        <th>terlambat</th>
-        <th>sakit</th>
-        <th></th>
-      </tr>
+      <thead>
+        <tr>
+          <th hidden>id pegawai</th>
+          <th>Nama</th>
+          <th>Gaji Pokok</th>
+          <th data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="full : <?= $kerja['hari_kerja_sebulan'] ?> hari">Hari Masuk</th>
+          <th data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="full : <?= $kerja['hari_kerja_sebulan'] * 8 ?> jam">Total Jam </th>
+          <th>terlambat</th>
+          <th>sakit</th>
+          <th>Gaji Bulan Ini</th>
+          <th></th>
+        </tr>
+      </thead>
       <?php foreach ($penggajian as $p) : ?>
         <tr>
           <td hidden><?= $p['id_pegawai'] ?></td>
           <td><?= $p['nama'] ?></td>
           <td><?= "Rp " . number_format($p['gaji'], 0, ',', '.');  ?></td>
+          <td><?= $p['masuk'] ?></td>
           <td><?= $p['jam_kerja'] ?></td>
-          <td><?= "Rp" . number_format($p['gaji_sekarang'], 0, ',', '.');  ?></td>
           <td><?= $p['telat'] ?></td>
           <td><?= $p['sakit'] ?></td>
+          <td><?= "Rp" . number_format($p['gaji_sekarang'], 0, ',', '.');  ?></td>
           <td>
             <a href="<?= base_url('penggajian?id=' . $p['id_pegawai']) . '&nama=' . $p['nama'] ?>">detail</a>
           </td>
@@ -144,6 +147,8 @@
   <script src="js/moment.js"></script>
   <script>
     $('.bulan-gaji').text(moment().locale('id').format('MMMM YYYY'));
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   </script>
 
   <?= $this->endSection() ?>

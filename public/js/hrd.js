@@ -82,7 +82,7 @@ const myModalAlternative = new bootstrap.Modal(document.getElementById('myModal'
           success: function (response) {
             alert('berhasil mengirim laporan ke bos');
             console.log(response);
-            // window.location.href = '';
+            window.location.href = '';
           },
           error: function (textStatus, errorThrown) {
             alert(textStatus + " " + errorThrown);

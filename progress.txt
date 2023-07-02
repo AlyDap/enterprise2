@@ -107,8 +107,8 @@ ___________________________________________________________
 HRD
 
 tugas minggu ini : 
--bos approve laporan gaji karyawan 
--memberikan pesan notifikasi gaji per karyawan di sistem per bulan
+- cek potongan karena sakit
+- buat field hari kerja di tabel penggajian
 
 cons
 - belum ada fitur lembur
@@ -119,4 +119,3 @@ cons
 
 
 ---------------------ian-------------------
-buhabuahb

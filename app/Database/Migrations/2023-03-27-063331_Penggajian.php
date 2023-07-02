@@ -23,6 +23,9 @@ class Penggajian extends Migration
             'gaji'  => [
                 'type'  => 'INT',
             ],
+            'masuk'  => [
+                'type'  => 'INT',
+            ],
             'jam_kerja'  => [
                 'type'  => 'INT',
             ],
