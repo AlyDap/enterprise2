@@ -91,7 +91,12 @@ class Bos extends BaseController
         $tgl = $this->request->getPost('tgl');
         $info = "tanggal";
         $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerHari($tgl),
             'datagrafik' => $modelgrafik->getTotalPenjualanPerHari($tgl),
+            'totalproduk' => $modelgrafik->getTotalTerjualPerHari($tgl),
+            'datagrafik2' => $modelgrafik->getTotalPendapatanPerHari($tgl),
+            'totalpendapatan' => $modelgrafik->getRpPendapatanPerHari($tgl),
+            'datagrafik3' => $modelgrafik->getNamaProdukPerHari($tgl),
             'info' => $info
         ];
         $response = [
@@ -105,7 +110,12 @@ class Bos extends BaseController
         $bln = $this->request->getPost('bln');
         $info = "bulan";
         $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerBulan($bln),
             'datagrafik' => $modelgrafik->getTotalPenjualanPerBulan($bln),
+            'totalproduk' => $modelgrafik->getTotalTerjualPerBulan($bln),
+            'datagrafik2' => $modelgrafik->getTotalPendapatanPerBulan($bln),
+            'totalpendapatan' => $modelgrafik->getRpPendapatanPerBulan($bln),
+            'datagrafik3' => $modelgrafik->getNamaProdukPerBulan($bln),
             'info' => $info
         ];
         $response = [
@@ -119,7 +129,12 @@ class Bos extends BaseController
         $thn = $this->request->getPost('thn');
         $info = "tahun";
         $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerTahun($thn),
             'datagrafik' => $modelgrafik->getTotalPenjualanPerTahun($thn),
+            'totalproduk' => $modelgrafik->getTotalTerjualPerTahun($thn),
+            'datagrafik2' => $modelgrafik->getTotalPendapatanPerTahun($thn),
+            'totalpendapatan' => $modelgrafik->getRpPendapatanPerTahun($thn),
+            'datagrafik3' => $modelgrafik->getNamaProdukPerTahun($thn),
             'info' => $info
         ];
         $response = [
