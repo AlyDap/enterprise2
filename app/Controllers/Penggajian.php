@@ -21,55 +21,64 @@ class Penggajian extends BaseController
         $this->chatModel = new \App\Models\ChatModel();
         $this->userModel = new \App\Models\User();
     }
+
+    public function hitungGaji()
+    {
+        $hariIni = new Time('now', 'Asia/Jakarta', 'id_id');
+
+        $namaBulan = $hariIni->format('m');
+
+        // ambil data nama karyawan dari tabel user join dengan tabel presensi group by nama count jam masuk
+        $pegawai = $this->pegawaiModel->join('presensi', 'presensi.id_pegawai = user.id_user')->where('month(presensi.tanggal_presensi)', $namaBulan)->findAll();
+        // mengubah data array dan menghitung jumlah jam masuk
+
+        $penggajian = [];
+
+        foreach ($pegawai as $p) {
+            $jamMasuk = Time::parse($p['waktu_masuk']);
+            $jamKeluar = Time::parse($p['waktu_keluar']);
+            $jamKerjaHarian = $jamMasuk->difference($jamKeluar)->getHours();
+            ($p['ket'] == 'terlambat') ? $terlambat = 1 : $terlambat = 0;
+            ($p['info'] == 'sakit') ? $sakit = 1 : $sakit = 0;
+
+            $hariMasuk = $this->jamKerja()['kerja_sampai_hari_ini'];
+            $totalHariKerja = $this->jamKerja()['hari_kerja_sebulan'];
+
+            // masukkan data ke array baru jika nama berbeda
+            if (!array_key_exists($p['id_pegawai'], $penggajian)) {
+
+                $penggajian[$p['id_pegawai']] = [
+                    'id_pegawai' => $p['id_pegawai'],
+                    'nama' => $p['username'] . '(' . $p['jabatan'] . ')',
+                    'gaji' => $p['gaji'],
+                    'jam_kerja' => $jamKerjaHarian,
+                    'telat' => $terlambat,
+                    'sakit' => $sakit,
+                    'masuk' => $hariMasuk - $sakit,
+                ];
+            } else {
+                $penggajian[$p['id_pegawai']]['jam_kerja'] += $jamKerjaHarian;
+                $penggajian[$p['id_pegawai']]['telat'] += $terlambat;
+                $penggajian[$p['id_pegawai']]['sakit'] += $sakit;
+                $penggajian[$p['id_pegawai']]['masuk'] = $hariMasuk - $sakit;
+            }
+        }
+        // foreach lagi untuk menambah gaji sekarang
+        foreach ($penggajian as $p) {
+            $penggajian[$p['id_pegawai']]['gaji_sekarang'] =  - ($p['telat'] * 10000) + ($p['masuk'] * $p['gaji'] / $totalHariKerja);
+        }
+
+        return $penggajian;
+    }
+
     // menampilkan data seluruh jam kerja karyawan selama satu bulan
     public function index()
     {
         if (session()->get('jabatan') == 'hrd') {
 
             $hariIni = new Time('now', 'Asia/Jakarta', 'id_id');
-            $namaBulan = $hariIni->format('m');
 
-
-            // ambil data nama karyawan dari tabel user join dengan tabel presensi group by nama count jam masuk
-            $pegawai = $this->pegawaiModel->join('presensi', 'presensi.id_pegawai = user.id_user')->where('month(presensi.tanggal_presensi)', $namaBulan)->findAll();
-            // mengubah data array dan menghitung jumlah jam masuk
-
-            $penggajian = [];
-
-            foreach ($pegawai as $p) {
-                $jamMasuk = Time::parse($p['waktu_masuk']);
-                $jamKeluar = Time::parse($p['waktu_keluar']);
-                $jamKerjaHarian = $jamMasuk->difference($jamKeluar)->getHours();
-                ($p['ket'] == 'terlambat') ? $terlambat = 1 : $terlambat = 0;
-                ($p['info'] == 'sakit') ? $sakit = 1 : $sakit = 0;
-
-                $hariMasuk = $this->jamKerja()['kerja_sampai_hari_ini'];
-                $totalHariKerja = $this->jamKerja()['hari_kerja_sebulan'];
-
-                // masukkan data ke array baru jika nama berbeda
-                if (!array_key_exists($p['id_pegawai'], $penggajian)) {
-
-                    $penggajian[$p['id_pegawai']] = [
-                        'id_pegawai' => $p['id_pegawai'],
-                        'nama' => $p['username'] . '(' . $p['jabatan'] . ')',
-                        'gaji' => $p['gaji'],
-                        'jam_kerja' => $jamKerjaHarian,
-                        'telat' => $terlambat,
-                        'sakit' => $sakit,
-                        'masuk' => $hariMasuk - $sakit,
-                    ];
-                } else {
-                    $penggajian[$p['id_pegawai']]['jam_kerja'] += $jamKerjaHarian;
-                    $penggajian[$p['id_pegawai']]['telat'] += $terlambat;
-                    $penggajian[$p['id_pegawai']]['sakit'] += $sakit;
-                    $penggajian[$p['id_pegawai']]['masuk'] = $hariMasuk - $sakit;
-                }
-            }
-            // foreach lagi untuk menambah gaji sekarang
-            foreach ($penggajian as $p) {
-                $penggajian[$p['id_pegawai']]['gaji_sekarang'] =  - ($p['telat'] * 10000) + ($p['masuk'] * $p['gaji'] / $totalHariKerja);
-            }
-
+            $penggajian = $this->hitungGaji();
             // cek apakah bulan ini sudah pernah approve
             $approve = $this->penggajianModel->where('month(tgl)', $hariIni->getMonth())->first();
             (is_null($approve)) ? $approve = '' : $approve = 'hidden';

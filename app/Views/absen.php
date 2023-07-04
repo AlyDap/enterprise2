@@ -151,6 +151,7 @@
               ket: keterangan,
             },
             success: function(response) {
+              console.log(data_uri + ' oke nih');
               // Callback setelah pengunggahan selesai
               if (response.status === 'success') {
                 // Berhasil, lakukan tindakan yang sesuai
@@ -165,6 +166,7 @@
             },
             error: function(textStatus, errorThrown) {
               console.error('Kesalahan dalam pengunggahan gambar.');
+              console.log(textStatus + errorThrown);
             }
           });
         });
