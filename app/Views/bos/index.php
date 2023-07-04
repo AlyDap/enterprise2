@@ -173,6 +173,23 @@
 <div style="display: flex; align-items: center;">
     <h2 style="flex: 1;">DASHBOARD BOS</h2>
     <!-- Example split danger button -->
+    <div class="btn-group" style="margin-right: 5px;">
+        <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item">Penjualan</a></li>
+            <li><a class="dropdown-item">Produksi</a></li>
+            <li><a class="dropdown-item">Pembelian</a></li>
+            <li><a class="dropdown-item">Penjahit</a></li>
+            <li><a class="dropdown-item">Mitra</a></li>
+            <!-- <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li> -->
+        </ul>
+        <button type="button" class="btn btn-sm btn-outline-dark" disabled>Grafik Singkat</button>
+    </div>
     <div class="btn-group">
         <button type="button" class="btn btn-sm btn-outline-dark" disabled>Detail Grafik</button>
         <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
@@ -193,126 +210,73 @@
 </div>
 
 <hr>
-<div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <strong>PENJUALAN</strong>
-            </button>
 
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <div class="accordion" id="accordionPanelsStayOpenExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                Penjualan Hari Ini
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                            <div class="accordion-body">
-                                <?php echo view('bos/grafik1hari.php');
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                Penjualan Dalam 7 Hari
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                <?php echo view('bos/grafik7hari.php');
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                Penjualan Selama 90 hari
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                <?php echo view('bos/grafik90hari.php');
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                                Penjualan Setiap Tahun
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                <?php echo view('bos/grafik.php'); ?>
-                            </div>
-                        </div>
+
+
+<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        Penjualan Hari Ini
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafik1hari.php');
+                        ?>
                     </div>
                 </div>
-
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne2">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne2" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne2">
+                        Penjualan Selama 1 Pekan
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne2" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne2">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafik7hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne3">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne3" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne3">
+                        Penjualan Selama 90 Hari
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne3" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne3">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafik90hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne4">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne4" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne4">
+                        Penjualan Setiap Tahun
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne4" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne4">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafik.php');
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                PRODUKSI
-            </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
 
-
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                PEMBELIAN
-            </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-
-
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                PENJAHIT
-            </button>
-        </h2>
-        <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-
-
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                MITRA
-            </button>
-        </h2>
-        <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-
-
-            </div>
-        </div>
     </div>
 </div>
+
+<?php //echo view('bos/grafik7hari.php'); 
+?>
+<?php //echo view('bos/grafik90hari.php'); 
+?>
 
 
 

@@ -11,14 +11,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="sender_id" value="1">
+                    <input type="hidden" name="sender_id" value="<?= session()->get('id'); ?>">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Tujuan:</label>
                         <select name="receiver_id" id="id_user" class="form-control" required>
-                            <option value="1">--pilih--</option>
-                            <?php foreach ($user as $row) : ?>
-                                <option value="<?= $row['id_user'] ?>"><?= $row['jabatan'] ?> - <?= $row['username'] ?></option>
-                            <?php endforeach; ?>
+                            <option value="<?= session()->get('id'); ?>">--pilih--</option>
+                            <?php foreach ($userAll as $row) {
+                                if ($row['id_user'] != session()->get('id')) { ?>
+                                    <option value="<?= $row['id_user']; ?>"><?= $row['jabatan']; ?> - <?= $row['username']; ?></option>
+                            <?php }
+                            } ?>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -36,171 +38,57 @@
     </div>
 </div>
 <br>
-<br>
-<div class="accordion" id="accordionPanelsStayOpenExample">
-    <!-- CHAT SAMA PENJUALAN -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                Penjualan - IAN
-            </button>
-        </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-            <div class="accordion-body">
-                <?php foreach ($msgBosPenj3 as $MBosPenj3) { ?>
+<h3>Chat dalam 3 hari</h3>
+<div class="accordion" id="accordionExample">
+    <?php $urut = 0;
+    foreach ($userAll as $row) {
+        if ($row['id_user'] != session()->get('id')) {
+            $urut++;
 
-                    <?php if ($MBosPenj3['sender_id'] == 1) {  ?>
-                        <P style="text-align: right;">
-                            <?= $MBosPenj3['message_content']; ?>
-                            <br> <code><?= $MBosPenj3['timestamp']; ?></code>
-                            <hr>
 
-                        </P>
-                    <?php } ?>
-                    <?php if ($MBosPenj3['sender_id'] == 2) {  ?>
-                        <P style="text-align: LEFT;">
-                            <?= $MBosPenj3['message_content']; ?>
-                            <br> <code><?= $MBosPenj3['timestamp']; ?></code>
-                            <hr>
-                        </P>
-                    <?php } ?>
-                <?php } ?>
+    ?>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class=" accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $urut; ?>" aria-expanded="false" aria-controls="collapse<?= $urut; ?>">
+                        <?= $row['jabatan']; ?> - <?= $row['username']; ?>
+                    </button>
+                </h2>
+                <div id="collapse<?= $urut; ?>" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <?php
+                        foreach ($messages3day as $pesansemua) {
+                            $cekpesan = $pesansemua['sender_id'] == session()->get('id') && $pesansemua['receiver_id'] == $row['id_user'];
+                            $cekpesan2 = $pesansemua['receiver_id'] == session()->get('id') && $pesansemua['sender_id'] == $row['id_user'];
+                            if (!empty($cekpesan)) {  ?>
+                                <P style="text-align: right;">
+                                    <?= $pesansemua['message_content']; ?>
+                                    <br> <code><?= $pesansemua['timestamp']; ?></code>
+                                    <hr>
+
+                                </P>
+                            <?php } ?>
+                            <?php if (!empty($cekpesan2)) {  ?>
+                                <P style="text-align: LEFT;">
+                                    <?= $pesansemua['message_content']; ?>
+                                    <br> <code><?= $pesansemua['timestamp']; ?></code>
+                                    <hr>
+                                </P>
+                        <?php }
+                        } ?>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+    <?php }
+    } ?>
 </div>
-<!-- CHAT SAMA FINANCE -->
-<div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-            Finance - ANONIM
-        </button>
-    </h2>
-    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
-        <div class="accordion-body">
-            <?php foreach ($msgBosFin3 as $mBosFin3) { ?>
-
-                <?php if ($mBosFin3['sender_id'] == 1) {  ?>
-                    <P style="text-align: right;">
-                        <?= $mBosFin3['message_content']; ?>
-                        <br> <code><?= $mBosFin3['timestamp']; ?></code>
-                        <hr>
-
-                    </P>
-                <?php } ?>
-                <?php if ($mBosFin3['sender_id'] == 3) {  ?>
-                    <P style="text-align: LEFT;">
-                        <?= $mBosFin3['message_content']; ?>
-                        <br> <code><?= $mBosFin3['timestamp']; ?></code>
-                        <hr>
-                    </P>
-                <?php } ?>
-            <?php } ?>
-        </div>
-    </div>
-</div>
-</div>
-<!-- CHAT SAMA HRD -->
-<div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingTree">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTree" aria-expanded="true" aria-controls="panelsStayOpen-collapseTree">
-            HRD - RIQQI
-        </button>
-    </h2>
-    <div id="panelsStayOpen-collapseTree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTree">
-        <div class="accordion-body">
-            <?php foreach ($msgBosHRD3 as $MBosHRD3) { ?>
-
-                <?php if ($MBosHRD3['sender_id'] == 1) {  ?>
-                    <P style="text-align: right;">
-                        <?= $MBosHRD3['message_content']; ?>
-                        <br> <code><?= $MBosHRD3['timestamp']; ?></code>
-                        <hr>
-
-                    </P>
-                <?php } ?>
-                <?php if ($MBosHRD3['sender_id'] == 4) {  ?>
-                    <P style="text-align: LEFT;">
-                        <?= $MBosHRD3['message_content']; ?>
-                        <br> <code><?= $MBosHRD3['timestamp']; ?></code>
-                        <hr>
-                    </P>
-                <?php } ?>
-            <?php } ?>
-        </div>
-    </div>
-</div>
-</div>
-<!-- CHAT SAMA GUDANG -->
-<div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
-            Gudang - FEBI
-        </button>
-    </h2>
-    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFour">
-        <div class="accordion-body">
-            <?php foreach ($msgBosGud3 as $MBosGud3) { ?>
-
-                <?php if ($MBosGud3['sender_id'] == 1) {  ?>
-                    <P style="text-align: right;">
-                        <?= $MBosGud3['message_content']; ?>
-                        <br> <code><?= $MBosGud3['timestamp']; ?></code>
-                        <hr>
-
-                    </P>
-                <?php } ?>
-                <?php if ($MBosGud3['sender_id'] == 5) {  ?>
-                    <P style="text-align: LEFT;">
-                        <?= $MBosGud3['message_content']; ?>
-                        <br> <code><?= $MBosGud3['timestamp']; ?></code>
-                        <hr>
-                    </P>
-                <?php } ?>
-            <?php } ?>
-        </div>
-    </div>
-</div>
-</div>
-<!-- CHAT SAMA FINANCE -->
-<div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true" aria-controls="panelsStayOpen-collapseFive">
-            Produksi - ARYA
-        </button>
-    </h2>
-    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFive">
-        <div class="accordion-body">
-            <?php foreach ($msgBosProd3 as $MBosProd3) { ?>
-
-                <?php if ($MBosProd3['sender_id'] == 1) {  ?>
-                    <P style="text-align: right;">
-                        <?= $MBosProd3['message_content']; ?>
-                        <br> <code><?= $MBosProd3['timestamp']; ?></code>
-                        <hr>
-
-                    </P>
-                <?php } ?>
-                <?php if ($MBosProd3['sender_id'] == 6) {  ?>
-                    <P style="text-align: LEFT;">
-                        <?= $MBosProd3['message_content']; ?>
-                        <br> <code><?= $MBosProd3['timestamp']; ?></code>
-                        <hr>
-                    </P>
-                <?php } ?>
-            <?php } ?>
-        </div>
-    </div>
-</div>
-<br>
-<hr>
 
 <script>
     // VALIDASI PESAN SEKARANG
     function validateForm() {
         var selectElement = document.getElementById("id_user");
         var selectedOption = selectElement.value;
-        if (selectedOption === "1") {
+        if (selectedOption === "<?= session()->get('id'); ?>") {
             alert("Silakan pilih tujuan pesan Anda!");
             return false; // Mencegah pengiriman formulir
         }

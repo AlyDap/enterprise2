@@ -28,6 +28,12 @@ class ChatModel extends Model
         $this->insert($data);
     }
 
+
+
+    public function getMessage3Day()
+    {
+        return $this->db->query('SELECT * FROM chat WHERE timestamp >= DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND timestamp < DATE_ADD(CURDATE(), INTERVAL 1 DAY)')->getResultArray();
+    }
     public function getMessageBosPenjualan3()
     {
         return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=2) AND (c.receiver_id=1 OR c.receiver_id=2) ORDER BY c.message_id DESC LIMIT 3')->getResultArray();
@@ -36,45 +42,5 @@ class ChatModel extends Model
     public function getMessageBosPenjualanAll()
     {
         return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=2) AND (c.receiver_id=1 OR c.receiver_id=2) ORDER BY c.message_id DESC')->getResultArray();
-    }
-
-    public function getMessageBosFinance3()
-    {
-        return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=3) AND (c.receiver_id=1 OR c.receiver_id=3) ORDER BY c.message_id DESC LIMIT 3')->getResultArray();
-    }
-
-    public function getMessageBosFinanceAll()
-    {
-        return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=3) AND (c.receiver_id=1 OR c.receiver_id=3) ORDER BY c.message_id DESC')->getResultArray();
-    }
-
-    public function getMessageBosHRD3()
-    {
-        return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=4) AND (c.receiver_id=1 OR c.receiver_id=4) ORDER BY c.message_id DESC LIMIT 3')->getResultArray();
-    }
-
-    public function getMessageBosHRDAll()
-    {
-        return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=4) AND (c.receiver_id=1 OR c.receiver_id=4) ORDER BY c.message_id DESC')->getResultArray();
-    }
-
-    public function getMessageBosGudang3()
-    {
-        return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=5) AND (c.receiver_id=1 OR c.receiver_id=5) ORDER BY c.message_id DESC LIMIT 3')->getResultArray();
-    }
-
-    public function getMessageBosGudangAll()
-    {
-        return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=5) AND (c.receiver_id=1 OR c.receiver_id=5) ORDER BY c.message_id DESC')->getResultArray();
-    }
-
-    public function getMessageBosProduksi3()
-    {
-        return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=6) AND (c.receiver_id=1 OR c.receiver_id=6) ORDER BY c.message_id DESC LIMIT 3')->getResultArray();
-    }
-
-    public function getMessageBosProduksiAll()
-    {
-        return $this->db->query('SELECT * FROM chat as c WHERE (c.sender_id=1 OR c.sender_id=6) AND (c.receiver_id=1 OR c.receiver_id=6) ORDER BY c.message_id DESC')->getResultArray();
     }
 }
