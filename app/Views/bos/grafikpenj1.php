@@ -20,7 +20,7 @@
 
     .ccc2 {
         height: 1px;
-        margin: 5px 0 5px 0;
+        margin: 7px 0 23px 0;
         border: 1px solid #000;
     }
 </style>

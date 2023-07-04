@@ -318,47 +318,5 @@
 
 <br>
 
-<div class="d-flex justify-content-center">
-    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3 multiCollapseExample4 multiCollapseExample5">Penjualan Tahun 2019-2023</button>
-</div>
-<hr>
-<?php $nooo = 0;
-foreach ($tahungrafik as $grafiic) {
-    $nooo++; ?>
-    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample<?= $nooo; ?>" aria-expanded="false" aria-controls="multiCollapseExample<?= $nooo; ?>">Penjualan Tahun <?= $grafiic['tahun']; ?></button>
-    <div class="row">
-        <div class="col">
-            <br>
-            <div class="collapse multi-collapse" id="multiCollapseExample<?= $nooo; ?>">
-                <div class="card card-body">
-                    <?= view('bos/grafik' . $grafiic['tahun'] . '.php'); ?>
-                </div>
-                <br>
-            </div>
-        </div>
-    </div>
-<?php    } ?>
 
-
-<script>
-    var content2Element = document.getElementById("content2");
-    var content = document.getElementById("content");
-
-    function toggleVisibility2() {
-        var content2 = document.getElementById("content2");
-        if (content2.style.display === "none") {
-            content2.style.display = "block";
-        } else {
-            content2.style.display = "none";
-        }
-    }
-
-    function toggleVisibility() {
-        content.style.display = "block";
-    }
-
-    function toggleVisibility01() {
-        content.style.display = "none";
-    }
-</script>
 <?= $this->endSection(); ?>
