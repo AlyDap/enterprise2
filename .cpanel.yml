@@ -1,0 +1,7 @@
+# usercpanel nanti diganti host masing-masing cok
+
+---
+deployment:
+tasks:
+- export DEPLOYPATH=/home/riqc7594/public_html/git
+- /bin/cp -r * $DEPLOYPATH
