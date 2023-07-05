@@ -18,8 +18,33 @@ if (!empty($grafik1hari)) {
                 ?>
             </div>
         </div>
-
     </div>
+
+    <script>
+        const ctxa1hari = document.getElementById('myChart-1hari');
+        // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
+        new Chart(ctxa1hari, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($jammenit); ?>,
+                datasets: [{
+                    label: 'Produk Yang Terjual Hari Ini',
+                    data: <?= json_encode($jumlah); ?>,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
 <?php
 } else {
     $jammenit = array('Data kosong');
@@ -31,31 +56,3 @@ if (!empty($grafik1hari)) {
 <?php
 }
 ?>
-
-
-
-
-
-
-<script>
-    const ctxa1hari = document.getElementById('myChart-1hari');
-    // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-    new Chart(ctxa1hari, {
-        type: 'bar',
-        data: {
-            labels: <?= json_encode($jammenit); ?>,
-            datasets: [{
-                label: 'Produk Yang Terjual Hari Ini',
-                data: <?= json_encode($jumlah); ?>,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>

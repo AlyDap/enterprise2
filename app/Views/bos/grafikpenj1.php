@@ -52,7 +52,7 @@
         <span class="input-group-text" id="inputGroup-sizing-default">Tanggal</span>
         <input type="date" class="form-control" name="tgl" id="tgl">
         <button onclick="viewgrafik()" id="lihattgl" class="btn btn-outline-dark btn-flat" data-toggle="modal" data-target="#" disabled>
-            <i class="fas fa-file-alt"></i> Lihat
+            <i class="fas fa-chart-bar"></i> Lihat
             </a>
         </button>
     </div>
@@ -63,7 +63,7 @@
         <span class="input-group-text" id="inputGroup-sizing-default">Bulan</span>
         <input type="month" class="form-control" name="bln" id="bln">
         <button onclick="viewgrafikk()" id="lihatbln" class="btn btn-outline-dark btn-flat" data-toggle="modal" data-target="#" disabled>
-            <i class="fas fa-file-alt"></i> Lihat
+            <i class="fas fa-chart-bar"></i> Lihat
             </a>
         </button>
     </div>
@@ -83,7 +83,7 @@
             } ?>
         </select>
         <button onclick="viewgrafikkk()" id="lihatthn" class="btn btn-outline-dark btn-flat" data-toggle="modal" data-target="#" disabled>
-            <i class="fas fa-file-alt"></i> Lihat
+            <i class="fas fa-chart-bar"></i> Lihat
             </a>
         </button>
     </div>
