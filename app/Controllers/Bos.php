@@ -5,7 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\Bahan;
-use App\Models\GrafikModel;
+use App\Models\GrafikModelBos;
 use App\Models\Mitra;
 use App\Models\Penjahit;
 use App\Models\Produk;
@@ -43,7 +43,7 @@ class Bos extends BaseController
 
     public function detailGrafikPenjualan()
     {
-        $modelgrafik = new GrafikModel();
+        $modelgrafik = new GrafikModelBos();
         $data = [
             'title' => 'Detail Grafik Penjualan',
             'pilihtahun' => $modelgrafik->thn(),
@@ -53,7 +53,7 @@ class Bos extends BaseController
 
     public function viewDetailGrafikPenjualanHarian()
     {
-        $modelgrafik = new GrafikModel();
+        $modelgrafik = new GrafikModelBos();
         $tgl = $this->request->getPost('tgl');
         $info = "tanggal";
         $data = [
@@ -72,7 +72,7 @@ class Bos extends BaseController
     }
     public function viewDetailGrafikPenjualanBulanan()
     {
-        $modelgrafik = new GrafikModel();
+        $modelgrafik = new GrafikModelBos();
         $bln = $this->request->getPost('bln');
         $info = "bulan";
         $data = [
@@ -91,7 +91,7 @@ class Bos extends BaseController
     }
     public function viewDetailGrafikPenjualanTahunan()
     {
-        $modelgrafik = new GrafikModel();
+        $modelgrafik = new GrafikModelBos();
         $thn = $this->request->getPost('thn');
         $info = "tahun";
         $data = [

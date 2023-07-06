@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class GrafikModel extends Model
+class GrafikModelBos extends Model
 {
 
     // menampilkan jumlah produk terjual dalam 1 hari HARI
