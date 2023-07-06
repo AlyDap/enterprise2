@@ -126,6 +126,10 @@ class GrafikModelBos extends Model
     }
 
     // Grafik Pembelian
+    public function thnPembelian()
+    {
+        return $this->db->query("SELECT DISTINCT DATE_FORMAT(p.tgl, '%Y') as tahun FROM pembelian as p ORDER BY tahun DESC")->getResultArray();
+    }
     public function getInfoPerHariPembelian($tgl)
     {
         return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'hari %W, %e %M %Y')) as waktu  FROM pembelian p WHERE date(p.tgl) = '" . $tgl . "' ")->getRow();
@@ -141,6 +145,10 @@ class GrafikModelBos extends Model
 
 
     // Grafik Produksi / Penjahitan
+    public function thnPenjahitan()
+    {
+        return $this->db->query("SELECT DISTINCT DATE_FORMAT(p.tgl, '%Y') as tahun FROM penjahitan as p ORDER BY tahun DESC")->getResultArray();
+    }
     public function getInfoPerHariPenjahitan($tgl)
     {
         return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'hari %W, %e %M %Y')) as waktu  FROM penjahitan p WHERE date(p.tgl) = '" . $tgl . "' ")->getRow();
@@ -155,32 +163,77 @@ class GrafikModelBos extends Model
     }
 
     // Grafik Mitra
-    // Ambil getInfo Pembelian
-    public function getJumlahProdukMitraPerHari($tgl)
+    public function thnMitra()
     {
-        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'hari %W, %e %M %Y')) as waktu, p.id_supplier, sum(d.jumlah) as jumlah, pp.nama FROM pembelian p, detail_pembelian d, mitra pp WHERE p.no_pembelian=d.no_pembelian && pp.id_mitra=p.id_supplier && date(p.tgl) = '" . $tgl . "' GROUP BY p.id_supplier")->getRow();
+        return $this->db->query("SELECT DISTINCT DATE_FORMAT(p.tgl, '%Y') as tahun FROM pembelian as p ORDER BY tahun DESC")->getResultArray();
     }
-    public function getJumlahProdukMitraPerBulan($bln)
+    public function getInfoPerHariMitra($tgl)
     {
-        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'bulan %M %Y')) as waktu, p.id_supplier, sum(d.jumlah) as jumlah, pp.nama FROM pembelian p, detail_pembelian d, mitra pp WHERE p.no_pembelian=d.no_pembelian && pp.id_mitra=p.id_supplier && DATE_FORMAT(p.tgl, '%Y-%m') = '" . $bln . "' GROUP BY p.id_supplier")->getRow();
+        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'hari %W, %e %M %Y')) as waktu  FROM pembelian p WHERE date(p.tgl) = '" . $tgl . "' ")->getRow();
     }
-    public function getJumlahProdukMitraPerTahun($thn)
+    public function getInfoPerBulanMitra($bln)
     {
-        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'tahun %Y')) as waktu, p.id_supplier, sum(d.jumlah) as jumlah, pp.nama FROM pembelian p, detail_pembelian d, mitra pp WHERE p.no_pembelian=d.no_pembelian && pp.id_mitra=p.id_supplier && DATE_FORMAT(p.tgl, '%Y') = '" . $thn . "' GROUP BY p.id_supplier")->getRow();
+        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'bulan %M %Y')) as waktu  FROM pembelian p WHERE DATE_FORMAT(p.tgl, '%Y-%m') = '" . $bln . "' ")->getRow();
+    }
+    public function getInfoPerTahunMitra($thn)
+    {
+        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'tahun %Y')) as waktu  FROM pembelian p WHERE  DATE_FORMAT(p.tgl, '%Y') = '" . $thn . "' ")->getRow();
+    }
+    public function getJumlahPembelianMitraFull()
+    {
+        return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_supplier,COUNT(*) AS hitung
+        FROM detail_pembelian d, pembelian p, mitra pp
+        WHERE p.no_pembelian=d.no_pembelian && p.id_supplier=pp.id_mitra 
+        GROUP BY p.id_supplier")->getResultArray();
+    }
+    public function getJumlahPembelianMitraPerHari($tgl)
+    {
+        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'hari %W, %e %M %Y')) as waktu, p.id_supplier, sum(d.jumlah) as jumlah, pp.nama FROM pembelian p, detail_pembelian d, mitra pp WHERE p.no_pembelian=d.no_pembelian && pp.id_mitra=p.id_supplier && date(p.tgl) = '" . $tgl . "' GROUP BY p.id_supplier")->getResultArray();
+    }
+    public function getJumlahPembelianMitraPerBulan($bln)
+    {
+        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'bulan %M %Y')) as waktu, p.id_supplier, sum(d.jumlah) as jumlah, pp.nama FROM pembelian p, detail_pembelian d, mitra pp WHERE p.no_pembelian=d.no_pembelian && pp.id_mitra=p.id_supplier && DATE_FORMAT(p.tgl, '%Y-%m') = '" . $bln . "' GROUP BY p.id_supplier")->getResultArray();
+    }
+    public function getJumlahPembelianMitraPerTahun($thn)
+    {
+        return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'tahun %Y')) as waktu, p.id_supplier, sum(d.jumlah) as jumlah, pp.nama FROM pembelian p, detail_pembelian d, mitra pp WHERE p.no_pembelian=d.no_pembelian && pp.id_mitra=p.id_supplier && DATE_FORMAT(p.tgl, '%Y') = '" . $thn . "' GROUP BY p.id_supplier")->getResultArray();
     }
 
     // Grafik Penjahit
-    // Ambil getInfo Penjahitan
+    public function thnPenjahit()
+    {
+        return $this->db->query("SELECT DISTINCT DATE_FORMAT(p.tgl, '%Y') as tahun FROM penjahitan as p ORDER BY tahun DESC")->getResultArray();
+    }
+    public function getInfoPerHariPenjahit($tgl)
+    {
+        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'hari %W, %e %M %Y')) as waktu  FROM penjahitan p WHERE date(p.tgl) = '" . $tgl . "' ")->getRow();
+    }
+    public function getInfoPerBulanPenjahit($bln)
+    {
+        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'bulan %M %Y')) as waktu  FROM penjahitan p WHERE DATE_FORMAT(p.tgl, '%Y-%m') = '" . $bln . "' ")->getRow();
+    }
+    public function getInfoPerTahunPenjahit($thn)
+    {
+        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'tahun %Y')) as waktu  FROM penjahitan p WHERE  DATE_FORMAT(p.tgl, '%Y') = '" . $thn . "' ")->getRow();
+    }
+    public function getJumlahProdukPenjahitFull()
+    {
+        return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_penjahit,COUNT(*) AS hitung
+        FROM detail_jahit d, penjahitan p, penjahit pp
+        WHERE p.no_penjahitan=d.no_penjahitan && p.id_penjahit=pp.id_penjahit 
+        GROUP BY p.id_penjahit")->getResultArray();
+    }
+
     public function getJumlahProdukPenjahitPerHari($tgl)
     {
-        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'hari %W, %e %M %Y')) as waktu, p.id_penjahit, sum(d.jumlah) as jumlah, pp.nama FROM penjahitan p, detail_jahit d, penjahit pp WHERE p.no_penjahitan=d.no_penjahitan && pp.id_penjahit=p.id_penjahit && date(p.tgl) = '" . $tgl . "' GROUP BY p.id_penjahit")->getRow();
+        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'hari %W, %e %M %Y')) as waktu, p.id_penjahit, sum(d.jumlah) as jumlah, pp.nama FROM penjahitan p, detail_jahit d, penjahit pp WHERE p.no_penjahitan=d.no_penjahitan && pp.id_penjahit=p.id_penjahit && date(p.tgl) = '" . $tgl . "' GROUP BY p.id_penjahit")->getResultArray();
     }
     public function getJumlahProdukPenjahitPerBulan($bln)
     {
-        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'bulan %M %Y')) as waktu, p.id_penjahit, sum(d.jumlah) as jumlah, pp.nama FROM penjahitan p, detail_jahit d, penjahit pp WHERE p.no_penjahitan=d.no_penjahitan && pp.id_penjahit=p.id_penjahit && DATE_FORMAT(p.tgl, '%Y-%m') = '" . $bln . "' GROUP BY p.id_penjahit")->getRow();
+        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'bulan %M %Y')) as waktu, p.id_penjahit, sum(d.jumlah) as jumlah, pp.nama FROM penjahitan p, detail_jahit d, penjahit pp WHERE p.no_penjahitan=d.no_penjahitan && pp.id_penjahit=p.id_penjahit && DATE_FORMAT(p.tgl, '%Y-%m') = '" . $bln . "' GROUP BY p.id_penjahit")->getResultArray();
     }
     public function getJumlahProdukPenjahitPerTahun($thn)
     {
-        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'tahun %Y')) as waktu, p.id_penjahit, sum(d.jumlah) as jumlah, pp.nama FROM penjahitan p, detail_jahit d, penjahit pp WHERE p.no_penjahitan=d.no_penjahitan && pp.id_penjahit=p.id_penjahit && DATE_FORMAT(p.tgl, '%Y') = '" . $thn . "' GROUP BY p.id_penjahit")->getRow();
+        return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'tahun %Y')) as waktu, p.id_penjahit, sum(d.jumlah) as jumlah, pp.nama FROM penjahitan p, detail_jahit d, penjahit pp WHERE p.no_penjahitan=d.no_penjahitan && pp.id_penjahit=p.id_penjahit && DATE_FORMAT(p.tgl, '%Y') = '" . $thn . "' GROUP BY p.id_penjahit")->getResultArray();
     }
 }

@@ -168,39 +168,39 @@
         padding: 5px 0 5px 0;
         background: #E2DCD6;
     }
+
+    #dropdown-menu li {
+        cursor: pointer;
+    }
 </style>
 
 <div style="display: flex; align-items: center;">
     <h2 style="flex: 1;">DASHBOARD BOS</h2>
     <!-- Example split danger button -->
-    <div class="btn-group" style="margin-right: 5px;">
-        <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="btn-group" style="margin-right: 7px;">
+        <button type="button" class="btn btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item">Penjualan</a></li>
-            <li><a class="dropdown-item">Produksi</a></li>
-            <li><a class="dropdown-item">Pembelian</a></li>
-            <li><a class="dropdown-item">Penjahit</a></li>
-            <li><a class="dropdown-item">Mitra</a></li>
-            <!-- <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li> -->
+            <li><a class="dropdown-item" href="#">Penjualan</a></li>
+            <li><a class="dropdown-item" href="#">Produksi</a></li>
+            <li><a class="dropdown-item" href="#">Pembelian</a></li>
+            <li><a class="dropdown-item" href="#">Penjahit</a></li>
+            <li><a class="dropdown-item" href="#">Mitra</a></li>
         </ul>
-        <button type="button" class="btn btn-sm btn-outline-dark" disabled>Grafik Singkat</button>
+        <button type="button" class="btn btn btn-outline-dark" disabled>Cari Grafik</button>
     </div>
     <div class="btn-group">
-        <button type="button" class="btn btn-sm btn-outline-dark" disabled>Detail Grafik</button>
-        <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn btn-outline-dark" disabled>Detail Grafik</button>
+        <button type="button" class="btn btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjualan'); ?>">Penjualan</a></li>
             <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Produksi</a></li>
             <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Pembelian</a></li>
-            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Penjahit</a></li>
-            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Mitra</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjahit'); ?>">Penjahit</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikMitra'); ?>">Mitra</a></li>
             <!-- <li>
                 <hr class="dropdown-divider">
             </li>
@@ -210,7 +210,7 @@
 </div>
 
 <hr>
-
+<h3 style="text-align: center;" id="penj">Penjualan</h3>
 
 
 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
@@ -219,7 +219,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                        Penjualan Hari Ini
+                        Hari Ini
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -232,7 +232,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne2">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne2" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne2">
-                        Penjualan Selama 1 Pekan
+                        Selama 1 Pekan
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseOne2" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne2">
@@ -245,7 +245,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne3">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne3" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne3">
-                        Penjualan Selama 90 Hari
+                        Selama 90 Hari
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseOne3" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne3">
@@ -258,29 +258,58 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne4">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne4" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne4">
-                        Penjualan Setiap Tahun
+                        Setiap Tahun
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseOne4" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne4">
                     <div class="accordion-body">
-                        <?php echo view('bos/grafik.php');
-                        ?>
+                        <?php echo view('bos/grafik.php'); ?>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<hr>
+<h3 style="text-align: center;" id="penjh">Penjahit</h3>
 
+<div class="accordion" id="accordionFlushExample">
+    <div class="accordion-body">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepenjahit" aria-expanded="true" aria-controls="collapseOnepenjahit">
+                    Penjahit Selama Ini
+                </button>
+            </h2>
+            <div id="collapseOnepenjahit" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <?php echo view('bos/grafikpenjahitfull.php');
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<h3 style="text-align: center;" id="mitra">Mitra</h3>
+
+<div class="accordion" id="accordionFlushExample">
+    <div class="accordion-body">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnemitra" aria-expanded="true" aria-controls="collapseOnemitra">
+                    Mitra Selama Ini
+                </button>
+            </h2>
+            <div id="collapseOnemitra" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <?php echo view('bos/grafikmitrafull.php'); ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<?php //echo view('bos/grafik7hari.php'); 
-?>
-<?php //echo view('bos/grafik90hari.php'); 
-?>
-
-
-
 <br>
-
 
 <?= $this->endSection(); ?>

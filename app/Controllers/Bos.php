@@ -16,6 +16,7 @@ class Bos extends BaseController
     public function index()
     {
         $model = new Produk();
+        $modelGrafik = new GrafikModelBos();
 
         $data = [
             'title' => 'Dashboard'
@@ -37,6 +38,10 @@ class Bos extends BaseController
         $data['grafik1hari'] = $model->getTotalPenjualan1Hari();
         $data['grafik7hari'] = $model->getTotalPenjualan7Hari();
         $data['grafik90hari'] = $model->getTotalPenjualan90Hari();
+        // mitra
+        $data['grafikmitraFull'] = $modelGrafik->getJumlahPembelianMitraFull();
+        // penjahit
+        $data['grafikpenjahitFull'] = $modelGrafik->getJumlahProdukPenjahitFull();
 
         return view('bos/index', $data);
     }
@@ -49,6 +54,24 @@ class Bos extends BaseController
             'pilihtahun' => $modelgrafik->thn(),
         ];
         return view('bos/grafikpenj1', $data);
+    }
+    public function detailGrafikPenjahit()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $data = [
+            'title' => 'Detail Grafik Penjahit',
+            'pilihtahun' => $modelgrafik->thnPenjahit(),
+        ];
+        return view('bos/grafikpenjahit', $data);
+    }
+    public function detailGrafikMitra()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $data = [
+            'title' => 'Detail Grafik Mitra',
+            'pilihtahun' => $modelgrafik->thnMitra(),
+        ];
+        return view('bos/grafikmitra', $data);
     }
 
     public function viewDetailGrafikPenjualanHarian()
@@ -67,6 +90,36 @@ class Bos extends BaseController
         ];
         $response = [
             'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikPenjahitHarian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerHariPenjahit($tgl),
+            'datagrafik' => $modelgrafik->getJumlahProdukPenjahitPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikpenjahit', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikMitraHarian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerHariMitra($tgl),
+            'datagrafik' => $modelgrafik->getJumlahPembelianMitraPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikmitra', $data)
         ];
         echo json_encode($response);
     }
@@ -89,6 +142,36 @@ class Bos extends BaseController
         ];
         echo json_encode($response);
     }
+    public function viewDetailGrafikPenjahitBulanan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $bln = $this->request->getPost('bln');
+        $info = "bulan";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerBulanPenjahit($bln),
+            'datagrafik' => $modelgrafik->getJumlahProdukPenjahitPerBulan($bln),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikpenjahit', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikMitraBulanan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $bln = $this->request->getPost('bln');
+        $info = "bulan";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerBulanMitra($bln),
+            'datagrafik' => $modelgrafik->getJumlahPembelianMitraPerBulan($bln),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikmitra', $data)
+        ];
+        echo json_encode($response);
+    }
     public function viewDetailGrafikPenjualanTahunan()
     {
         $modelgrafik = new GrafikModelBos();
@@ -105,6 +188,36 @@ class Bos extends BaseController
         ];
         $response = [
             'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikPenjahitTahunan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $thn = $this->request->getPost('thn');
+        $info = "tahun";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerTahunPenjahit($thn),
+            'datagrafik' => $modelgrafik->getJumlahProdukPenjahitPerTahun($thn),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikpenjahit', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikMitraTahunan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $thn = $this->request->getPost('thn');
+        $info = "tahun";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerTahunMitra($thn),
+            'datagrafik' => $modelgrafik->getJumlahPembelianMitraPerTahun($thn),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikmitra', $data)
         ];
         echo json_encode($response);
     }

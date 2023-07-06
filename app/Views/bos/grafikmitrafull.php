@@ -1,14 +1,14 @@
 <?php
 
-if (!empty($grafik7hari)) {
-    foreach ($grafik7hari as $key => $value) {
-        $hari[] = $value['hari'];
+if (!empty($grafikmitraFull)) {
+    foreach ($grafikmitraFull as $key => $value) {
+        $nama[] = $value['nama'];
         $jumlah[] = $value['jumlah'];
     }
 ?>
     <div class="kaki">
         <div class="kiri">
-            <canvas id="myChart-7hari"></canvas>
+            <canvas id="myChart-full-mitra"></canvas>
             <div class="ykiri">
                 <?php //foreach ($Qtytahunan as $QtyT) : 
                 ?>
@@ -21,14 +21,14 @@ if (!empty($grafik7hari)) {
     </div>
 
     <script>
-        const ctxa7hari = document.getElementById('myChart-7hari');
+        const ctxafullmitra = document.getElementById('myChart-full-mitra');
         // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-        new Chart(ctxa7hari, {
-            type: 'bar',
+        new Chart(ctxafullmitra, {
+            type: 'polarArea',
             data: {
-                labels: <?= json_encode($hari); ?>,
+                labels: <?= json_encode($nama); ?>,
                 datasets: [{
-                    label: 'Produk Yang Terjual Dalam 7 Hari',
+                    label: 'Jumlah Bahan yang dibeli dari selama ini',
                     data: <?= json_encode($jumlah); ?>,
                     borderWidth: 1
                 }]
@@ -44,15 +44,16 @@ if (!empty($grafik7hari)) {
     </script>
 
 
-<?php
 
+<?php
 } else {
-    $hari = array('Data kosong');
+    $nama = array('Data kosong');
     $jumlah = array(0);
 ?>
     <div class="alert alert-info" role="alert">
-        Belum ada produk terjual dalam 7 hari.
+        Belum ada transaksi dengan Mitra Selama ini.
     </div>
 <?php
 }
+
 ?>

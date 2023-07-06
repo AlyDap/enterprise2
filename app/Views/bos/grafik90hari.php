@@ -52,8 +52,12 @@ if (!empty($grafik90hari)) {
 } else {
     $bulanhari = array('Data kosong');
     $jumlah = array(0);
+?>
+    <div class="alert alert-info" role="alert">
+        Belum ada produk terjual dalam 90 hari.
+    </div>
+<?php
 }
-
 
 
 ?>
