@@ -22,6 +22,9 @@ class DetailJahit extends Migration
             'jumlah' => [
                 'type'  => 'INT',
             ],
+            'jumlah_bahan' => [
+                'type'  => 'INT',
+            ],
             'biaya_produksi' => [
                 'type'  => 'INT',
             ],

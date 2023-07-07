@@ -31,6 +31,13 @@ class Produk extends Migration
             'jumlah'  => [
                 'type'  => 'INT',
             ],
+            'jumlah_produksi_perkain'  => [
+                'type'  => 'INT',
+            ],
+            'panjang_kain_perproduksi'  => [
+                'type'  => 'VARCHAR',
+                'constraint'    => 50
+            ],
             'status'  => [
                 'type'  => 'ENUM',
                 'constraint'  => "'Active','Inactive'",

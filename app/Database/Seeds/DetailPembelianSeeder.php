@@ -11,24 +11,24 @@ class DetailPembelianSeeder extends Seeder
         $data = [
             [
                 'no_pembelian' => '1',
-                'id_bahan' => '3',
-                'harga' => '10000',
+                'id_bahan' => '1',
+                'harga' => '75000',
                 'jumlah' => '10',
-                'total' => '100000'
+                'total' => '750000'
             ],
             [
                 'no_pembelian' => '2',
                 'id_bahan' => '3',
-                'harga' => '20000',
+                'harga' => '120000',
                 'jumlah' => '20',
-                'total' => '400000'
+                'total' => '2400000'
             ],
             [
                 'no_pembelian' => '2',
                 'id_bahan' => '4',
-                'harga' => '30000',
+                'harga' => '80000',
                 'jumlah' => '30',
-                'total' => '900000'
+                'total' => '2400000'
             ],
         ];
         $this->db->table('detail_pembelian')->insertBatch($data);
