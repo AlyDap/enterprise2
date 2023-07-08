@@ -35,6 +35,6 @@ class Penjahit extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('mitra', true);
+        $this->forge->dropTable('penjahit', true);
     }
 }

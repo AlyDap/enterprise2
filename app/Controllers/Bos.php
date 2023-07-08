@@ -267,6 +267,8 @@ class Bos extends BaseController
             'ukuran' => $this->request->getPost('ukuran'),
             'biaya_produksi' => $this->request->getPost('biaya_produksi'),
             'biaya_jual' => $this->request->getPost('biaya_jual'),
+            'jumlah_produksi_perkain' => $this->request->getPost('jumlah_produksi_perkain'),
+            'panjang_kain_perproduksi' => $this->request->getPost('panjang_kain_perproduksi'),
             'jumlah' => $this->request->getPost('jumlah'),
             'status' => $this->request->getPost('status')
         );
@@ -298,6 +300,8 @@ class Bos extends BaseController
             'biaya_produksi' => $this->request->getPost('biaya_produksi'),
             'biaya_jual' => $this->request->getPost('biaya_jual'),
             // 'jumlah' => $this->request->getPost('jumlah'),
+            'jumlah_produksi_perkain' => $this->request->getPost('jumlah_produksi_perkain'),
+            'panjang_kain_perproduksi' => $this->request->getPost('panjang_kain_perproduksi'),
             'status' => $this->request->getPost('status')
         );
         $model = new Produk();
@@ -479,6 +483,7 @@ class Bos extends BaseController
             'nama' => $this->request->getPost('nama'),
             'jumlah' => $this->request->getPost('jumlah'),
             'harga' => $this->request->getPost('harga'),
+            'panjang_kain' => $this->request->getPost('panjang_kain'),
             'status' => $this->request->getPost('status')
         );
         $model = new Bahan();
@@ -506,6 +511,7 @@ class Bos extends BaseController
             'nama' => $this->request->getPost('nama'),
             // 'jumlah' => $this->request->getPost('jumlah'),
             'harga' => $this->request->getPost('harga'),
+            'panjang_kain' => $this->request->getPost('panjang_kain'),
             'status' => $this->request->getPost('status')
         );
         $model = new Bahan();

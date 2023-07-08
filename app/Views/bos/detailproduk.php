@@ -91,11 +91,19 @@
             </div>
             <div class="kolom"><strong>Harga </strong> produk </div>
             <div class="kol">
-                <strong>Rp<?= $produk['biaya_jual']; ?>,00</strong>
+                <strong>Rp <?= number_format($produk['biaya_jual'], 0, ',', '.'); ?></strong>
             </div>
             <div class="kolom"> <strong>Biaya pembuatan</strong> produk </div>
             <div class="kol">
-                <strong>Rp<?= $produk['biaya_produksi']; ?>,00</strong>
+                <strong>Rp <?= number_format($produk['biaya_produksi'], 0, ',', '.'); ?></strong>
+            </div>
+            <div class="kolom"> <strong>Jumlah Produksi</strong> Per Kain </div>
+            <div class="kol">
+                <strong><?= $produk['jumlah_produksi_perkain']; ?> Pics</strong>
+            </div>
+            <div class="kolom"> <strong>Panjang Kain</strong> Per Produksi </div>
+            <div class="kol">
+                <strong><?= $produk['panjang_kain_perproduksi']; ?> </strong>
             </div>
             <div class="kolom"><strong>Status</strong> Produk </div>
             <div class="kol">

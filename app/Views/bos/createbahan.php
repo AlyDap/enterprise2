@@ -19,6 +19,10 @@
         <input type="number" class="form-control" placeholder="Masukan harga bahan" name="harga" required min="1000" step="1000" oninvalid="this.setCustomValidity('Wajib diisi dengan kelipatan 1000')" oninput="this.setCustomValidity('')">
     </div>
     <div class="mb-3">
+        <label for="panjang" class="form-label">Panjang Bahan</label>
+        <input type="text" class="form-control" placeholder="Masukan panjang bahan" name="panjang_kain" autofocus required maxlength="50" oninvalid="this.setCustomValidity('Wajib diisi dengan 1-50 karakter')" oninput="this.setCustomValidity('')">
+    </div>
+    <div class="mb-3">
         <label for="status" class="form-label">Status Bahan</label>
         <select class="form-select" aria-label="Default select example" name="status">
             <option selected value="Active">Pilih status bahan</option>
