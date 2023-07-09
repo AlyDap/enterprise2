@@ -6,19 +6,6 @@
   <br>
   <br>
 
-  <select class="form-select" aria-label=".form-select example" id="tahun">
-    <option selected>-- Pilih Tahun --</option>
-    <?php foreach ($Tahun as $tahunn) { ?>
-      <option value="<?= $tahunn['tahun']; ?>"><?= $tahunn['tahun']; ?></option>
-    <?php } ?>
-  </select>
-  <br>
-  <select class="form-select " aria-label=".form-select example" id="bulan">
-    <option selected>-- Pilih Bulan --</option>
-    <?php foreach ($Bulan as $bulann) { ?>
-      <option value="<?= $bulann['bulan']; ?>"><?= $bulann['namabulan']; ?></option>
-    <?php } ?>
-  </select>
 
   <h1 class="mt-2">Daftar Produksi</h1>
   <table class="table table-bordered table-hover">
@@ -29,8 +16,10 @@
         <th scope="col">id_penjahit</th>
         <th scope="col">tgl</th>
         <th scope="col">total_bayar</th>
-        <th scope="col">id_user</th>
         <th scope="col">id_bahan</th>
+        <th scope="col">total_bahan</th>
+        <th scope="col">id_user</th>
+        <th scope="col">aksi</th>
       </tr>
     </thead>
     <tbody>
@@ -42,8 +31,9 @@
           <td><?= $user['id_penjahit']; ?></td>
           <td><?= $user['tgl']; ?></td>
           <td><?= "Rp " . number_format($user['total_bayar'], 0, ',', '.');  ?></td>
-          <td><?= $user['id_user']; ?></td>
           <td><?= $user['id_bahan']; ?></td>
+          <td><?= $user['total_bahan']; ?></td>
+          <td><?= $user['id_user']; ?></td>
           <td>
             <a class="btn btn-sm btn-outline-secondary" id="btnDetail" href="<?= base_url('produksi/detailPenjahitan/' . $user['no_penjahitan']); ?>">Detail</a>
           </td>
