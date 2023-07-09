@@ -1,35 +1,90 @@
 <?php
 
-if (!empty($grafik7hari)) {
-    foreach ($grafik7hari as $key => $value) {
-        $hari[] = $value['hari'];
-        $jumlah[] = $value['jumlah'];
+if (!empty($cekPenjualan7Hari)) {
+    foreach ($grafik7hariA as $key => $value) {
+        $infoA[] = $value['haritanggal'];
+        $hasilA[] = $value['jumlah'];
+    }
+    foreach ($grafik7hariB as $key => $value) {
+        $infoB[] = $value['haritanggal'];
+        $hasilB[] = $value['total'];
+    }
+    foreach ($grafik7hariC as $key => $value) {
+        $infoC[] = $value['nama'];
+        $hasilC[] = $value['jumlah'];
     }
 ?>
     <div class="kaki">
         <div class="kiri">
-            <canvas id="myChart-7hari"></canvas>
+            <canvas id="myChart-7hari-A"></canvas>
             <div class="ykiri">
-                <?php //foreach ($Qtytahunan as $QtyT) : 
-                ?>
-                <!-- <h6>Total Produk Terjual <?php //echo number_format($QtyT['jumlah'], 0, ',', '.');
-                                                ?> Pcs</h6> -->
-                <?php //endforeach; 
-                ?>
+                <h6>Total Produk Terjual <?= number_format($Qty7hari->jumlah, 0, ',', '.'); ?> Pcs</h6>
             </div>
+        </div>
+        <div class="kanan">
+            <canvas id="myChart-7hari-B"></canvas>
+            <div class="ykanan">
+                <h6>Total Pendapatan Rp <?= number_format($Rp7hari->total, 0, ',', '.'); ?></h6>
+            </div>
+        </div>
+        <div class="tengah">
+            <canvas id="myChart-7hari-C"></canvas>
         </div>
     </div>
 
+
+
+
     <script>
-        const ctxa7hari = document.getElementById('myChart-7hari');
+        const ctxa7hariA = document.getElementById('myChart-7hari-A');
         // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-        new Chart(ctxa7hari, {
+        new Chart(ctxa7hariA, {
             type: 'bar',
             data: {
-                labels: <?= json_encode($hari); ?>,
+                labels: <?= json_encode($infoA); ?>,
                 datasets: [{
-                    label: 'Produk Yang Terjual Dalam 7 Hari',
-                    data: <?= json_encode($jumlah); ?>,
+                    label: 'Produk Yang Terjual',
+                    data: <?= json_encode($hasilA); ?>,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        const ctxa7hariB = document.getElementById('myChart-7hari-B');
+        // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
+        new Chart(ctxa7hariB, {
+            type: 'line',
+            data: {
+                labels: <?= json_encode($infoB); ?>,
+                datasets: [{
+                    label: 'Pendapatan',
+                    data: <?= json_encode($hasilB); ?>,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        const ctxa7hariC = document.getElementById('myChart-7hari-C');
+        // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
+        new Chart(ctxa7hariC, {
+            type: 'pie',
+            data: {
+                labels: <?= json_encode($infoC); ?>,
+                datasets: [{
+                    label: 'Produk Yang Terjual Hari Ini',
+                    data: <?= json_encode($hasilC); ?>,
                     borderWidth: 1
                 }]
             },
@@ -44,11 +99,9 @@ if (!empty($grafik7hari)) {
     </script>
 
 
-<?php
 
+<?php
 } else {
-    $hari = array('Data kosong');
-    $jumlah = array(0);
 ?>
     <div class="alert alert-info" role="alert">
         Belum ada produk terjual dalam 7 hari.

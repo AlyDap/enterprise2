@@ -19,25 +19,64 @@ class Bos extends BaseController
         $modelGrafik = new GrafikModelBos();
 
         $data = [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard Bos'
         ];
-        $grafik = $model->getTotalPenjualanTahunan();
-        $data['grafik'] = $grafik;
 
-        $data['tahungrafik'] = $model->getTahunPenjualan();
 
-        $grafik2 = $model->getTotalPendapatanTahunan();
-        $data['grafik2'] = $grafik2;
+        // $data['tahungrafik'] = $model->getTahunPenjualan();
 
+
+
+        // cek penjualan
+        $data['cekPenjualan1Hari'] = $modelGrafik->cekPenjualan1Hari();
+        $data['cekPenjualan7Hari'] = $modelGrafik->cekPenjualan7Hari();
+        $data['cekPenjualan90Hari'] = $modelGrafik->cekPenjualan90Hari();
+        // grafik penjualan
+        // setiap 1 hari
+        $data['grafik1hariA'] = $modelGrafik->getTotalPenjualan1Hari();
+        $data['grafik1hariB'] = $modelGrafik->getTotalPendapatan1Hari();;
+        $data['grafik1hariC'] = $modelGrafik->getNamaProduk1Hari();
+        $data['Rp1hari'] = $modelGrafik->getRpPendapatan1Hari();
+        $data['Qty1hari'] = $modelGrafik->getTotalTerjual1Hari();
+        // setiap 7 hari
+        $data['grafik7hariA'] = $modelGrafik->getTotalPenjualan7Hari();
+        $data['grafik7hariB'] = $modelGrafik->getTotalPendapatan7Hari();;
+        $data['grafik7hariC'] = $modelGrafik->getNamaProduk7Hari();
+        $data['Rp7hari'] = $modelGrafik->getRpPendapatan7Hari();
+        $data['Qty7hari'] = $modelGrafik->getTotalTerjual7Hari();
+        // setiap 90 hari
+        $data['grafik90hariA'] = $modelGrafik->getTotalPenjualan90Hari();
+        $data['grafik90hariB'] = $modelGrafik->getTotalPendapatan90Hari();;
+        $data['grafik90hariC'] = $modelGrafik->getNamaProduk90Hari();
+        $data['Rp90hari'] = $modelGrafik->getRpPendapatan90Hari();
+        $data['Qty90hari'] = $modelGrafik->getTotalTerjual90Hari();
+        //setiap tahun
+        $data['grafik'] = $model->getTotalPenjualanTahunan();
+        $data['grafik2'] = $model->getTotalPendapatanTahunan();;
         $data['grafik3'] = $model->getNamaProdukTahunan();
+        $data['Rptahunan'] = $model->getRpPendapatanTahunan();
+        $data['Qtytahunan'] = $model->getTotalTerjualTahunan();
 
-        $Rptahunan = $model->getRpPendapatanTahunan();
-        $data['Rptahunan'] = $Rptahunan;
-        $Qtytahunan = $model->getTotalTerjualTahunan();
-        $data['Qtytahunan'] = $Qtytahunan;
-        $data['grafik1hari'] = $model->getTotalPenjualan1Hari();
-        $data['grafik7hari'] = $model->getTotalPenjualan7Hari();
-        $data['grafik90hari'] = $model->getTotalPenjualan90Hari();
+        // cek pembelian
+        $data['cekPembelian1Hari'] = $modelGrafik->cekPembelian1Hari();
+        $data['cekPembelian7Hari'] = $modelGrafik->cekPembelian7Hari();
+        $data['cekPembelian90Hari'] = $modelGrafik->cekPembelian90Hari();
+        // grafik pembelian
+        // setiap 1 hari
+        // setiap 7 hari
+        // setiap 90 hari
+        //setiap tahun
+
+        // cek penjahitan
+        $data['cekPenjahitan1Hari'] = $modelGrafik->cekPenjahitan1Hari();
+        $data['cekPenjahitan7Hari'] = $modelGrafik->cekPenjahitan7Hari();
+        $data['cekPenjahitan90Hari'] = $modelGrafik->cekPenjahitan90Hari();
+        // grafik penjahitan
+        // setiap 1 hari
+        // setiap 7 hari
+        // setiap 90 hari
+        //setiap tahun
+
         // mitra
         $data['grafikmitraFull'] = $modelGrafik->getJumlahPembelianMitraFull();
         // penjahit

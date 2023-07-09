@@ -28,7 +28,7 @@ if (!empty($grafikmitraFull)) {
             data: {
                 labels: <?= json_encode($nama); ?>,
                 datasets: [{
-                    label: 'Jumlah Bahan yang dibeli dari selama ini',
+                    label: 'Jumlah Bahan yang dibeli selama ini',
                     data: <?= json_encode($jumlah); ?>,
                     borderWidth: 1
                 }]
