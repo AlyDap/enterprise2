@@ -67,19 +67,15 @@ class GrafikModelBos extends Model
     {
         return $this->db->query("SELECT
         p.tgl,
-        SUM(dp.jumlah) AS jumlah, sum(p.total_bayar) as total,
-        CONCAT(DATE_FORMAT(p.tgl, '%H:%i')) as jammenit,
-        TIME(p.tgl) AS waktu,
-        HOUR(p.tgl) AS jam, COUNT(*) AS hitung
+        SUM(p.total_bayar) AS total,
+        CONCAT(DATE_FORMAT(p.tgl, '%H:%i')) AS jammenit,
+        COUNT(*) AS hitung
     FROM
-        detail_penjualan dp,
-        penjualan p,
-        produk pr
-        WHERE
-        p.id_penjualan = dp.id_penjualan AND pr.id_produk = dp.id_produk AND p.tgl >= CURDATE() AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
-    GROUP BY
-        jammenit
-        ORDER BY p.tgl")->getResultArray();
+        penjualan p
+    WHERE
+        p.tgl >= CURDATE() AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY jammenit
+    ORDER BY
+        p.tgl ")->getResultArray();
     }
     public function getNamaProduk1Hari()
     {
@@ -124,14 +120,12 @@ class GrafikModelBos extends Model
     {
         return $this->db->query("SELECT
         p.tgl,
-        SUM(dp.jumlah) AS jumlah, sum(p.total_bayar) as total, DAYNAME(p.tgl) AS hari,
-        DATE_FORMAT(p.tgl, '%W-%d') AS haritanggal, COUNT(*) AS hitung
+        SUM(p.total_bayar) AS total, DAYNAME(p.tgl) AS hari,
+        DATE_FORMAT(p.tgl, '%W-%d') AS haritanggal,
+        COUNT(*) AS hitung
     FROM
-        detail_penjualan dp,
-        penjualan p,
-        produk pr
-        WHERE
-        p.id_penjualan = dp.id_penjualan AND pr.id_produk = dp.id_produk AND p.tgl >= DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        penjualan p
+    WHERE p.tgl >= DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
     GROUP BY dayname(p.tgl) ORDER BY p.tgl")->getResultArray();
     }
     public function getNamaProduk7Hari()
@@ -178,15 +172,13 @@ class GrafikModelBos extends Model
     {
         return $this->db->query("SELECT
         p.tgl,
-        SUM(dp.jumlah) AS jumlah, sum(p.total_bayar) as total, 
+        SUM(p.total_bayar) AS total,
         DATE_FORMAT(p.tgl, '%d-%M') AS bulanhari,
-        DATE_FORMAT(p.tgl, '%Y-%m-%d') AS tanggal_grup, COUNT(*) AS hitung
+        DATE_FORMAT(p.tgl, '%Y-%m-%d') AS tanggal_grup,
+        COUNT(*) AS hitung
     FROM
-        detail_penjualan dp,
-        penjualan p,
-        produk pr
-        WHERE
-        p.id_penjualan = dp.id_penjualan AND pr.id_produk = dp.id_produk AND p.tgl >= DATE_SUB(CURDATE(), INTERVAL 89 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        penjualan p
+    WHERE p.tgl >= DATE_SUB(CURDATE(), INTERVAL 89 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
         GROUP BY tanggal_grup ORDER BY p.tgl")->getResultArray();
     }
     public function getNamaProduk90Hari()
@@ -394,6 +386,30 @@ class GrafikModelBos extends Model
     {
         return $this->db->query("SELECT p.no_pembelian as hasil, CONCAT(DATE_FORMAT(p.tgl, 'tahun %Y')) as waktu  FROM pembelian p WHERE  DATE_FORMAT(p.tgl, '%Y') = '" . $thn . "' ")->getRow();
     }
+    public function getJumlahPembelianMitra1hari()
+    {
+        return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_supplier,COUNT(*) AS hitung
+        FROM detail_pembelian d, pembelian p, mitra pp
+        WHERE p.no_pembelian=d.no_pembelian && p.id_supplier=pp.id_mitra and
+        p.tgl >= CURDATE() AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY p.id_supplier")->getResultArray();
+    }
+    public function getJumlahPembelianMitra7hari()
+    {
+        return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_supplier,COUNT(*) AS hitung
+        FROM detail_pembelian d, pembelian p, mitra pp
+        WHERE p.no_pembelian=d.no_pembelian && p.id_supplier=pp.id_mitra and
+        p.tgl >= DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY p.id_supplier")->getResultArray();
+    }
+    public function getJumlahPembelianMitra90hari()
+    {
+        return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_supplier,COUNT(*) AS hitung
+        FROM detail_pembelian d, pembelian p, mitra pp
+        WHERE p.no_pembelian=d.no_pembelian && p.id_supplier=pp.id_mitra and
+        p.tgl >= DATE_SUB(CURDATE(), INTERVAL 89 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY p.id_supplier")->getResultArray();
+    }
     public function getJumlahPembelianMitraFull()
     {
         return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_supplier,COUNT(*) AS hitung
@@ -430,6 +446,30 @@ class GrafikModelBos extends Model
     public function getInfoPerTahunPenjahit($thn)
     {
         return $this->db->query("SELECT p.no_penjahitan as hasil, CONCAT(DATE_FORMAT(p.tgl, 'tahun %Y')) as waktu  FROM penjahitan p WHERE  DATE_FORMAT(p.tgl, '%Y') = '" . $thn . "' ")->getRow();
+    }
+    public function getJumlahProdukPenjahit1hari()
+    {
+        return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_penjahit,COUNT(*) AS hitung
+        FROM detail_jahit d, penjahitan p, penjahit pp
+        WHERE p.no_penjahitan=d.no_penjahitan && p.id_penjahit=pp.id_penjahit and
+        p.tgl >= CURDATE() AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY p.id_penjahit")->getResultArray();
+    }
+    public function getJumlahProdukPenjahit7hari()
+    {
+        return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_penjahit,COUNT(*) AS hitung
+        FROM detail_jahit d, penjahitan p, penjahit pp
+        WHERE p.no_penjahitan=d.no_penjahitan && p.id_penjahit=pp.id_penjahit and
+        p.tgl >= DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY p.id_penjahit")->getResultArray();
+    }
+    public function getJumlahProdukPenjahit90hari()
+    {
+        return $this->db->query("SELECT p.tgl,SUM(d.jumlah) AS jumlah, pp.nama,p.id_penjahit,COUNT(*) AS hitung
+        FROM detail_jahit d, penjahitan p, penjahit pp
+        WHERE p.no_penjahitan=d.no_penjahitan && p.id_penjahit=pp.id_penjahit and
+        p.tgl >= DATE_SUB(CURDATE(), INTERVAL 89 DAY) AND p.tgl < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY p.id_penjahit")->getResultArray();
     }
     public function getJumlahProdukPenjahitFull()
     {

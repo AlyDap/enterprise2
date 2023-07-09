@@ -78,8 +78,14 @@ class Bos extends BaseController
         //setiap tahun
 
         // mitra
+        $data['grafikmitra1hari'] = $modelGrafik->getJumlahPembelianMitra1hari();
+        $data['grafikmitra7hari'] = $modelGrafik->getJumlahPembelianMitra7hari();
+        $data['grafikmitra90hari'] = $modelGrafik->getJumlahPembelianMitra90hari();
         $data['grafikmitraFull'] = $modelGrafik->getJumlahPembelianMitraFull();
         // penjahit
+        $data['grafikpenjahit1hari'] = $modelGrafik->getJumlahProdukPenjahit1hari();
+        $data['grafikpenjahit7hari'] = $modelGrafik->getJumlahProdukPenjahit7hari();
+        $data['grafikpenjahit90hari'] = $modelGrafik->getJumlahProdukPenjahit90hari();
         $data['grafikpenjahitFull'] = $modelGrafik->getJumlahProdukPenjahitFull();
 
         return view('bos/index', $data);
