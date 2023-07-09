@@ -383,6 +383,8 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'status' => $this->request->getPost('status')
         );
 
@@ -410,6 +412,8 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'status' => $this->request->getPost('status')
         );
         $model = new Mitra();
@@ -452,6 +456,7 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'status' => $this->request->getPost('status')
         );
 
@@ -479,6 +484,7 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'status' => $this->request->getPost('status')
         );
         $model = new Penjahit();

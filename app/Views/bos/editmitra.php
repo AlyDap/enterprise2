@@ -16,6 +16,14 @@
         <input type="text" class="form-control" placeholder="Masukan alamat mitra" name="alamat" value="<?= $mitra['alamat']; ?>" required minlength="7" maxlength="70" oninvalid="this.setCustomValidity('Wajib diisi dengan 7-70 karakter')" oninput="this.setCustomValidity('')">
     </div>
     <div class="mb-3">
+        <label for="email" class="form-label">Email Mitra</label>
+        <input type="text" class="form-control" placeholder="Masukan Email mitra" name="email" value="<?= $mitra['email']; ?>" required minlength="5" maxlength="50" oninvalid="this.setCustomValidity('Wajib diisi 5-50 karakter dengan format email yang benar')" oninput="this.setCustomValidity('')">
+    </div>
+    <div class="mb-3">
+        <label for="no_hp" class="form-label">No Hp Mitra</label>
+        <input type="text" class="form-control" placeholder="Masukan No Hp mitra" name="no_hp" value="<?= $mitra['no_hp']; ?>" required minlength="5" maxlength="15" oninvalid="this.setCustomValidity('Wajib diisi dengan 5-15 karakter')" oninput="this.setCustomValidity('')">
+    </div>
+    <div class="mb-3">
         <label for="status" class="form-label">Status Mitra</label>
         <select class="form-select" aria-label="Default select example" name="status">
             <option selected value="Active">Pilih status mitra</option>
