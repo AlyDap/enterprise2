@@ -2,6 +2,28 @@
     .h6-keterangan {
         text-align: center;
     }
+
+    .float-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+        display: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #fff;
+        color: #000;
+        font-size: 24px;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+        border: #595e60 solid 1px;
+    }
+
+    .float-button.show {
+        display: block;
+    }
 </style>
 <?php if (!empty($cekpenjualanperwaktu)) {
     foreach ($datagrafik as $key => $value) {
@@ -57,6 +79,7 @@
     <h6 class="h6-keterangan">Nama Produk yang laku terjual
     </h6>
     <canvas id="myChart-1hariii"></canvas>
+    <button onclick="scrollToTop()" class="float-button">&#8593;</button>
 
 
     <script>
@@ -134,3 +157,22 @@
     </div>
 <?php
 } ?>
+<script>
+    // fungsi scroll ke atas
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.querySelector('.float-button').classList.add('show');
+        } else {
+            document.querySelector('.float-button').classList.remove('show');
+        }
+    }
+
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>

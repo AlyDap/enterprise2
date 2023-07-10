@@ -67,9 +67,9 @@ class Produksi extends BaseController
     {
         $data = [
             'title' => 'Input Produksi',
-            'produk' => $this->produkModel->getProduk(),
-            'bahan' => $this->bahanModel->getBahan(),
-            'penjahit' => $this->penjahitModel->getPenjahit(),
+            'produk' => $this->produkModel->getProdukAktif(),
+            'bahan' => $this->bahanModel->getBahanAktif(),
+            'penjahit' => $this->penjahitModel->getPenjahitAktif(),
         ];
         return view('produksi/tambahproduksi', $data);
     }

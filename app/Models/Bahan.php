@@ -18,7 +18,7 @@ class Bahan extends Model
             return $this->getWhere(['id_bahan' => $id]);
         }
     }
-    public function getPenjahitAktif()
+    public function getBahanAktif()
     {
         return $this->db->query('SELECT * FROM `bahan` WHERE status="Active"')->getResultArray();
     }
