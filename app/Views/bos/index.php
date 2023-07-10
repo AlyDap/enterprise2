@@ -293,7 +293,7 @@
                 </h2>
                 <div id="collapseOneproduksi1a" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikproduksi1hari.php');
+                        <?php //echo view('bos/grafikpenjahitan1hari.php');
                         ?>
                     </div>
                 </div>
@@ -306,7 +306,7 @@
                 </h2>
                 <div id="collapseOneproduksi1b" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikproduksi7hari.php');
+                        <?php //echo view('bos/grafikpenjahitan7hari.php');
                         ?>
                     </div>
                 </div>
@@ -319,7 +319,7 @@
                 </h2>
                 <div id="collapseOneproduksi1c" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikproduksi90hari.php');
+                        <?php //echo view('bos/grafikpenjahitan90hari.php');
                         ?>
                     </div>
                 </div>
@@ -332,7 +332,7 @@
                 </h2>
                 <div id="collapseOneproduksi1d" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikproduksifull.php');
+                        <?php //echo view('bos/grafikpenjahitanfull.php');
                         ?>
                     </div>
                 </div>
@@ -353,7 +353,7 @@
                 </h2>
                 <div id="collapseOnepembelian1a" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepembelian">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpembelian1hari.php');
+                        <?php echo view('bos/grafikpembelian1hari.php');
                         ?>
                     </div>
                 </div>
@@ -366,7 +366,7 @@
                 </h2>
                 <div id="collapseOnepembelian1b" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepembelian">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpembelian7hari.php');
+                        <?php echo view('bos/grafikpembelian7hari.php');
                         ?>
                     </div>
                 </div>
@@ -379,7 +379,7 @@
                 </h2>
                 <div id="collapseOnepembelian1c" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepembelian">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpembelian90hari.php');
+                        <?php echo view('bos/grafikpembelian90hari.php');
                         ?>
                     </div>
                 </div>
@@ -392,7 +392,7 @@
                 </h2>
                 <div id="collapseOnepembelian1d" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepembelian">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpembelianfull.php');
+                        <?php echo view('bos/grafikpembelianfull.php');
                         ?>
                     </div>
                 </div>

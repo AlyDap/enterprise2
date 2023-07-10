@@ -27,11 +27,11 @@ class Bos extends BaseController
 
 
 
+        // grafik penjualan
         // cek penjualan
         $data['cekPenjualan1Hari'] = $modelGrafik->cekPenjualan1Hari();
         $data['cekPenjualan7Hari'] = $modelGrafik->cekPenjualan7Hari();
         $data['cekPenjualan90Hari'] = $modelGrafik->cekPenjualan90Hari();
-        // grafik penjualan
         // setiap 1 hari
         $data['grafik1hariA'] = $modelGrafik->getTotalPenjualan1Hari();
         $data['grafik1hariB'] = $modelGrafik->getTotalPendapatan1Hari();;
@@ -57,21 +57,44 @@ class Bos extends BaseController
         $data['Rptahunan'] = $model->getRpPendapatanTahunan();
         $data['Qtytahunan'] = $model->getTotalTerjualTahunan();
 
+        // grafik pembelian
         // cek pembelian
         $data['cekPembelian1Hari'] = $modelGrafik->cekPembelian1Hari();
         $data['cekPembelian7Hari'] = $modelGrafik->cekPembelian7Hari();
         $data['cekPembelian90Hari'] = $modelGrafik->cekPembelian90Hari();
-        // grafik pembelian
+        $data['cekPembelianTahunan'] = $modelGrafik->cekPembelianTahunan();
         // setiap 1 hari
+        $data['grafikpembelian1hariA'] = $modelGrafik->getTotalPembelian1Hari();
+        $data['grafikpembelian1hariB'] = $modelGrafik->getTotalPengeluaranPembelian1Hari();;
+        $data['grafikpembelian1hariC'] = $modelGrafik->getNamaBahan1Hari();
+        $data['RpPembelian1hari'] = $modelGrafik->getRpPengeluaranPembelian1Hari();
+        $data['QtyPembelian1hari'] = $modelGrafik->getTotalDibeli1Hari();
         // setiap 7 hari
+        $data['grafikpembelian7hariA'] = $modelGrafik->getTotalPembelian7Hari();
+        $data['grafikpembelian7hariB'] = $modelGrafik->getTotalPengeluaranPembelian7Hari();;
+        $data['grafikpembelian7hariC'] = $modelGrafik->getNamaBahan7Hari();
+        $data['RpPembelian7hari'] = $modelGrafik->getRpPengeluaranPembelian7Hari();
+        $data['QtyPembelian7hari'] = $modelGrafik->getTotalDibeli7Hari();
         // setiap 90 hari
+        $data['grafikpembelian90hariA'] = $modelGrafik->getTotalPembelian90Hari();
+        $data['grafikpembelian90hariB'] = $modelGrafik->getTotalPengeluaranPembelian90Hari();;
+        $data['grafikpembelian90hariC'] = $modelGrafik->getNamaBahan90Hari();
+        $data['RpPembelian90hari'] = $modelGrafik->getRpPengeluaranPembelian90Hari();
+        $data['QtyPembelian90hari'] = $modelGrafik->getTotalDibeli90Hari();
         //setiap tahun
+        $data['grafikpembeliantahunanA'] = $modelGrafik->getTotalPembelianTahunan();
+        $data['grafikpembeliantahunanB'] = $modelGrafik->getTotalPengeluaranPembelianTahunan();;
+        $data['grafikpembeliantahunanC'] = $modelGrafik->getNamaBahanTahunan();
+        $data['RpPembeliantahunan'] = $modelGrafik->getRpPengeluaranPembelianTahunan();
+        $data['QtyPembeliantahunan'] = $modelGrafik->getTotalDibeliTahunan();
 
+
+        // grafik penjahitan
         // cek penjahitan
         $data['cekPenjahitan1Hari'] = $modelGrafik->cekPenjahitan1Hari();
         $data['cekPenjahitan7Hari'] = $modelGrafik->cekPenjahitan7Hari();
         $data['cekPenjahitan90Hari'] = $modelGrafik->cekPenjahitan90Hari();
-        // grafik penjahitan
+        $data['cekPenjahitanTahunan'] = $modelGrafik->cekPenjahitanTahunan();
         // setiap 1 hari
         // setiap 7 hari
         // setiap 90 hari
@@ -90,7 +113,7 @@ class Bos extends BaseController
 
         return view('bos/index', $data);
     }
-
+    // Mulai pilihan grafik
     public function detailGrafikPenjualan()
     {
         $modelgrafik = new GrafikModelBos();
@@ -118,7 +141,63 @@ class Bos extends BaseController
         ];
         return view('bos/grafikmitra', $data);
     }
-
+    public function detailGrafikPenjahitan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $data = [
+            'title' => 'Detail Grafik Penjahitan',
+            'pilihtahun' => $modelgrafik->thnPenjahitan(),
+        ];
+        return view('bos/grafikpenjahitan', $data);
+    }
+    public function detailGrafikPembelian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $data = [
+            'title' => 'Detail Grafik Pembelian',
+            'pilihtahun' => $modelgrafik->thnPembelian(),
+        ];
+        return view('bos/grafikpembelian', $data);
+    }
+    // Mulai Harian
+    public function viewDetailGrafikPenjahitanHarian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'cekpenjahitanperwaktu' => $modelgrafik->getInfoPerHariPenjahitan($tgl),
+            // 'datagrafik' => $modelgrafik->getTotalPenjualanPerHari($tgl),
+            // 'totalproduk' => $modelgrafik->getTotalTerjualPerHari($tgl),
+            // 'datagrafik2' => $modelgrafik->getTotalPendapatanPerHari($tgl),
+            // 'totalpendapatan' => $modelgrafik->getRpPendapatanPerHari($tgl),
+            // 'datagrafik3' => $modelgrafik->getNamaProdukPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikPembelianHarian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'cekpembelianperwaktu' => $modelgrafik->getInfoPerHariPembelian($tgl),
+            // 'datagrafik' => $modelgrafik->getTotalPembelianPerHari($tgl),
+            // 'totalproduk' => $modelgrafik->getTotalTerjualPerHari($tgl),
+            // 'datagrafik2' => $modelgrafik->getTotalPendapatanPerHari($tgl),
+            // 'totalpendapatan' => $modelgrafik->getRpPendapatanPerHari($tgl),
+            // 'datagrafik3' => $modelgrafik->getNamaProdukPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
     public function viewDetailGrafikPenjualanHarian()
     {
         $modelgrafik = new GrafikModelBos();
@@ -168,6 +247,7 @@ class Bos extends BaseController
         ];
         echo json_encode($response);
     }
+    // Mulai Bulanan
     public function viewDetailGrafikPenjualanBulanan()
     {
         $modelgrafik = new GrafikModelBos();
