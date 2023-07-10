@@ -17,6 +17,10 @@ class Penjahit extends Model
             return $this->getWhere(['id_penjahit' => $id]);
         }
     }
+    public function getPenjahitAktif()
+    {
+        return $this->db->query('SELECT * FROM `penjahit` WHERE status="Active"')->getResultArray();
+    }
 
     public function insertPenjahit($data)
     {

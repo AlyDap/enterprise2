@@ -31,6 +31,7 @@ class PembelianBahan extends Migration
         $this->forge->addForeignKey('id_user', 'user', 'id_user');
         $this->forge->addForeignKey('id_supplier', 'mitra', 'id_mitra');
         $this->forge->createTable('pembelian');
+        $this->db->query('ALTER TABLE `pembelian` CHANGE `tgl` `tgl` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;');
     }
 
     public function down()
