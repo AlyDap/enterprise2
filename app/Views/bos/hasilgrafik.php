@@ -103,7 +103,7 @@
                 }
             });
             new Chart(ctx111, {
-                type: 'pie',
+                type: 'polarArea',
                 data: {
                     labels: <?= json_encode($nama); ?>,
                     datasets: [{

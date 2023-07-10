@@ -172,6 +172,11 @@
     #dropdown-menu li {
         cursor: pointer;
     }
+
+    /* #hasilpil4,
+    #hasilpil5 {
+        display: none;
+    } */
 </style>
 
 <div style="display: flex; align-items: center;">
@@ -182,13 +187,14 @@
             <span class="visually-hidden">Toggle Dropdown</span>
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Penjualan</a></li>
-            <li><a class="dropdown-item" href="#">Produksi</a></li>
-            <li><a class="dropdown-item" href="#">Pembelian</a></li>
-            <li><a class="dropdown-item" href="#">Penjahit</a></li>
-            <li><a class="dropdown-item" href="#">Mitra</a></li>
+            <li><a class="dropdown-item" href="#" id="pil0">Semua</a></li>
+            <li><a class="dropdown-item" href="#" id="pil1">Penjualan</a></li>
+            <li><a class="dropdown-item" href="#" id="pil2">Produksi</a></li>
+            <li><a class="dropdown-item" href="#" id="pil3">Pembelian</a></li>
+            <li><a class="dropdown-item" href="#" id="pil4">Penjahit</a></li>
+            <li><a class="dropdown-item" href="#" id="pil5">Mitra</a></li>
         </ul>
-        <button type="button" class="btn btn btn-outline-dark" disabled>Cari Grafik</button>
+        <button type="button" class="btn btn btn-outline-dark" disabled>Tampilkan Grafik</button>
     </div>
     <div class="btn-group">
         <button type="button" class="btn btn btn-outline-dark" disabled>Detail Grafik</button>
@@ -209,101 +215,307 @@
     </div>
 </div>
 
-<hr>
-<h3 style="text-align: center;" id="penj">Penjualan</h3>
+
+<div id="hasilpil1">
+    <hr>
+    <h3 style="text-align: center;" id="penj">Penjualan</h3>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplePenjualan">
+        <div class="accordion-body">
+            <div class="accordion" id="accordionPanelsStayOpenExamplePenjualan">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            Hari Ini
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <?php echo view('bos/grafik1hari.php');
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne2">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne2" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne2">
+                            Selama 1 Pekan
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne2" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne2">
+                        <div class="accordion-body">
+                            <?php echo view('bos/grafik7hari.php');
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne3" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne3">
+                            Selama 90 Hari
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne3" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne3">
+                        <div class="accordion-body">
+                            <?php echo view('bos/grafik90hari.php');
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne4">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne4" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne4">
+                            Selama Ini
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne4" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne4">
+                        <div class="accordion-body">
+                            <?php echo view('bos/grafik.php'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <hr> -->
 
 
-<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-    <div class="accordion-body">
-        <div class="accordion" id="accordionPanelsStayOpenExample">
+<div id="hasilpil2">
+    <hr>
+    <h3 style="text-align: center;">Produksi</h3>
+    <div class="accordion" id="accordionFlushExample">
+        <div class="accordion-body">
             <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneproduksi1a" aria-expanded="true" aria-controls="collapseOneproduksi1a">
                         Hari Ini
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div id="collapseOneproduksi1a" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php echo view('bos/grafik1hari.php');
+                        <?php //echo view('bos/grafikpenjahitan1hari.php');
                         ?>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne2">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne2" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne2">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneproduksi1b" aria-expanded="true" aria-controls="collapseOneproduksi1b">
                         Selama 1 Pekan
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseOne2" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne2">
+                <div id="collapseOneproduksi1b" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php echo view('bos/grafik7hari.php');
+                        <?php //echo view('bos/grafikpenjahitan7hari.php');
                         ?>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne3">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne3" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne3">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneproduksi1c" aria-expanded="true" aria-controls="collapseOneproduksi1c">
                         Selama 90 Hari
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseOne3" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne3">
+                <div id="collapseOneproduksi1c" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php echo view('bos/grafik90hari.php');
+                        <?php //echo view('bos/grafikpenjahitan90hari.php');
                         ?>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne4">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne4" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne4">
-                        Setiap Tahun
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneproduksi1d" aria-expanded="true" aria-controls="collapseOneproduksi1d">
+                        Selama Ini
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseOne4" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne4">
+                <div id="collapseOneproduksi1d" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php echo view('bos/grafik.php'); ?>
+                        <?php //echo view('bos/grafikpenjahitanfull.php');
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<hr>
-<h3 style="text-align: center;" id="penjh">Penjahit</h3>
-
-<div class="accordion" id="accordionFlushExample">
-    <div class="accordion-body">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepenjahit" aria-expanded="true" aria-controls="collapseOnepenjahit">
-                    Penjahit Selama Ini
-                </button>
-            </h2>
-            <div id="collapseOnepenjahit" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <?php echo view('bos/grafikpenjahitfull.php');
-                    ?>
+<div id="hasilpil3">
+    <hr>
+    <h3 style="text-align: center;">Pembelian</h3>
+    <div class="accordion" id="accordionFlushExample">
+        <div class="accordion-body">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepembelian1a" aria-expanded="true" aria-controls="collapseOnepembelian1a">
+                        Hari Ini
+                    </button>
+                </h2>
+                <div id="collapseOnepembelian1a" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepembelian">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikpembelian1hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepembelian1b" aria-expanded="true" aria-controls="collapseOnepembelian1b">
+                        Selama 1 Pekan
+                    </button>
+                </h2>
+                <div id="collapseOnepembelian1b" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepembelian">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikpembelian7hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepembelian1c" aria-expanded="true" aria-controls="collapseOnepembelian1c">
+                        Selama 90 Hari
+                    </button>
+                </h2>
+                <div id="collapseOnepembelian1c" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepembelian">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikpembelian90hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepembelian1d" aria-expanded="true" aria-controls="collapseOnepembelian1d">
+                        Selama Ini
+                    </button>
+                </h2>
+                <div id="collapseOnepembelian1d" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepembelian">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikpembelianfull.php');
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<hr>
-<h3 style="text-align: center;" id="mitra">Mitra</h3>
+<div id="hasilpil4">
+    <hr>
+    <h3 style="text-align: center;">Penjahit</h3>
+    <div class="accordion" id="accordionFlushExample">
+        <div class="accordion-body">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepenjahit1a" aria-expanded="true" aria-controls="collapseOnepenjahit1a">
+                        Hari Ini
+                    </button>
+                </h2>
+                <div id="collapseOnepenjahit1a" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepenjahit">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikpenjahit1hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepenjahit1b" aria-expanded="true" aria-controls="collapseOnepenjahit1b">
+                        Selama 1 Pekan
+                    </button>
+                </h2>
+                <div id="collapseOnepenjahit1b" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepenjahit">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikpenjahit7hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepenjahit1c" aria-expanded="true" aria-controls="collapseOnepenjahit1c">
+                        Selama 90 Hari
+                    </button>
+                </h2>
+                <div id="collapseOnepenjahit1c" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepenjahit">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikpenjahit90hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnepenjahit1d" aria-expanded="true" aria-controls="collapseOnepenjahit1d">
+                        Selama Ini
+                    </button>
+                </h2>
+                <div id="collapseOnepenjahit1d" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplepenjahit">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikpenjahitfull.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="accordion" id="accordionFlushExample">
-    <div class="accordion-body">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnemitra" aria-expanded="true" aria-controls="collapseOnemitra">
-                    Mitra Selama Ini
-                </button>
-            </h2>
-            <div id="collapseOnemitra" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <?php echo view('bos/grafikmitrafull.php'); ?>
+<div id="hasilpil5">
+    <hr>
+    <h3 style="text-align: center;" id="mitra">Mitra</h3>
+    <div class="accordion" id="accordionFlushExample">
+        <div class="accordion-body">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnemitra1" aria-expanded="true" aria-controls="collapseOnemitra1">
+                        Hari Ini
+                    </button>
+                </h2>
+                <div id="collapseOnemitra1" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplemitra">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikmitra1hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnemitra2" aria-expanded="true" aria-controls="collapseOnemitra2">
+                        Selama 1 Pekan
+                    </button>
+                </h2>
+                <div id="collapseOnemitra2" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplemitra">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikmitra7hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnemitra3" aria-expanded="true" aria-controls="collapseOnemitra3">
+                        Selama 90 Hari
+                    </button>
+                </h2>
+                <div id="collapseOnemitra3" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplemitra">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikmitra90hari.php');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnemitra4" aria-expanded="true" aria-controls="collapseOnemitra4">
+                        Selama Ini
+                    </button>
+                </h2>
+                <div id="collapseOnemitra4" class="accordion-collapse collapse show" data-bs-parent="#accordionExamplemitra">
+                    <div class="accordion-body">
+                        <?php echo view('bos/grafikmitrafull.php');
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,5 +523,85 @@
 </div>
 
 <br>
+<script>
+    var pil0 = document.getElementById("pil0");
+    var pil1 = document.getElementById("pil1");
+    var pil2 = document.getElementById("pil2");
+    var pil3 = document.getElementById("pil3");
+    var pil4 = document.getElementById("pil4");
+    var pil5 = document.getElementById("pil5");
+    var hasilpil1 = document.getElementById("hasilpil1");
+    var hasilpil2 = document.getElementById("hasilpil2");
+    var hasilpil3 = document.getElementById("hasilpil3");
+    var hasilpil4 = document.getElementById("hasilpil4");
+    var hasilpil5 = document.getElementById("hasilpil5");
+
+    function showpil0() {
+        hasilpil1.style.display = "block";
+        hasilpil2.style.display = "block";
+        hasilpil3.style.display = "block";
+        hasilpil4.style.display = "block";
+        hasilpil5.style.display = "block";
+    }
+
+    function showpil1() {
+        hasilpil1.style.display = "block";
+        hasilpil2.style.display = "none";
+        hasilpil3.style.display = "none";
+        hasilpil4.style.display = "none";
+        hasilpil5.style.display = "none";
+    }
+
+    function showpil2() {
+        hasilpil2.style.display = "block";
+        hasilpil1.style.display = "none";
+        hasilpil3.style.display = "none";
+        hasilpil4.style.display = "none";
+        hasilpil5.style.display = "none";
+    }
+
+    function showpil3() {
+        hasilpil3.style.display = "block";
+        hasilpil1.style.display = "none";
+        hasilpil2.style.display = "none";
+        hasilpil4.style.display = "none";
+        hasilpil5.style.display = "none";
+    }
+
+    function showpil4() {
+        hasilpil4.style.display = "block";
+        hasilpil1.style.display = "none";
+        hasilpil2.style.display = "none";
+        hasilpil3.style.display = "none";
+        hasilpil5.style.display = "none";
+    }
+
+    function showpil5() {
+        hasilpil5.style.display = "block";
+        hasilpil1.style.display = "none";
+        hasilpil2.style.display = "none";
+        hasilpil3.style.display = "none";
+        hasilpil4.style.display = "none";
+    }
+
+    pil0.addEventListener("click", function() {
+        showpil0();
+    })
+    pil1.addEventListener("click", function() {
+        showpil1();
+    })
+    pil2.addEventListener("click", function() {
+        showpil2();
+    })
+    pil3.addEventListener("click", function() {
+        showpil3();
+    })
+    pil4.addEventListener("click", function() {
+        showpil4();
+    })
+    pil5.addEventListener("click", function() {
+        showpil5();
+    })
+</script>
 
 <?= $this->endSection(); ?>

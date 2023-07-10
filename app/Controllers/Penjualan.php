@@ -3,11 +3,13 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-
+use App\Models\ChatModel;
 use App\Models\DetailPenjualan;
 use App\Models\Penjualan_model;
 use App\Models\laporan_model;
 use App\Models\Produk;
+
+use CodeIgniter\I18n\Time;
 
 helper('form');
 
@@ -17,8 +19,10 @@ class Penjualan extends BaseController
     protected $laporanModel;
     protected $produkModel;
     protected $detailPenjualan;
+    protected $chatModel;
     public function __construct()
     {
+        $this->chatModel = new ChatModel();
         $this->penjualanModel = new Penjualan_model();
         $this->laporanModel = new laporan_model();
         $this->produkModel = new Produk();
@@ -91,7 +95,7 @@ class Penjualan extends BaseController
     {
         $data = [
             'title' => 'Input Penjualan',
-            'produk' => $this->produkModel->getProduk()
+            'produk' => $this->produkModel->getProdukAktif()
         ];
         return view('penjualan/tambahpenjualan', $data);
     }
@@ -123,7 +127,8 @@ class Penjualan extends BaseController
             'gt' => $this->laporanModel->GrandTotal($tgl),
         ];
         $response = [
-            'data' => view('penjualan/tabellaporan', $data)
+            'data' => view('penjualan/tabellaporan', $data),
+            'tabel' => $tgl
         ];
         echo json_encode($response);
     }
@@ -170,28 +175,6 @@ class Penjualan extends BaseController
         echo json_encode($response);
     }
     // end laporan
-
-    public function cetakLaporanHarian($tgl)
-    {
-        $data = [
-            'dataharian' => $this->laporanModel->DataHarian($tgl),
-            'gt' => $this->laporanModel->GrandTotalPenjualan($tgl),
-        ];
-
-        // Load library mPDF
-        $mpdf = new \Mpdf\Mpdf();
-
-        // Generate HTML laporan dengan menggunakan view
-        $html = view('penjualan/laporanpenjualanharian', $data);
-
-        // Set konfigurasi mPDF
-        $mpdf->SetDisplayMode('fullpage');
-        $mpdf->WriteHTML($html);
-
-        // Cetak laporan dalam bentuk file PDF
-        $mpdf->Output('laporanpenjualanharian.pdf', 'D');
-    }
-
 
     public function storePenjualan()
     {
@@ -258,5 +241,37 @@ class Penjualan extends BaseController
             'stok' => $produk['jumlah']
         ];
         return $this->response->setJSON($data);
+    }
+
+
+    public function kirimLaporanharian($tgl)
+    {
+        // kirim chat ke bos berisi tgl
+        // kalau ada hari = harian, bulan = bulanan, tahun = tahunan
+        $Time =  Time::parse($tgl);
+        $messageForBos = '<a href="/penjualan/laporan/' . $tgl . '" >Laporan Penjualan ' . $tgl . '</a>';
+        $this->chatModel->sendMessage(session('id'), 1, $messageForBos);
+
+        session()->setFlashdata('sucessLaporan');
+
+        $data = [
+            'title' => 'LAPORAN HARIAN'
+        ];
+
+        return view('penjualan/laporanharian', $data);
+    }
+
+    public function laporan1($tgl)
+    {
+        if (session('jabatan') == 'bos' || session('jabatan') == 'penjualan') {
+
+
+            $data = [
+                'title' => 'LAPORAN BOS',
+                'tgl' => $tgl
+            ];
+            return view('penjualan/laporanbos', $data);
+        }
+        return view('dashboard');
     }
 }

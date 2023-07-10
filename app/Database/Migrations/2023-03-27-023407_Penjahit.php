@@ -22,6 +22,10 @@ class Penjahit extends Migration
                 'type'  => 'VARCHAR',
                 'constraint'    => 70
             ],
+            'no_hp'  => [
+                'type'  => 'VARCHAR',
+                'constraint'    => 15
+            ],
             'status'  => [
                 'type'  => 'ENUM',
                 'constraint'  => "'Active','Inactive'",
@@ -35,6 +39,6 @@ class Penjahit extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('mitra', true);
+        $this->forge->dropTable('penjahit', true);
     }
 }

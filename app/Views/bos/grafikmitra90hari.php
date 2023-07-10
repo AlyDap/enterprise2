@@ -1,14 +1,14 @@
 <?php
 
-if (!empty($grafikmitraFull)) {
-    foreach ($grafikmitraFull as $key => $value) {
+if (!empty($grafikmitra90hari)) {
+    foreach ($grafikmitra90hari as $key => $value) {
         $nama[] = $value['nama'];
         $jumlah[] = $value['jumlah'];
     }
 ?>
     <div class="kaki">
         <div class="kiri">
-            <canvas id="myChart-full-mitra"></canvas>
+            <canvas id="myChart-90hari-mitra"></canvas>
             <div class="ykiri">
                 <?php //foreach ($Qtytahunan as $QtyT) : 
                 ?>
@@ -21,14 +21,14 @@ if (!empty($grafikmitraFull)) {
     </div>
 
     <script>
-        const ctxafullmitra = document.getElementById('myChart-full-mitra');
+        const ctxa90harimitra = document.getElementById('myChart-90hari-mitra');
         // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-        new Chart(ctxafullmitra, {
+        new Chart(ctxa90harimitra, {
             type: 'polarArea',
             data: {
                 labels: <?= json_encode($nama); ?>,
                 datasets: [{
-                    label: 'Jumlah Bahan yang dibeli selama ini',
+                    label: 'Jumlah Bahan yang dibeli',
                     data: <?= json_encode($jumlah); ?>,
                     borderWidth: 1
                 }]
@@ -51,7 +51,7 @@ if (!empty($grafikmitraFull)) {
     $jumlah = array(0);
 ?>
     <div class="alert alert-info" role="alert">
-        Belum ada transaksi dengan Mitra Selama ini.
+        Belum ada transaksi dengan Mitra Selama 90 hari.
     </div>
 <?php
 }

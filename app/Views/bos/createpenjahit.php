@@ -15,6 +15,10 @@
         <input type="text" class="form-control" placeholder="Masukan alamat penjahit" name="alamat" required minlength="7" maxlength="70" oninvalid="this.setCustomValidity('Wajib dengan 7-70 karakter')" oninput="this.setCustomValidity('')">
     </div>
     <div class="mb-3">
+        <label for="no_hp" class="form-label">No Hp Penjahit</label>
+        <input type="text" class="form-control" placeholder="Masukan No Hp penjahit" name="no_hp" required minlength="5" maxlength="15" oninvalid="this.setCustomValidity('Wajib dengan 5-15 karakter')" oninput="this.setCustomValidity('')">
+    </div>
+    <div class="mb-3">
         <label for="status" class="form-label">Status Penjahit</label>
         <select class="form-select" aria-label="Default select example" name="status">
             <option selected value="Active">Pilih status Penjahit</option>

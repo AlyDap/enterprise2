@@ -75,6 +75,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
             <th scope="col" style="padding: 15px;">No</th>
             <th scope="col" style="padding: 15px;">Nama</th>
             <th scope="col" style="padding: 15px;">Alamat</th>
+            <th scope="col" style="padding: 15px;">No Hp</th>
             <th scope="col" style="padding: 15px;">Status</th>
             <th scope="col" style="padding: 15px;">Action</th>
         </tr>
@@ -86,6 +87,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
                 <th scope="row"><?= $i++; ?></td>
                 <td><?= $row['nama']; ?></td>
                 <td><?= $row['alamat']; ?></td>
+                <td><?= $row['no_hp']; ?></td>
                 <td><?= $row['status']; ?></td>
                 <td>
                     <a href="<?= base_url('penjahit/editpenjahit/' . $row['id_penjahit']); ?>" class="btn btn-sm btn-outline-secondary">Edit</a>

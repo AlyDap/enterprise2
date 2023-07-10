@@ -1,34 +1,34 @@
 <?php
 
 if (!empty($cekPenjualan7Hari)) {
-    foreach ($grafik7hariA as $key => $value) {
+    foreach ($grafikpembelian7hariA as $key => $value) {
         $infoA[] = $value['haritanggal'];
         $hasilA[] = $value['jumlah'];
     }
-    foreach ($grafik7hariB as $key => $value) {
+    foreach ($grafikpembelian7hariB as $key => $value) {
         $infoB[] = $value['haritanggal'];
         $hasilB[] = $value['total'];
     }
-    foreach ($grafik7hariC as $key => $value) {
+    foreach ($grafikpembelian7hariC as $key => $value) {
         $infoC[] = $value['nama'];
         $hasilC[] = $value['jumlah'];
     }
 ?>
     <div class="kaki">
         <div class="kiri">
-            <canvas id="myChart-7hari-A"></canvas>
+            <canvas id="myChart-7hari-pembelian-A"></canvas>
             <div class="ykiri">
-                <h6>Total Produk Terjual <?= number_format($Qty7hari->jumlah, 0, ',', '.'); ?> Pcs</h6>
+                <h6>Total Bahan Dibeli <?= number_format($QtyPembelian7hari->jumlah, 0, ',', '.'); ?> Pcs</h6>
             </div>
         </div>
         <div class="kanan">
-            <canvas id="myChart-7hari-B"></canvas>
+            <canvas id="myChart-7hari-pembelian-B"></canvas>
             <div class="ykanan">
-                <h6>Total Pendapatan Rp <?= number_format($Rp7hari->total, 0, ',', '.'); ?></h6>
+                <h6>Total Pengeluaran Pembelian Rp <?= number_format($RpPembelian7hari->total, 0, ',', '.'); ?></h6>
             </div>
         </div>
         <div class="tengah">
-            <canvas id="myChart-7hari-C"></canvas>
+            <canvas id="myChart-7hari-pembelian-C"></canvas>
         </div>
     </div>
 
@@ -36,14 +36,14 @@ if (!empty($cekPenjualan7Hari)) {
 
 
     <script>
-        const ctxa7hariA = document.getElementById('myChart-7hari-A');
+        const ctxa7hariPembelianA = document.getElementById('myChart-7hari-pembelian-A');
         // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-        new Chart(ctxa7hariA, {
+        new Chart(ctxa7hariPembelianA, {
             type: 'bar',
             data: {
                 labels: <?= json_encode($infoA); ?>,
                 datasets: [{
-                    label: 'Produk Yang Terjual',
+                    label: 'Bahan Yang Dibeli',
                     data: <?= json_encode($hasilA); ?>,
                     borderWidth: 1
                 }]
@@ -56,14 +56,14 @@ if (!empty($cekPenjualan7Hari)) {
                 }
             }
         });
-        const ctxa7hariB = document.getElementById('myChart-7hari-B');
+        const ctxa7hariPembelianB = document.getElementById('myChart-7hari-pembelian-B');
         // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-        new Chart(ctxa7hariB, {
+        new Chart(ctxa7hariPembelianB, {
             type: 'line',
             data: {
                 labels: <?= json_encode($infoB); ?>,
                 datasets: [{
-                    label: 'Pendapatan',
+                    label: 'Pengeluaran Pembelian',
                     data: <?= json_encode($hasilB); ?>,
                     borderWidth: 1
                 }]
@@ -76,14 +76,14 @@ if (!empty($cekPenjualan7Hari)) {
                 }
             }
         });
-        const ctxa7hariC = document.getElementById('myChart-7hari-C');
+        const ctxa7hariPembelianC = document.getElementById('myChart-7hari-pembelian-C');
         // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
-        new Chart(ctxa7hariC, {
+        new Chart(ctxa7hariPembelianC, {
             type: 'pie',
             data: {
                 labels: <?= json_encode($infoC); ?>,
                 datasets: [{
-                    label: 'Produk Yang Terjual Hari Ini',
+                    label: 'Bahan Yang Dibeli',
                     data: <?= json_encode($hasilC); ?>,
                     borderWidth: 1
                 }]
@@ -104,7 +104,7 @@ if (!empty($cekPenjualan7Hari)) {
 } else {
 ?>
     <div class="alert alert-info" role="alert">
-        Belum ada produk terjual dalam 7 hari.
+        Belum ada bahan yang dibeli selama 1 pekan.
     </div>
 <?php
 }

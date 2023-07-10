@@ -128,9 +128,6 @@
             <li class="nav-item">
               <a class="nav-link gaprint" href="/penjualan/tampol">Penjualan</a>
             </li>
-            <li class="nav-item gaprint">
-              <a class="nav-link" href="/penjualan/coba">Coba</a>
-            </li>
           <?php endif; ?>
 
 
