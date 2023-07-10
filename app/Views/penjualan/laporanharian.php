@@ -1,6 +1,14 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('content') ?>
 
+<?php if (session('sucessLaporan')) : ?>
+    <script>
+        alert('LAPORAN BERHASIL DIKIRIMKAN KE BOS');
+    </script>
+
+    <?php session()->destroy('successLaporan') ?>
+<?php endif ?>
+
 <div class="card-body">
     <div class="form-group row">
         <label class="col-sm-1 col-form-label">tanggal</label>
@@ -11,7 +19,7 @@
                     <i class="fas fa-file-alt"></i> view laporan
                     </a>
                 </button>
-                <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('penjualan/cetaklaporanharian'); ?>">Cetak Penjualan</a>
+                <button onclick="kirimLaporan()" class="btn btn-secondary">Kirim Laporan</button>
             </span>
         </div>
     </div>
@@ -39,6 +47,15 @@
                     }
                 }
             })
+        }
+
+        function kirimLaporanharian() {
+            let tgl = $('#tgl').val();
+            if (tgl) {
+                location.href = '<?= base_url('penjualan/kirimlaporanharian/') ?>' + tgl;
+            } else {
+                alert('DATA KOSONG GAUSA KIRIM KE BOS TEMAN2')
+            }
         }
     </script>
 

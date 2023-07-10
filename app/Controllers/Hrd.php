@@ -36,7 +36,7 @@ class Hrd extends BaseController
                 }
             }
         }
-        dd($absensi);
+        // dd($absensi);
 
         $data = [
             'title' => 'Dashboard',

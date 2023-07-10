@@ -28,6 +28,11 @@ class Produk extends Model
     {
         return $this->db->table($this->table)->update($data, ['id_produk' => $id]);
     }
+    public function getProdukAktif()
+    {
+        // return $this->db->table('view_jumlah_produk_penjualan_tahunan')->get()->getResultArray();
+        return $this->db->query('SELECT * FROM `produk` WHERE status="Active"')->getResultArray();
+    }
 
     // model untuk grafik
     public function getTahunPenjualan()

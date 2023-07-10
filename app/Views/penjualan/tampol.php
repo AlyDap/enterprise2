@@ -11,7 +11,6 @@
       <li><a class="dropdown-item" href="<?= base_url('penjualan/laporanbulanan'); ?>">laporan bulanan</a></li>
       <li><a class="dropdown-item" href="<?= base_url('penjualan/laporantahunan'); ?>">laporan tahunan</a></li>
     </ul>
-    <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('penjualan/cetakpenjualan'); ?>">Cetak Penjualan</a>
   </div>
 
 
