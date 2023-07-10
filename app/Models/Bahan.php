@@ -8,7 +8,7 @@ class Bahan extends Model
 {
     protected $table = 'bahan';
     protected $primaryKey = "id_bahan";
-    protected $allowedFields = ['nama', 'stok', 'harga', 'status'];
+    protected $allowedFields = ['nama', 'jumlah', 'harga', 'status'];
 
     public function getBahan($id = false)
     {
@@ -28,4 +28,18 @@ class Bahan extends Model
     {
         return $this->db->table($this->table)->update($data, ['id_bahan' => $id]);
     }
+
+    // model untuk grafik
+    public function getTotalPembelian()
+    {
+        return $this->db->query('SELECT
+        pr.id_bahan,pr.nama, SUM(dp.jumlah) as jumlah
+    FROM
+        pembelian p,
+        detail_pembelian dp,
+        bahan pr
+    WHERE
+        p.no_pembelian = dp.no_pembelian AND pr.id_bahan=dp.id_bahan GROUP BY pr.id_bahan')->getResultArray();
+    }
 }
+

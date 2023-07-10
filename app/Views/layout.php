@@ -108,6 +108,18 @@
             <li class="nav-item">
               <a class="nav-link" href="/gudang/tampil">Gudang</a>
             </li>
+            <!-- bahan -->
+            <li class="nav-item">
+              <a class="nav-link" href="/gudang/bahan">Bahan</a>
+            </li>
+            <!-- produk -->
+            <li class="nav-item">
+              <a class="nav-link" href="/gudang/produk">Produk</a>
+            </li>
+            <!-- mitra -->
+            <li class="nav-item">
+              <a class="nav-link" href="/gudang/mitra">Mitra</a>
+            </li>
           <?php endif; ?>
 
 
