@@ -293,7 +293,7 @@
                 </h2>
                 <div id="collapseOneproduksi1a" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpenjahitan1hari.php');
+                        <?php echo view('bos/grafikpenjahitan1hari.php');
                         ?>
                     </div>
                 </div>
