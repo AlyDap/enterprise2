@@ -203,8 +203,8 @@
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjualan'); ?>">Penjualan</a></li>
-            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Produksi</a></li>
-            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Pembelian</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjahitan'); ?>">Produksi</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPembelian'); ?>">Pembelian</a></li>
             <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjahit'); ?>">Penjahit</a></li>
             <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikMitra'); ?>">Mitra</a></li>
             <!-- <li>
@@ -306,7 +306,7 @@
                 </h2>
                 <div id="collapseOneproduksi1b" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpenjahitan7hari.php');
+                        <?php echo view('bos/grafikpenjahitan7hari.php');
                         ?>
                     </div>
                 </div>
@@ -319,7 +319,7 @@
                 </h2>
                 <div id="collapseOneproduksi1c" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpenjahitan90hari.php');
+                        <?php echo view('bos/grafikpenjahitan90hari.php');
                         ?>
                     </div>
                 </div>
@@ -332,7 +332,7 @@
                 </h2>
                 <div id="collapseOneproduksi1d" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpenjahitanfull.php');
+                        <?php echo view('bos/grafikpenjahitanfull.php');
                         ?>
                     </div>
                 </div>
