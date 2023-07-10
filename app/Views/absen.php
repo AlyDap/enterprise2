@@ -151,7 +151,7 @@
               ket: keterangan,
             },
             success: function(response) {
-              console.log(data_uri + ' oke nih');
+              // console.log(data_uri + ' oke nih');
               // Callback setelah pengunggahan selesai
               if (response.status === 'success') {
                 // Berhasil, lakukan tindakan yang sesuai
@@ -165,8 +165,9 @@
               location.href = '';
             },
             error: function(textStatus, errorThrown) {
-              console.error('Kesalahan dalam pengunggahan gambar.');
-              console.log(textStatus + errorThrown);
+              console.log(data_uri + ' gagal nih'),
+                console.error('Kesalahan dalam pengunggahan gambar.');
+              // console.log(textStatus + errorThrown);
             }
           });
         });

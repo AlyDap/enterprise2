@@ -11,13 +11,13 @@ class PembelianSeeder extends Seeder
         $data = [
             [
                 'tgl' => '2023-05-11 15:22:29.000000',
-                'total_bayar' => '100000',
+                'total_bayar' => '750000',
                 'id_supplier' => '3',
                 'id_user' => '5'
             ],
             [
                 'tgl' => '2023-06-17 15:22:29.000000',
-                'total_bayar' => '1300000',
+                'total_bayar' => '4800000',
                 'id_supplier' => '2',
                 'id_user' => '5'
             ],

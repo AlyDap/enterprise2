@@ -76,6 +76,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
             <th scope="col" style="padding: 15px;">Nama</th>
             <th scope="col" style="padding: 15px;">Qty</th>
             <th scope="col" style="padding: 15px;">Harga</th>
+            <th scope="col" style="padding: 15px;">Panjang</th>
             <th scope="col" style="padding: 15px;">Status</th>
             <th scope="col" style="padding: 15px;">Action</th>
         </tr>
@@ -88,6 +89,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
                 <td><?= $row['nama']; ?></td>
                 <td><?= $row['jumlah']; ?></td>
                 <td>Rp <?= number_format($row['harga'], 0, ',', '.'); ?></td>
+                <td><?= $row['panjang_kain']; ?></td>
                 <td><?= $row['status']; ?></td>
                 <td><a href="<?= base_url('bahan/editbahan/' . $row['id_bahan']); ?>" class="btn btn-sm btn-outline-secondary">Edit</a></td>
             </tr>

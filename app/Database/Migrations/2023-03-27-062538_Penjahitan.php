@@ -26,6 +26,9 @@ class Penjahitan extends Migration
             'id_bahan'  => [
                 'type'  => 'INT',
             ],
+            'total_bahan'  => [
+                'type'  => 'INT',
+            ],
             'id_user'  => [
                 'type'  => 'INT',
             ],

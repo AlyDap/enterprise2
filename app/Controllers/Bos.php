@@ -5,7 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\Bahan;
-use App\Models\GrafikModel;
+use App\Models\GrafikModelBos;
 use App\Models\Mitra;
 use App\Models\Penjahit;
 use App\Models\Produk;
@@ -16,44 +16,191 @@ class Bos extends BaseController
     public function index()
     {
         $model = new Produk();
+        $modelGrafik = new GrafikModelBos();
 
         $data = [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard Bos'
         ];
-        $grafik = $model->getTotalPenjualanTahunan();
-        $data['grafik'] = $grafik;
 
-        $data['tahungrafik'] = $model->getTahunPenjualan();
 
-        $grafik2 = $model->getTotalPendapatanTahunan();
-        $data['grafik2'] = $grafik2;
+        // $data['tahungrafik'] = $model->getTahunPenjualan();
 
+
+
+        // grafik penjualan
+        // cek penjualan
+        $data['cekPenjualan1Hari'] = $modelGrafik->cekPenjualan1Hari();
+        $data['cekPenjualan7Hari'] = $modelGrafik->cekPenjualan7Hari();
+        $data['cekPenjualan90Hari'] = $modelGrafik->cekPenjualan90Hari();
+        // setiap 1 hari
+        $data['grafik1hariA'] = $modelGrafik->getTotalPenjualan1Hari();
+        $data['grafik1hariB'] = $modelGrafik->getTotalPendapatan1Hari();;
+        $data['grafik1hariC'] = $modelGrafik->getNamaProduk1Hari();
+        $data['Rp1hari'] = $modelGrafik->getRpPendapatan1Hari();
+        $data['Qty1hari'] = $modelGrafik->getTotalTerjual1Hari();
+        // setiap 7 hari
+        $data['grafik7hariA'] = $modelGrafik->getTotalPenjualan7Hari();
+        $data['grafik7hariB'] = $modelGrafik->getTotalPendapatan7Hari();;
+        $data['grafik7hariC'] = $modelGrafik->getNamaProduk7Hari();
+        $data['Rp7hari'] = $modelGrafik->getRpPendapatan7Hari();
+        $data['Qty7hari'] = $modelGrafik->getTotalTerjual7Hari();
+        // setiap 90 hari
+        $data['grafik90hariA'] = $modelGrafik->getTotalPenjualan90Hari();
+        $data['grafik90hariB'] = $modelGrafik->getTotalPendapatan90Hari();;
+        $data['grafik90hariC'] = $modelGrafik->getNamaProduk90Hari();
+        $data['Rp90hari'] = $modelGrafik->getRpPendapatan90Hari();
+        $data['Qty90hari'] = $modelGrafik->getTotalTerjual90Hari();
+        //setiap tahun
+        $data['grafik'] = $model->getTotalPenjualanTahunan();
+        $data['grafik2'] = $model->getTotalPendapatanTahunan();;
         $data['grafik3'] = $model->getNamaProdukTahunan();
+        $data['Rptahunan'] = $model->getRpPendapatanTahunan();
+        $data['Qtytahunan'] = $model->getTotalTerjualTahunan();
 
-        $Rptahunan = $model->getRpPendapatanTahunan();
-        $data['Rptahunan'] = $Rptahunan;
-        $Qtytahunan = $model->getTotalTerjualTahunan();
-        $data['Qtytahunan'] = $Qtytahunan;
-        $data['grafik1hari'] = $model->getTotalPenjualan1Hari();
-        $data['grafik7hari'] = $model->getTotalPenjualan7Hari();
-        $data['grafik90hari'] = $model->getTotalPenjualan90Hari();
+        // grafik pembelian
+        // cek pembelian
+        $data['cekPembelian1Hari'] = $modelGrafik->cekPembelian1Hari();
+        $data['cekPembelian7Hari'] = $modelGrafik->cekPembelian7Hari();
+        $data['cekPembelian90Hari'] = $modelGrafik->cekPembelian90Hari();
+        $data['cekPembelianTahunan'] = $modelGrafik->cekPembelianTahunan();
+        // setiap 1 hari
+        $data['grafikpembelian1hariA'] = $modelGrafik->getTotalPembelian1Hari();
+        $data['grafikpembelian1hariB'] = $modelGrafik->getTotalPengeluaranPembelian1Hari();;
+        $data['grafikpembelian1hariC'] = $modelGrafik->getNamaBahan1Hari();
+        $data['RpPembelian1hari'] = $modelGrafik->getRpPengeluaranPembelian1Hari();
+        $data['QtyPembelian1hari'] = $modelGrafik->getTotalDibeli1Hari();
+        // setiap 7 hari
+        $data['grafikpembelian7hariA'] = $modelGrafik->getTotalPembelian7Hari();
+        $data['grafikpembelian7hariB'] = $modelGrafik->getTotalPengeluaranPembelian7Hari();;
+        $data['grafikpembelian7hariC'] = $modelGrafik->getNamaBahan7Hari();
+        $data['RpPembelian7hari'] = $modelGrafik->getRpPengeluaranPembelian7Hari();
+        $data['QtyPembelian7hari'] = $modelGrafik->getTotalDibeli7Hari();
+        // setiap 90 hari
+        $data['grafikpembelian90hariA'] = $modelGrafik->getTotalPembelian90Hari();
+        $data['grafikpembelian90hariB'] = $modelGrafik->getTotalPengeluaranPembelian90Hari();;
+        $data['grafikpembelian90hariC'] = $modelGrafik->getNamaBahan90Hari();
+        $data['RpPembelian90hari'] = $modelGrafik->getRpPengeluaranPembelian90Hari();
+        $data['QtyPembelian90hari'] = $modelGrafik->getTotalDibeli90Hari();
+        //setiap tahun
+        $data['grafikpembeliantahunanA'] = $modelGrafik->getTotalPembelianTahunan();
+        $data['grafikpembeliantahunanB'] = $modelGrafik->getTotalPengeluaranPembelianTahunan();;
+        $data['grafikpembeliantahunanC'] = $modelGrafik->getNamaBahanTahunan();
+        $data['RpPembeliantahunan'] = $modelGrafik->getRpPengeluaranPembelianTahunan();
+        $data['QtyPembeliantahunan'] = $modelGrafik->getTotalDibeliTahunan();
+
+
+        // grafik penjahitan
+        // cek penjahitan
+        $data['cekPenjahitan1Hari'] = $modelGrafik->cekPenjahitan1Hari();
+        $data['cekPenjahitan7Hari'] = $modelGrafik->cekPenjahitan7Hari();
+        $data['cekPenjahitan90Hari'] = $modelGrafik->cekPenjahitan90Hari();
+        $data['cekPenjahitanTahunan'] = $modelGrafik->cekPenjahitanTahunan();
+        // setiap 1 hari
+        // setiap 7 hari
+        // setiap 90 hari
+        //setiap tahun
+
+        // mitra
+        $data['grafikmitra1hari'] = $modelGrafik->getJumlahPembelianMitra1hari();
+        $data['grafikmitra7hari'] = $modelGrafik->getJumlahPembelianMitra7hari();
+        $data['grafikmitra90hari'] = $modelGrafik->getJumlahPembelianMitra90hari();
+        $data['grafikmitraFull'] = $modelGrafik->getJumlahPembelianMitraFull();
+        // penjahit
+        $data['grafikpenjahit1hari'] = $modelGrafik->getJumlahProdukPenjahit1hari();
+        $data['grafikpenjahit7hari'] = $modelGrafik->getJumlahProdukPenjahit7hari();
+        $data['grafikpenjahit90hari'] = $modelGrafik->getJumlahProdukPenjahit90hari();
+        $data['grafikpenjahitFull'] = $modelGrafik->getJumlahProdukPenjahitFull();
 
         return view('bos/index', $data);
     }
-
+    // Mulai pilihan grafik
     public function detailGrafikPenjualan()
     {
-        $modelgrafik = new GrafikModel();
+        $modelgrafik = new GrafikModelBos();
         $data = [
             'title' => 'Detail Grafik Penjualan',
             'pilihtahun' => $modelgrafik->thn(),
         ];
         return view('bos/grafikpenj1', $data);
     }
-
+    public function detailGrafikPenjahit()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $data = [
+            'title' => 'Detail Grafik Penjahit',
+            'pilihtahun' => $modelgrafik->thnPenjahit(),
+        ];
+        return view('bos/grafikpenjahit', $data);
+    }
+    public function detailGrafikMitra()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $data = [
+            'title' => 'Detail Grafik Mitra',
+            'pilihtahun' => $modelgrafik->thnMitra(),
+        ];
+        return view('bos/grafikmitra', $data);
+    }
+    public function detailGrafikPenjahitan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $data = [
+            'title' => 'Detail Grafik Penjahitan',
+            'pilihtahun' => $modelgrafik->thnPenjahitan(),
+        ];
+        return view('bos/grafikpenjahitan', $data);
+    }
+    public function detailGrafikPembelian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $data = [
+            'title' => 'Detail Grafik Pembelian',
+            'pilihtahun' => $modelgrafik->thnPembelian(),
+        ];
+        return view('bos/grafikpembelian', $data);
+    }
+    // Mulai Harian
+    public function viewDetailGrafikPenjahitanHarian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'cekpenjahitanperwaktu' => $modelgrafik->getInfoPerHariPenjahitan($tgl),
+            // 'datagrafik' => $modelgrafik->getTotalPenjualanPerHari($tgl),
+            // 'totalproduk' => $modelgrafik->getTotalTerjualPerHari($tgl),
+            // 'datagrafik2' => $modelgrafik->getTotalPendapatanPerHari($tgl),
+            // 'totalpendapatan' => $modelgrafik->getRpPendapatanPerHari($tgl),
+            // 'datagrafik3' => $modelgrafik->getNamaProdukPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikPembelianHarian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'cekpembelianperwaktu' => $modelgrafik->getInfoPerHariPembelian($tgl),
+            // 'datagrafik' => $modelgrafik->getTotalPembelianPerHari($tgl),
+            // 'totalproduk' => $modelgrafik->getTotalTerjualPerHari($tgl),
+            // 'datagrafik2' => $modelgrafik->getTotalPendapatanPerHari($tgl),
+            // 'totalpendapatan' => $modelgrafik->getRpPendapatanPerHari($tgl),
+            // 'datagrafik3' => $modelgrafik->getNamaProdukPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
     public function viewDetailGrafikPenjualanHarian()
     {
-        $modelgrafik = new GrafikModel();
+        $modelgrafik = new GrafikModelBos();
         $tgl = $this->request->getPost('tgl');
         $info = "tanggal";
         $data = [
@@ -70,9 +217,40 @@ class Bos extends BaseController
         ];
         echo json_encode($response);
     }
+    public function viewDetailGrafikPenjahitHarian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerHariPenjahit($tgl),
+            'datagrafik' => $modelgrafik->getJumlahProdukPenjahitPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikpenjahit', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikMitraHarian()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $tgl = $this->request->getPost('tgl');
+        $info = "tanggal";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerHariMitra($tgl),
+            'datagrafik' => $modelgrafik->getJumlahPembelianMitraPerHari($tgl),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikmitra', $data)
+        ];
+        echo json_encode($response);
+    }
+    // Mulai Bulanan
     public function viewDetailGrafikPenjualanBulanan()
     {
-        $modelgrafik = new GrafikModel();
+        $modelgrafik = new GrafikModelBos();
         $bln = $this->request->getPost('bln');
         $info = "bulan";
         $data = [
@@ -89,9 +267,39 @@ class Bos extends BaseController
         ];
         echo json_encode($response);
     }
+    public function viewDetailGrafikPenjahitBulanan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $bln = $this->request->getPost('bln');
+        $info = "bulan";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerBulanPenjahit($bln),
+            'datagrafik' => $modelgrafik->getJumlahProdukPenjahitPerBulan($bln),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikpenjahit', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikMitraBulanan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $bln = $this->request->getPost('bln');
+        $info = "bulan";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerBulanMitra($bln),
+            'datagrafik' => $modelgrafik->getJumlahPembelianMitraPerBulan($bln),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikmitra', $data)
+        ];
+        echo json_encode($response);
+    }
     public function viewDetailGrafikPenjualanTahunan()
     {
-        $modelgrafik = new GrafikModel();
+        $modelgrafik = new GrafikModelBos();
         $thn = $this->request->getPost('thn');
         $info = "tahun";
         $data = [
@@ -105,6 +313,36 @@ class Bos extends BaseController
         ];
         $response = [
             'data' => view('bos/hasilgrafik', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikPenjahitTahunan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $thn = $this->request->getPost('thn');
+        $info = "tahun";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerTahunPenjahit($thn),
+            'datagrafik' => $modelgrafik->getJumlahProdukPenjahitPerTahun($thn),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikpenjahit', $data)
+        ];
+        echo json_encode($response);
+    }
+    public function viewDetailGrafikMitraTahunan()
+    {
+        $modelgrafik = new GrafikModelBos();
+        $thn = $this->request->getPost('thn');
+        $info = "tahun";
+        $data = [
+            'cekpenjualanperwaktu' => $modelgrafik->getInfoPerTahunMitra($thn),
+            'datagrafik' => $modelgrafik->getJumlahPembelianMitraPerTahun($thn),
+            'info' => $info
+        ];
+        $response = [
+            'data' => view('bos/hasilgrafikmitra', $data)
         ];
         echo json_encode($response);
     }
@@ -154,6 +392,8 @@ class Bos extends BaseController
             'ukuran' => $this->request->getPost('ukuran'),
             'biaya_produksi' => $this->request->getPost('biaya_produksi'),
             'biaya_jual' => $this->request->getPost('biaya_jual'),
+            'jumlah_produksi_perkain' => $this->request->getPost('jumlah_produksi_perkain'),
+            'panjang_kain_perproduksi' => $this->request->getPost('panjang_kain_perproduksi'),
             'jumlah' => $this->request->getPost('jumlah'),
             'status' => $this->request->getPost('status')
         );
@@ -185,6 +425,8 @@ class Bos extends BaseController
             'biaya_produksi' => $this->request->getPost('biaya_produksi'),
             'biaya_jual' => $this->request->getPost('biaya_jual'),
             // 'jumlah' => $this->request->getPost('jumlah'),
+            'jumlah_produksi_perkain' => $this->request->getPost('jumlah_produksi_perkain'),
+            'panjang_kain_perproduksi' => $this->request->getPost('panjang_kain_perproduksi'),
             'status' => $this->request->getPost('status')
         );
         $model = new Produk();
@@ -227,6 +469,8 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'status' => $this->request->getPost('status')
         );
 
@@ -254,6 +498,8 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'status' => $this->request->getPost('status')
         );
         $model = new Mitra();
@@ -296,6 +542,7 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'status' => $this->request->getPost('status')
         );
 
@@ -323,6 +570,7 @@ class Bos extends BaseController
         $data = array(
             'nama' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'status' => $this->request->getPost('status')
         );
         $model = new Penjahit();
@@ -366,6 +614,7 @@ class Bos extends BaseController
             'nama' => $this->request->getPost('nama'),
             'jumlah' => $this->request->getPost('jumlah'),
             'harga' => $this->request->getPost('harga'),
+            'panjang_kain' => $this->request->getPost('panjang_kain'),
             'status' => $this->request->getPost('status')
         );
         $model = new Bahan();
@@ -393,6 +642,7 @@ class Bos extends BaseController
             'nama' => $this->request->getPost('nama'),
             // 'jumlah' => $this->request->getPost('jumlah'),
             'harga' => $this->request->getPost('harga'),
+            'panjang_kain' => $this->request->getPost('panjang_kain'),
             'status' => $this->request->getPost('status')
         );
         $model = new Bahan();

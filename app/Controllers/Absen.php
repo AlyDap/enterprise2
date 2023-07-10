@@ -17,6 +17,7 @@ class Absen extends BaseController
 
     public function index()
     {
+
         if (session()->get('jabatan') == 'bos') return redirect()->to('/dashboard');
 
         $absen = $this->presensiModel->where('id_pegawai', session()->get('id'))->findAll();
@@ -43,10 +44,7 @@ class Absen extends BaseController
                 $info = 'sakit';
             }
         }
-        // $sudahAbsen = in_array($tanggalHariIni, array_column($absen, 'tanggal_presensi'));
-        // (!$sudahAbsen) ? $info = 'masuk' : $info = 'pulang';
-
-        // dd($info);
+        
         $data = [
             'title' => 'Absensi',
             'info'  => $info,
@@ -100,9 +98,10 @@ class Absen extends BaseController
             $ket = $idPresensi['ket'];
             $waktuMasuk = Time::parse($idPresensi['waktu_masuk']);
             $waktuKeluar = Time::parse($waktu);
-            if ($waktuMasuk->diff($waktuKeluar)->getHour() == 8) {
+            if ($waktuMasuk->diff($waktuKeluar)->h == 8) {
                 $ket = '';
             }
+
             $data = [
                 'waktu_keluar' => $waktu,
                 'gambar_keluar' => $imageName,
@@ -117,7 +116,6 @@ class Absen extends BaseController
         $response = [
             'status' => 'success',
             'message' => 'Berhasil Absen ' . $info . ' pada ' . $formattedDate,
-            'imagedata' => $imageData,
         ];
         return $this->response->setJSON($response);
     }

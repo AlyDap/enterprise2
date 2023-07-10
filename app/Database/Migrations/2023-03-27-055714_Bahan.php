@@ -24,6 +24,10 @@ class Bahan extends Migration
             'harga' => [
                 'type'  => 'INT',
             ],
+            'panjang_kain' => [
+                'type'  => 'VARCHAR',
+                'constraint'    => 50
+            ],
             'status'  => [
                 'type'  => 'ENUM',
                 'constraint'  => "'Active','Inactive'",

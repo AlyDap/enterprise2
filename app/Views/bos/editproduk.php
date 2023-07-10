@@ -28,6 +28,14 @@
         <input type="number" class="form-control" placeholder="Masukan biaya pembuatan produk" name="biaya_produksi" value="<?= $produk['biaya_produksi']; ?>" required min="1000" step="1000" oninvalid="this.setCustomValidity('Wajib diisi dengan kelipatan 1000')" oninput="this.setCustomValidity('')">
     </div>
     <div class="mb-3">
+        <label for="jumlah_produksi_perkain" class="form-label">Jumlah Produksi Per Kain</label>
+        <input type="number" class="form-control" placeholder="Masukan Jumlah Produksi Per Kain" name="jumlah_produksi_perkain" value="<?= $produk['jumlah_produksi_perkain']; ?>" required min="1" oninvalid="this.setCustomValidity('Wajib diisi')" oninput="this.setCustomValidity('')">
+    </div>
+    <div class="mb-3">
+        <label for="panjang_kain_perproduksi" class="form-label">Panjang Kain Per Produksi</label>
+        <input type="text" class="form-control" placeholder="Masukan Panjang Kain Per Produksi" name="panjang_kain_perproduksi" value="<?= $produk['panjang_kain_perproduksi']; ?>" required oninvalid="this.setCustomValidity('Wajib diisi')" oninput="this.setCustomValidity('')">
+    </div>
+    <div class="mb-3">
         <label for="status" class="form-label">Status Produk</label>
         <select class="form-select" aria-label="Default select example" name="status">
             <option selected value="Active">Pilih status Produk</option>

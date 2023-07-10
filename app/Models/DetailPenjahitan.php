@@ -14,7 +14,7 @@ class DetailPenjahitan extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['no_penjahitan', 'id_produk', 'ukuran', 'jumlah', 'biaya_produksi'];
+    protected $allowedFields    = ['no_penjahitan', 'id_produk', 'ukuran', 'jumlah', 'jumlah_bahan', 'biaya_produksi'];
 
     // Dates
     protected $useTimestamps = false;

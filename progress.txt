@@ -106,15 +106,10 @@ ___________________________________________________________
 ---------------------riqqi---------------------
 HRD
 
-tugas minggu ini : 
-- cek potongan karena sakit
-- buat field hari kerja di tabel penggajian
-
-cons
+kurang
 - belum ada fitur lembur
-- fitur absensi masih bisa diakses bos
 - penghitungan awal penggajian masih awal bulan bukan dari esok hari penggajian bulan kemaren
-- laman HRD masih bisa diakses melalui link atas (harus dikasi otorisasi)
+- menambahkan foto absen hari ini per karyawan di dashboard hrd
 ---------------------riqqi---------------------
 
 

@@ -12,22 +12,26 @@ class BahanSeeder extends Seeder
             [
                 'nama' => 'Mori Prima',
                 'jumlah' => '50',
-                'harga' => '10000'
+                'harga' => '75000',
+                'panjang_kain' => '1.5 x 15 meter'
             ],
             [
                 'nama' => 'Mori Primissima',
                 'jumlah' => '45',
-                'harga' => '15000'
+                'harga' => '90000',
+                'panjang_kain' => '1.5 x 15 meter'
             ],
             [
                 'nama' => 'Katun',
                 'jumlah' => '40',
-                'harga' => '20000'
+                'harga' => '120000',
+                'panjang_kain' => '1.5 x 15 meter'
             ],
             [
-                'nama' => 'Sutera',
+                'nama' => 'Rayon',
                 'jumlah' => '30',
-                'harga' => '30000'
+                'harga' => '80000',
+                'panjang_kain' => '1.5 x 15 meter'
             ]
         ];
         $this->db->table('bahan')->insertBatch($data);

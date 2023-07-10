@@ -17,9 +17,12 @@ class DetailJahit extends Migration
             ],
             'ukuran'  => [
                 'type'  => 'CHAR',
-                'constraint'    => 5
+                'constraint'    => 10
             ],
             'jumlah' => [
+                'type'  => 'INT',
+            ],
+            'jumlah_bahan' => [
                 'type'  => 'INT',
             ],
             'biaya_produksi' => [
