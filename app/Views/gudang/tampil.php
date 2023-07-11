@@ -7,11 +7,11 @@
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> Laporan
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="<?= base_url('penjualan/laporanharian'); ?>">laporan harian</a></li>
-      <li><a class="dropdown-item" href="<?= base_url('penjualan/laporanbulanan'); ?>">laporan bulanan</a></li>
-      <li><a class="dropdown-item" href="<?= base_url('penjualan/laporantahunan'); ?>">laporan tahunan</a></li>
+      <li><a class="dropdown-item" href="<?= base_url('gudang/laporanharian'); ?>">laporan harian</a></li>
+      <li><a class="dropdown-item" href="<?= base_url('gudang/laporanbulanan'); ?>">laporan bulanan</a></li>
+      <li><a class="dropdown-item" href="<?= base_url('gudang/laporantahunan'); ?>">laporan tahunan</a></li>
     </ul>
-    <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('penjualan/cetakpenjualan'); ?>">Cetak Penjualan</a>
+    <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('gudang/cetakpembelian'); ?>">Cetak Pembelian</a>
   </div>
 
   <h1 class="mt-2">Daftar Pembelian</h1>

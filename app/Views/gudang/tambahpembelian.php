@@ -13,8 +13,8 @@
 <input type="number" name="total_bayar" id="total_bayar"><br>
     <!-- mitra -->
     <div class="mb-3">
-        <label for="id_mitra" class="form-label">Nama Mitra</label>
-        <select class="form-select" aria-label="Default select example" name="id_supplier">
+        <label for="id_supplier" class="form-label">Nama Mitra</label>
+        <select class="form-select" aria-label="Default select example" name="id_supplier" id="id_supplier">
             <option value=""></option>
             <?php foreach ($mitra as $row) : ?>
                 <option value="<?= $row['id_mitra'] ?>"><?= $row['nama'] ?> </option>
@@ -24,7 +24,7 @@
     <!-- bahan -->
     <div class="mb-3">
         <label for="bahan" class="form-label">Nama Bahan</label>
-        <select class="form-select" aria-label="Default select example" name="bahan" id="id_bahan">
+        <select class="form-select" aria-label="Default select example" name="id_bahan" id="id_bahan">
             <option value=""></option>
             <?php foreach ($bahan as $row) : ?>
                 <option value="<?= $row['id_bahan'] ?>"><?= $row['nama'] ?> </option>

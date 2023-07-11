@@ -170,7 +170,7 @@ class Gudang extends BaseController
         $model = new Bahan();
         $ubah = $model->updateBahan($data, $id);
         if ($ubah) {
-            session()->setFlashdata('info', 'Berhasil Mengedit Bahan');
+            session()->setFlashdata('info','Berhasil Mengedit Bahan');
             return redirect()->to(base_url('gudang/bahan'));
         }
     }
@@ -246,4 +246,14 @@ class Gudang extends BaseController
         return view('gudang/mitra', $data);
     }
 
+
+    // laporan cetak pembelian
+    public function cetakPembelian()
+    {
+        $data = [
+            'title' => 'Cetak Pembelian',
+            'users' => $this->pembelianModel->findAll()
+        ];
+        return view('gudang/cetakpembelian', $data);
+    }
 }

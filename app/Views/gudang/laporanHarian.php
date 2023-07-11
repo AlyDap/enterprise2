@@ -11,7 +11,7 @@
                     <i class="fas fa-file-alt"></i> view laporan
                     </a>
                 </button>
-                <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('penjualan/cetaklaporanharian'); ?>">Cetak Penjualan</a>
+                <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('gudang/cetaklaporanharian'); ?>">Cetak Pembelian</a>
             </span>
         </div>
     </div>
