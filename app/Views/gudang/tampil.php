@@ -2,7 +2,17 @@
 <?= $this->section('content') ?>
 
 <div class="col-sm-8">
-  <a role="button" class="btn btn-outline-dark" href="<?= base_url('gudang/tambahpembelian'); ?>">Tambah Pembelian</a>
+  <div class="dropdown">
+    <a role="button" class="btn btn-outline-dark" href="<?= base_url('gudang/tambahpembelian'); ?>">Tambah Pembelian</a>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> Laporan
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="<?= base_url('gudang/laporanharian'); ?>">laporan harian</a></li>
+      <li><a class="dropdown-item" href="<?= base_url('gudang/laporanbulanan'); ?>">laporan bulanan</a></li>
+      <li><a class="dropdown-item" href="<?= base_url('gudang/laporantahunan'); ?>">laporan tahunan</a></li>
+    </ul>
+    <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('gudang/cetakpembelian'); ?>">Cetak Pembelian</a>
+  </div>
 
   <h1 class="mt-2">Daftar Pembelian</h1>
 

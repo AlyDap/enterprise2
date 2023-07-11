@@ -53,6 +53,7 @@ class Pembelian extends Model
     {
         return $this->db->table($this->table)->insert($data);
     }
+    
     public function ambilIdTerbaru()
     {
         return $this->db->query('SELECT no_pembelian FROM `pembelian` ORDER BY no_pembelian DESC LIMIT 1;')->getResultArray();
