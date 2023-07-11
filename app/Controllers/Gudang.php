@@ -145,7 +145,7 @@ class Gudang extends BaseController
     {
      
         $data = [
-            'title' => 'Daftar Status Mitra',
+            'title' => 'Daftar Bahan',
             'bahan' => $this->bahanModel->getBahan(),
         ];
         return view('gudang/bahan', $data);
@@ -325,5 +325,16 @@ class Gudang extends BaseController
         echo json_encode($response);
     }
     // end laporan
+
+    // grafik
+    public function grafikPembelianTahunan($id)
+    {
+        $model = new Pembelian();
+        $data = [
+            'title' => 'Pembelian Produk'
+        ];
+        $data['grafik'] = $model->getTotalPembelianTahunan($id)->getRowArray();
+        echo view('gudang/grafik', $data);
+    }
 
 }

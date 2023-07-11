@@ -73,7 +73,7 @@ if (!empty(session()->getFlashdata('success'))) { ?>
         <tr style="text-align: center;">
             <th scope="col" style="padding: 15px;">No</th>
             <th scope="col" style="padding: 15px;">Nama</th>
-            <th scope="col" style="padding: 15px;">Qty</th>
+            <th scope="col" style="padding: 15px;">Jumlah Stok</th>
             <th scope="col" style="padding: 15px;">Harga</th>
             <th scope="col" style="padding: 15px;">Status</th>
             <th scope="col" style="padding: 15px;">Action</th>
