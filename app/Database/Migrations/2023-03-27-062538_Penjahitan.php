@@ -38,6 +38,7 @@ class Penjahitan extends Migration
         $this->forge->addForeignKey('id_bahan', 'bahan', 'id_bahan');
         $this->forge->addForeignKey('id_user', 'user', 'id_user');
         $this->forge->createTable('penjahitan', true);
+        $this->db->query('ALTER TABLE `penjahitan` CHANGE `tgl` `tgl` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;');
     }
 
     public function down()

@@ -18,7 +18,10 @@ class Bahan extends Model
             return $this->getWhere(['id_bahan' => $id]);
         }
     }
-
+    public function getBahanAktif()
+    {
+        return $this->db->query('SELECT * FROM `bahan` WHERE status="Active"')->getResultArray();
+    }
     public function insertBahan($data)
     {
         return $this->db->table($this->table)->insert($data);
@@ -42,4 +45,3 @@ class Bahan extends Model
         p.no_pembelian = dp.no_pembelian AND pr.id_bahan=dp.id_bahan GROUP BY pr.id_bahan')->getResultArray();
     }
 }
-

@@ -25,18 +25,26 @@
         display: block;
     }
 </style>
-<?php if (!empty($cekpenjualanperwaktu)) {
+<?php if (!empty($cekpenjahitanperwaktu)) {
     foreach ($datagrafik as $key => $value) {
         $waktu[] = $value['waktu'];
         $jumlah[] = $value['jumlah'];
     }
     foreach ($datagrafik2 as $key => $value) {
-        $waktu1[] = $value['waktu'];
-        $jumlah1[] = $value['jumlah'];
+        $waktu2[] = $value['waktu'];
+        $jumlah2[] = $value['jumlah'];
     }
     foreach ($datagrafik3 as $key => $value) {
-        $nama[] = $value['nama'];
-        $jumlah11[] = $value['jumlah'];
+        $waktu3[] = $value['waktu'];
+        $jumlah3[] = $value['total'];
+    }
+    foreach ($datagrafik4 as $key => $value) {
+        $nama4[] = $value['nama'];
+        $jumlah4[] = $value['jumlah'];
+    }
+    foreach ($datagrafik5 as $key => $value) {
+        $nama5[] = $value['nama'];
+        $jumlah5[] = $value['jumlah'];
     }
     $stringsToReplace  = array(
         'January'   => 'Januari',
@@ -59,42 +67,51 @@
         'Friday'    => 'Jumat',
         'Saturday'  => 'Sabtu'
     );
-    $cekpenjualanperwaktu->waktu = str_replace(array_keys($stringsToReplace), array_values($stringsToReplace), $cekpenjualanperwaktu->waktu);
+    $cekpenjahitanperwaktu->waktu = str_replace(array_keys($stringsToReplace), array_values($stringsToReplace), $cekpenjahitanperwaktu->waktu);
 ?>
-    <h4 class="h6-keterangan">Grafik Penjualan pada <?= $cekpenjualanperwaktu->waktu; ?></h4>
-    <canvas id="myChart-1hari"></canvas>
+    <h4 class="h6-keterangan">Grafik Produksi pada <?= $cekpenjahitanperwaktu->waktu; ?></h4>
+
+    <canvas id="myChart-1hari1"></canvas>
     <h6 class="h6-keterangan">
-        Total Produk Terjual <?php echo number_format($totalproduk->jumlah, 0, ',', '.'); ?> Pcs
+        Total Produk Diproduksi <?php echo number_format($totalproduk->jumlah, 0, ',', '.'); ?> Pcs
+    </h6>
+    <canvas id="myChart-1hari2"></canvas>
+    <h6 class="h6-keterangan">
+        Total Bahan Digunakan <?php echo number_format($totalbahan->jumlah, 0, ',', '.'); ?> Pcs
     </h6>
 
     <div class="ccc2"></div>
-
-    <canvas id="myChart-1harii"></canvas>
-
-    <h6 class="h6-keterangan">Total Pendapatan Rp
-        <?php echo number_format($totalpendapatan->jumlah, 0, ',', '.'); ?>
+    <canvas id="myChart-1hari3"></canvas>
+    <h6 class="h6-keterangan">Total Pengeluaran Produksi Rp
+        <?php echo number_format($totalpendapatan->total, 0, ',', '.'); ?>
     </h6>
 
     <div class="ccc2"></div>
-    <h6 class="h6-keterangan">Nama Produk yang laku terjual
+    <h6 class="h6-keterangan">Nama Produk yang diproduksi
     </h6>
-    <canvas id="myChart-1hariii"></canvas>
+    <canvas id="myChart-1hari4"></canvas>
+    <div class="ccc2"></div>
+    <h6 class="h6-keterangan">Nama Bahan yang digunakan
+    </h6>
+    <canvas id="myChart-1hari5"></canvas>
     <button onclick="scrollToTop()" class="float-button">&#8593;</button>
 
 
     <script>
         // $(document).ready(function() Untuk Refresh code script grafik setiap kali klik lihat
         $(document).ready(function() {
-            const ctx1 = document.getElementById('myChart-1hari');
-            const ctx11 = document.getElementById('myChart-1harii');
-            const ctx111 = document.getElementById('myChart-1hariii');
+            const ctx1 = document.getElementById('myChart-1hari1');
+            const ctx2 = document.getElementById('myChart-1hari2');
+            const ctx3 = document.getElementById('myChart-1hari3');
+            const ctx4 = document.getElementById('myChart-1hari4');
+            const ctx5 = document.getElementById('myChart-1hari5');
             // type: pie, bar, line, bubble, doughnut, polarArea, radar, scatter
             new Chart(ctx1, {
                 type: 'bar',
                 data: {
                     labels: <?= json_encode($waktu); ?>,
                     datasets: [{
-                        label: 'Produk Yang Terjual',
+                        label: 'Produk Yang Diproduksi',
                         data: <?= json_encode($jumlah); ?>,
                         borderWidth: 1
                     }]
@@ -107,13 +124,13 @@
                     }
                 }
             });
-            new Chart(ctx11, {
-                type: 'line',
+            new Chart(ctx2, {
+                type: 'bar',
                 data: {
-                    labels: <?= json_encode($waktu1); ?>,
+                    labels: <?= json_encode($waktu2); ?>,
                     datasets: [{
-                        label: 'Pendapatan Yang diperoleh',
-                        data: <?= json_encode($jumlah1); ?>,
+                        label: 'Bahan Yang Digunakan',
+                        data: <?= json_encode($jumlah2); ?>,
                         borderWidth: 1
                     }]
                 },
@@ -125,13 +142,49 @@
                     }
                 }
             });
-            new Chart(ctx111, {
+            new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: <?= json_encode($waktu3); ?>,
+                    datasets: [{
+                        label: 'Pengeluaran Pembelian',
+                        data: <?= json_encode($jumlah3); ?>,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            new Chart(ctx4, {
                 type: 'polarArea',
                 data: {
-                    labels: <?= json_encode($nama); ?>,
+                    labels: <?= json_encode($nama4); ?>,
                     datasets: [{
-                        label: 'Produk Yang Terjual',
-                        data: <?= json_encode($jumlah11); ?>,
+                        label: 'Produk Yang Diproduksi',
+                        data: <?= json_encode($jumlah4); ?>,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            new Chart(ctx5, {
+                type: 'polarArea',
+                data: {
+                    labels: <?= json_encode($nama5); ?>,
+                    datasets: [{
+                        label: 'Bahan Yang Digunakan',
+                        data: <?= json_encode($jumlah5); ?>,
                         borderWidth: 1
                     }]
                 },
@@ -153,7 +206,7 @@
     $jumlah = array(0);
 ?>
     <div class="alert alert-dark" role="alert" style="text-align: center;">
-        Tidak ada Transaksi Penjualan<br> Silahkan Pilih <?= $info; ?> yang memiliki transaksi untuk melihat grafik <br>&#128522; -- Terimakasih -- &#128522;
+        Tidak ada Transaksi Produksi<br> Silahkan Pilih <?= $info; ?> yang memiliki transaksi untuk melihat grafik <br>&#128522; -- Terimakasih -- &#128522;
     </div>
 <?php
 } ?>

@@ -177,6 +177,27 @@
     #hasilpil5 {
         display: none;
     } */
+    .float-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+        display: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #fff;
+        color: #000;
+        font-size: 24px;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+        border: #595e60 solid 1px;
+    }
+
+    .float-button.show {
+        display: block;
+    }
 </style>
 
 <div style="display: flex; align-items: center;">
@@ -203,8 +224,8 @@
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjualan'); ?>">Penjualan</a></li>
-            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Produksi</a></li>
-            <li><a class="dropdown-item" href="<?= base_url('chatAll'); ?>">Pembelian</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjahitan'); ?>">Produksi</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPembelian'); ?>">Pembelian</a></li>
             <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikPenjahit'); ?>">Penjahit</a></li>
             <li><a class="dropdown-item" href="<?= base_url('Bos/detailGrafikMitra'); ?>">Mitra</a></li>
             <!-- <li>
@@ -214,6 +235,7 @@
         </ul>
     </div>
 </div>
+<button onclick="scrollToTop()" class="float-button">&#8593;</button>
 
 
 <div id="hasilpil1">
@@ -293,7 +315,7 @@
                 </h2>
                 <div id="collapseOneproduksi1a" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpenjahitan1hari.php');
+                        <?php echo view('bos/grafikpenjahitan1hari.php');
                         ?>
                     </div>
                 </div>
@@ -306,7 +328,7 @@
                 </h2>
                 <div id="collapseOneproduksi1b" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpenjahitan7hari.php');
+                        <?php echo view('bos/grafikpenjahitan7hari.php');
                         ?>
                     </div>
                 </div>
@@ -319,7 +341,7 @@
                 </h2>
                 <div id="collapseOneproduksi1c" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpenjahitan90hari.php');
+                        <?php echo view('bos/grafikpenjahitan90hari.php');
                         ?>
                     </div>
                 </div>
@@ -332,7 +354,7 @@
                 </h2>
                 <div id="collapseOneproduksi1d" class="accordion-collapse collapse show" data-bs-parent="#accordionExampleproduksi">
                     <div class="accordion-body">
-                        <?php //echo view('bos/grafikpenjahitanfull.php');
+                        <?php echo view('bos/grafikpenjahitanfull.php');
                         ?>
                     </div>
                 </div>
@@ -602,6 +624,23 @@
     pil5.addEventListener("click", function() {
         showpil5();
     })
+    // fungsi scroll ke atas
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.querySelector('.float-button').classList.add('show');
+        } else {
+            document.querySelector('.float-button').classList.remove('show');
+        }
+    }
+
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 </script>
 
 <?= $this->endSection(); ?>
