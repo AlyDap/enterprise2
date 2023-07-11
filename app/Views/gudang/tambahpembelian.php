@@ -17,7 +17,7 @@
         <select class="form-select" aria-label="Default select example" name="id_supplier" id="id_supplier">
             <option value=""></option>
             <?php foreach ($mitra as $row) : ?>
-                <option value="<?= $row['id_mitra'] ?>"><?= $row['nama'] ?> </option>
+                <option class="supplier" value="<?= $row['id_mitra'] ?>"><?= $row['nama'] ?> </option>
                 <?php endforeach; ?>>
         </select>
     </div>
@@ -47,7 +47,7 @@
         <input type="number" id="total" class="form-control" placeholder="Masukan harga bahan" name="total" required min="1000" step="1000" oninvalid="this.setCustomValidity('Wajib diisi dengan kelipatan 1000')" oninput="this.setCustomValidity('')">
     </div>
     <input type="submit" value="Submit" id="submit" onclick="isi()">
-    <a role="button" class="btn btn-outline-dark" href="<?= base_url('bahan/createbahan'); ?>" style="margin-bottom: 5px; float: right;">Clear</a>
+    <a role="button" class="btn btn-outline-dark" href="<?= base_url('gudang/tambahpembelian'); ?>" style="margin-bottom: 5px; float: right;">Clear</a>
 </form>
 
 <!-- Load jQuery -->
@@ -91,7 +91,7 @@
             $('#harga').val(hargasubmit);
             $('#total').val($('#harga').val() * $('#jumlah').val());
             $('#total_bayar').val($('#total').val());
-
+            // $('#id_supplier').val($('.supplier').val());
         };
     });
 </script>

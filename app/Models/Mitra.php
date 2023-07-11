@@ -17,7 +17,7 @@ class Mitra extends Model
             return $this->getWhere(['id_mitra' => $id]);
         }
     }
-    public function getPenjahitAktif()
+    public function getMitraAktif()
     {
         return $this->db->query('SELECT * FROM `mitra` WHERE status="Active"')->getResultArray();
     }

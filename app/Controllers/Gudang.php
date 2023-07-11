@@ -52,8 +52,8 @@ class Gudang extends BaseController
     {
         $data = [
             'title' => 'Input Pembelian',
-            'mitra' => $this->mitraModel->getMitra(),
-            'bahan' => $this->bahanModel->getBahan()
+            'mitra' => $this->mitraModel->getMitraAktif(),
+            'bahan' => $this->bahanModel->getBahanAktif()
         ];
         return view('gudang/tambahpembelian', $data);
     }
