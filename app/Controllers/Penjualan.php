@@ -242,14 +242,12 @@ class Penjualan extends BaseController
         ];
         return $this->response->setJSON($data);
     }
-
-
+    //kirim laporan harian bulanan dan tahunan
     public function kirimLaporanharian($tgl)
     {
         // kirim chat ke bos berisi tgl
-        // kalau ada hari = harian, bulan = bulanan, tahun = tahunan
         $Time =  Time::parse($tgl);
-        $messageForBos = '<a href="/penjualan/laporan/' . $tgl . '" >Laporan Penjualan ' . $tgl . '</a>';
+        $messageForBos = '<a href="/penjualan/laporan1/' . $tgl . '" >Laporan Penjualan ' . $tgl . '</a>';
         $this->chatModel->sendMessage(session('id'), 1, $messageForBos);
 
         session()->setFlashdata('sucessLaporan');
@@ -270,8 +268,87 @@ class Penjualan extends BaseController
                 'title' => 'LAPORAN BOS',
                 'tgl' => $tgl
             ];
-            return view('penjualan/laporanbos', $data);
+            return view('penjualan/laporanbosharian', $data);
         }
         return view('dashboard');
+    }
+
+    public function kirimLaporanbulanan($bln)
+    {
+        // kirim chat ke bos berisi bln
+        $Time =  Time::parse($bln);
+        $messageForBos = '<a href="/penjualan/laporan2/' . $bln . '" >Laporan Penjualan ' . $bln . '</a>';
+        $this->chatModel->sendMessage(session('id'), 1, $messageForBos);
+
+        session()->setFlashdata('sucessLaporan');
+
+        $data = [
+            'title' => 'LAPORAN BULANAN'
+        ];
+
+        return view('penjualan/laporanbulanan', $data);
+    }
+
+    public function laporan2($bln)
+    {
+        if (session('jabatan') == 'bos' || session('jabatan') == 'penjualan') {
+
+
+            $data = [
+                'title' => 'LAPORAN BOS',
+                'bln' => $bln
+            ];
+            return view('penjualan/laporanbosbulanan', $data);
+        }
+        return view('dashboard');
+    }
+
+    public function kirimLaporantahunan($thn)
+    {
+        // kirim chat ke bos berisi thn
+        $Time =  Time::parse($thn);
+        $messageForBos = '<a href="/penjualan/laporan3/' . $thn . '" >Laporan Penjualan ' . $thn . '</a>';
+        $this->chatModel->sendMessage(session('id'), 1, $messageForBos);
+
+        session()->setFlashdata('sucessLaporan');
+
+        $data = [
+            'title' => 'LAPORAN TAHUNAN'
+        ];
+
+        return view('penjualan/laporantahunan', $data);
+    }
+
+    public function laporan3($thn)
+    {
+        if (session('jabatan') == 'bos' || session('jabatan') == 'penjualan') {
+
+
+            $data = [
+                'title' => 'LAPORAN BOS',
+                'thn' => $thn
+            ];
+            return view('penjualan/laporanbostahunan', $data);
+        }
+        return view('dashboard');
+    }
+
+    public function produk()
+    {
+        $model = new Produk();
+        $currentPage = $this->request->getVar('page_produk') ? $this->request->getVar('page_produk') : 1;
+        $keyword = $this->request->getVar('keyword');
+        if (empty($keyword)) {
+            $keyword = '';
+        }
+        $data = [
+            'title' => 'Produk',
+            'keyword' => $keyword,
+        ];
+        $produk = $model->like('nama', $keyword)->paginate(5, 'produk');
+        $data['produk'] = $produk;
+        $data['pager'] = $model->pager;
+        $data['currentPage'] = $currentPage;
+        return view('penjualan/produk', $data);
     }
 }
