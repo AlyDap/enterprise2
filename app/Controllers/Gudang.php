@@ -7,6 +7,7 @@ use App\Controllers\BaseController;
 use App\Models\DetailPembelian;
 use App\Models\Bahan;
 use App\Models\Pembelian;
+use App\Models\laporan_pembelian;
 use App\Models\Mitra;
 use App\Models\Produk;
 
@@ -15,6 +16,7 @@ helper('form');
 class Gudang extends BaseController
 {
     protected $pembelianModel;
+    protected $laporanModel;
     protected $mitraModel;
     protected $bahanModel;
     protected $detailPembelian;
@@ -22,6 +24,7 @@ class Gudang extends BaseController
     {
         $this->pembelianModel = new Pembelian();
         $this->mitraModel = new Mitra();
+        $this->laporanModel = new laporan_pembelian();
         $this->bahanModel = new Bahan();
         $this->detailPembelian = new DetailPembelian();
     }
@@ -80,7 +83,7 @@ class Gudang extends BaseController
     {
         $detailPembelianModel = new DetailPembelian();
         // masukkan data pembeian dulu baru detail
-        $this->pembelianModel->insert(['id_user' => session('id')]);
+        // $this->pembelianModel->insert(['id_user' => session('id')]);
         // ambil id terbaru
         $idPembelian = $this->pembelianModel->ambilIdTerbaru();
         $data = [
@@ -103,7 +106,7 @@ class Gudang extends BaseController
         //     'total_bayar' => $this->request->getPost('total'),
         // );
         // dd($data2);
-        // $this->penjualanModel->updatePenjualan( $data2 ,$idPenjualan);
+        // $this->pembelianModel->updatePenjualan( $data2 ,$idPenjualan);
 
         return redirect()->to('/gudang/tampil');
     }
@@ -256,4 +259,71 @@ class Gudang extends BaseController
         ];
         return view('gudang/cetakpembelian', $data);
     }
+
+    // laporan penjualan harian bulanan tahunan
+    public function laporanHarian()
+    {
+        $data = [
+            'title' => 'laporan harian',
+            'users' => $this->pembelianModel->findAll()
+        ];
+        return view('gudang/laporanharian', $data);
+    }
+    public function viewlaporanHarian()
+    {
+        $tgl = $this->request->getPost('tgl');
+        $data = [
+            'dataharian' => $this->laporanModel->DataHarian($tgl),
+            'gt' => $this->laporanModel->GrandTotal($tgl),
+        ];
+        $response = [
+            'data' => view('gudang/tabellaporan', $data),
+            'tabel' => $tgl
+        ];
+        echo json_encode($response);
+    }
+
+    public function laporanBulanan()
+    {
+        $data = [
+            'title' => 'laporan bulanan',
+            'users' => $this->pembelianModel->findAll()
+        ];
+        return view('gudang/laporanbulanan', $data);
+    }
+    public function viewlaporanBulanan()
+    {
+        $bln = $this->request->getPost('bln');
+        $data = [
+            'dataharian' => $this->laporanModel->DataBulanan($bln),
+            'gt' => $this->laporanModel->GrandTotalBulanan($bln),
+        ];
+        $response = [
+            'data' => view('gudang/tabellaporan', $data)
+        ];
+        echo json_encode($response);
+    }
+
+    public function laporanTahunan()
+    {
+        $data = [
+            'title' => 'laporan tahunan',
+            'users' => $this->pembelianModel->findAll()
+        ];
+        return view('gudang/laporantahunan', $data);
+    }
+    public function viewlaporanTahunan()
+    {
+        $thn = $this->request->getPost('thn');
+        $data = [
+            'dataharian' => $this->laporanModel->DataTahunan($thn),
+            'gt' => $this->laporanModel->GrandTotalTahunan($thn),
+        ];
+        $response = [
+            'data' => view('gudang/tabellaporan', $data)
+        ];
+        echo json_encode($response);
+    }
+    // end laporan
+
 }
