@@ -19,7 +19,7 @@
                     <i class="fas fa-file-alt"></i> view laporan
                     </a>
                 </button>
-                <button onclick="kirimLaporan()" class="btn btn-secondary">Kirim Laporan</button>
+                <button onclick="kirimLaporanharian()" class="btn btn-secondary">Kirim Laporan</button>
             </span>
         </div>
     </div>

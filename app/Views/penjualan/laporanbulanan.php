@@ -11,7 +11,7 @@
                     <i class="fas fa-file-alt"></i> view laporan
                     </a>
                 </button>
-                <a role="button" target="_blank" class="btn btn-outline-dark gaprint" href="<?= base_url('penjualan/cetaklaporanharian'); ?>">Cetak Penjualan</a>
+                <button onclick="kirimLaporanbulanan()" class="btn btn-secondary">Kirim Laporan</button>
             </span>
         </div>
     </div>
@@ -39,6 +39,15 @@
                     }
                 }
             })
+        }
+
+        function kirimLaporanbulanan() {
+            let bln = $('#bln').val();
+            if (bln) {
+                location.href = '<?= base_url('penjualan/kirimlaporanbulanan/') ?>' + bln;
+            } else {
+                alert('DATA KOSONG GAUSA KIRIM KE BOS TEMAN2')
+            }
         }
     </script>
 
