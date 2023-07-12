@@ -244,7 +244,7 @@ class Gudang extends BaseController
      
         $data = [
             'title' => 'Daftar Status Mitra',
-            'mitra' => $this->mitraModel->getMitra(),
+            'mitra' => $this->mitraModel->getMitraAktif(),
         ];
         return view('gudang/mitra', $data);
     }
@@ -269,7 +269,7 @@ class Gudang extends BaseController
         ];
         return view('gudang/laporanharian', $data);
     }
-    public function viewlaporanHarian()
+    public function viewLaporanHarian()
     {
         $tgl = $this->request->getPost('tgl');
         $data = [
