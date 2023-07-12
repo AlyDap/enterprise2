@@ -59,7 +59,7 @@
             <?php endforeach; ?>
         </table>
         <div class="total ">
-            <table class="rata">
+            <table align="center">
                 <tr>
                     <td>Total Pengeluaran</td>
                     <td> : </td>

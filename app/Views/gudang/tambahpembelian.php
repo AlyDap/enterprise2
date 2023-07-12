@@ -1,4 +1,3 @@
-
 <?= $this->extend('layout') ?>
 <?= $this->section('content') ?>
 <h1 style="text-align: center;">Tambah Pembelian</h1>
@@ -10,7 +9,7 @@
 <!-- user -->
 <input type="hidden" name="id_user" value="<?= session('id') ?>"><br>
 <!-- total bayar -->
-<input type="number" name="total_bayar" id="total_bayar"><br>
+<input type="hidden" name="total_bayar" id="total_bayar"><br>
     <!-- mitra -->
     <div class="mb-3">
         <label for="id_supplier" class="form-label">Nama Mitra</label>
@@ -31,20 +30,20 @@
                 <?php endforeach; ?>>
         </select>
     </div>
-
-    <!-- Jumlah -->
-    <div class="mb-3">
-        <label for="jumlah" class="form-label">Jumlah Bahan</label>
-        <input type="number" class="form-control" placeholder="Masukan jumlah bahan" name="jumlah" required min="1" oninvalid="this.setCustomValidity('Wajib diisi min 1 bahan')" oninput="this.setCustomValidity('')" id="jumlah">
-    </div>
     <!-- Harga -->
     <div class="mb-3">
         <label for="harga" class="form-label">Harga Bahan</label>
         <input type="number" class="form-control" placeholder="Masukan harga" name="harga" required min="1" oninvalid="this.setCustomValidity('Wajib diisi min 1 bahan')" oninput="this.setCustomValidity('')" readonly id="harga">
     </div>
+    <!-- Jumlah -->
+    <div class="mb-3">
+        <label for="jumlah" class="form-label">Jumlah Bahan</label>
+        <input type="number" class="form-control" placeholder="Masukan jumlah bahan" name="jumlah" required min="1" oninvalid="this.setCustomValidity('Wajib diisi min 1 bahan')" oninput="this.setCustomValidity('')" id="jumlah">
+    </div>
+    <!-- total bayar -->
     <div class="mb-3">
         <label for="total" class="form-label">Total</label>
-        <input type="number" id="total" class="form-control" placeholder="Masukan harga bahan" name="total" required min="1000" step="1000" oninvalid="this.setCustomValidity('Wajib diisi dengan kelipatan 1000')" oninput="this.setCustomValidity('')">
+        <input type="number" id="total" class="form-control" placeholder="Masukan harga bahan" name="total" required min="1000" step="1000" oninvalid="this.setCustomValidity('Wajib diisi dengan kelipatan 1000')" oninput="this.setCustomValidity('')" readonly>
     </div>
     <input type="submit" value="Submit" id="submit" onclick="isi()">
     <a role="button" class="btn btn-outline-dark" href="<?= base_url('gudang/tambahpembelian'); ?>" style="margin-bottom: 5px; float: right;">Clear</a>

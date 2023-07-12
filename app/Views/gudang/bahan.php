@@ -51,21 +51,6 @@ if (!empty(session()->getFlashdata('success'))) { ?>
 <h1 style="text-align: center;">Bahan Pembuatan Batik</h1>
 <hr>
 
-<form action="<?= base_url('gudang/bahan'); ?>" method="get">
-    <div class="mb-3">
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-                <label class="col-form-label">Cari Bahan</label>
-            </div>
-          
-            <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                    <em>press Enter</em>
-                </span>
-            </div>
-        </div>
-    </div>
-</form>
 <table class="table table-secondary table-striped-columns" style="border-collapse:collapse ;border-radius: 10px;overflow: hidden;">
     <thead>
         <tr style="text-align: center;">
@@ -78,8 +63,9 @@ if (!empty(session()->getFlashdata('success'))) { ?>
         </tr>
     </thead>
     <tbody>
-        
-        <?php $i = 1; foreach ($bahan as  $row) { ?>
+
+        <?php $i = 1;
+        foreach ($bahan as  $row) { ?>
             <tr style="text-align: center; vertical-align: middle;">
                 <th scope="row"><?= $i++; ?></td>
                 <td><?= $row['nama']; ?></td>
@@ -94,7 +80,6 @@ if (!empty(session()->getFlashdata('success'))) { ?>
 <div class="pagination">
     <?php //var_dump($pager); 
     ?>
-    
-    ?>
+
 </div>
 <?= $this->endSection(); ?>
