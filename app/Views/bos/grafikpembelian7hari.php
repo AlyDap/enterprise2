@@ -1,6 +1,6 @@
 <?php
 
-if (!empty($cekPenjualan7Hari)) {
+if (!empty($cekPembelian7Hari)) {
     foreach ($grafikpembelian7hariA as $key => $value) {
         $infoA[] = $value['haritanggal'];
         $hasilA[] = $value['jumlah'];
