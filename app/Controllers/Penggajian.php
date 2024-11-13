@@ -167,6 +167,23 @@ class Penggajian extends BaseController
     {
         // 2023-06-26 23:49:36
         if (session()->get('jabatan') == 'bos') {
+            $bulanIndonesia = [
+                'Januari' => 'January',
+                'Februari' => 'February',
+                'Maret' => 'March',
+                'April' => 'April',
+                'Mei' => 'May',
+                'Juni' => 'June',
+                'Juli' => 'July',
+                'Agustus' => 'August',
+                'September' => 'September',
+                'Oktober' => 'October',
+                'November' => 'November',
+                'Desember' => 'December',
+            ];
+            
+            // Ganti nama bulan Indonesia ke bahasa Inggris
+            $bulan = $bulanIndonesia[$bulan]; 
             $penggajian = $this->userModel->join('penggajian', 'penggajian.id_user=user.id_user')->where('month(tgl)', Time::parse('01-' . $bulan . '-2023', 'Asia/Jakarta', 'id_id')->getMonth())->findAll();
             // cek apakah penggajian kosong
             if (empty($penggajian)) {
